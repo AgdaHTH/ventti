@@ -1,1 +1,2 @@
-# ventti
+# Ryhmä Ventti
+## Ohjelmistotuotannon miniprojekti
