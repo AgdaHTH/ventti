@@ -1,4 +1,4 @@
-Ryhmämme sitoutuu noudattamaan tätä ohjetta, joka määrittää milloin jonkin ominaisuuden voi totea valmiiksi.
+Ryhmämme sitoutuu noudattamaan tätä ohjetta, joka määrittää milloin jonkin ominaisuuden voi todeta valmiiksi.
 
 1. Testit on luotu ja ne on järkeviä ohjelman toimivuuden osalta
 
