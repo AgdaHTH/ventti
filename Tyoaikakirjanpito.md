@@ -1,6 +1,6 @@
 # Työaikakirjanpito
 
-## Viikko 1 (1.-24.11.)
+## Viikko 1 (18.-24.11.)
 
 |                    | käytetty työaika (h) |
 | :----------------- | :------------------: |
