@@ -5,6 +5,7 @@
 # Ignore Gradle build output directory
 build
 
+# VSCode project files
 **/.vscode
 **/.project
 **/.classpath
