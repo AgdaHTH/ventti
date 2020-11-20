@@ -5,6 +5,7 @@
  */
 package Lukuvinkkiohjelma;
 
+import Lukuvinkkiohjelma.domain.Sovelluslogiikka;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -16,10 +17,12 @@ import static org.junit.Assert.*;
  *
  * @author Hilla
  */
-public class MainTest {
+public class SovelluslogiikkaTest {
 
-    public MainTest() {
+    Sovelluslogiikka sovelluslogiikka;
 
+    public SovelluslogiikkaTest() {
+        sovelluslogiikka = new Sovelluslogiikka();
     }
 
     @BeforeClass
@@ -40,7 +43,8 @@ public class MainTest {
 
     @Test
     public void koeTesti() {
-        System.out.println("Testi!");
+        int koeTulos = sovelluslogiikka.testiMetodi();
+        assertEquals(100, koeTulos);
     }
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:

@@ -11,4 +11,11 @@ package Lukuvinkkiohjelma.domain;
  */
 public class Sovelluslogiikka {
     
+    public Sovelluslogiikka() {
+    
+    }
+    
+    public int testiMetodi() {
+        return 100;
+    }
 }
