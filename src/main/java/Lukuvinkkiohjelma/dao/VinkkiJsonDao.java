@@ -29,13 +29,14 @@ public class VinkkiJsonDao implements VinkkiDao {
             writer.close();
             return true;
         } catch (IOException ex) {
-            Logger.getLogger(VinkkiJsonDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VinkkiJsonDao.class.getName()).log(Level.SEVERE, 
+                    null, ex);
             return false;
         }
     }
 
     @Override
     public List<Object> haeKaikki() throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
