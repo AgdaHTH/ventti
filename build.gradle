@@ -33,7 +33,7 @@ jar {
 
 //paketti puuttuu
 application {
-    mainClass = 'App'
+    mainClass = 'Main.java'
 }
 
 run {
