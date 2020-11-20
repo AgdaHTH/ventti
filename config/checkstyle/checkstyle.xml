@@ -10,6 +10,10 @@
             <property name="max" value="15"/>
             <property name="countEmpty" value="false"/>
         </module>
+        <module name="DeclarationOrder"/>
+        <module name="RedundantImport"/>
+        <module name="SimplifyBooleanExpression"/>
+        <module name="SimplifyBooleanReturn"/>
     </module>
 
 </module>
