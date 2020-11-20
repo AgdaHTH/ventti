@@ -34,7 +34,7 @@ jar {
 //paketti puuttuu 'paketti.Main'
 
 application {
-    mainClass = 'Lukuvinkkiohjelma:Main'
+    mainClass = 'Lukuvinkkiohjelma.Main'
 }
 
 run {
