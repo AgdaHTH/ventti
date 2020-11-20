@@ -5,16 +5,25 @@
  */
 package Lukuvinkkiohjelma.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author mari
  */
 public class Sovelluslogiikka {
-    
+
+    private List<Vinkki> vinkkilista;
+
     public Sovelluslogiikka() {
-    
+        this.vinkkilista = new ArrayList<>();
     }
-    
+
+    public void lisaaVinkki(Vinkki vinkki) {
+        this.vinkkilista.add(vinkki);
+    }
+
     public int testiMetodi() {
         return 100;
     }
