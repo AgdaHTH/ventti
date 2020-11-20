@@ -6,8 +6,11 @@
 build
 
 # VSCode project files
-**/.vscode
-**/.project
-**/.classpath
-**/.settings/**
-**/bin/**
+.vscode
+.project
+.classpath
+.settings
+bin
+
+# nb project files
+nbproject
