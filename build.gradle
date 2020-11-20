@@ -9,6 +9,7 @@ plugins {
     id 'java'
     id 'application'
     id 'checkstyle'
+    id "com.github.johnrengelman.shadow" version "6.1.0"
 }
 
 repositories {
@@ -30,7 +31,7 @@ dependencies {
 }
 
 
-/*
+
 mainClassName = 'Main'
 
 jar {
@@ -38,14 +39,14 @@ jar {
         attributes 'Main-Class': 'Main'
     }
 }
-*/
-//mainClassName = 'ohtu.Main'
-//paketti puuttuu 'paketti.Main'
+
+/*
 
 application {
     mainClass = 'Lukuvinkkiohjelma.Main'
 }
 
+*/
 run {
     standardInput = System.in
 }
