@@ -31,10 +31,11 @@ jar {
     }
 }
 */
+//mainClassName = 'ohtu.Main'
+//paketti puuttuu 'paketti.Main'
 
-//paketti puuttuu
 application {
-    mainClass = 'Main.java'
+    mainClass = 'Lukuvinkkiohjelma:Main'
 }
 
 run {
