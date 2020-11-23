@@ -2,7 +2,7 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: [ main, cucumberbranch ]
+    branches: [ main ]
 
 jobs:
   run_tests:
