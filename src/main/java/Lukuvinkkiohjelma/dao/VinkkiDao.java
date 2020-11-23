@@ -6,5 +6,5 @@ import Lukuvinkkiohjelma.domain.Vinkki;
 
 public interface VinkkiDao {
     boolean lisaaVinkki(Vinkki vinkki);
-    List<Object> haeKaikki() throws IOException;
+    List<Vinkki> haeKaikki() throws IOException;
 }
