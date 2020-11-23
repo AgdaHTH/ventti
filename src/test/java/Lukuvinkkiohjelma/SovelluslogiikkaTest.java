@@ -5,6 +5,7 @@
  */
 package Lukuvinkkiohjelma;
 
+import Lukuvinkkiohjelma.dao.VinkkiJsonDao;
 import Lukuvinkkiohjelma.domain.Sovelluslogiikka;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -22,7 +23,7 @@ public class SovelluslogiikkaTest {
     Sovelluslogiikka sovelluslogiikka;
 
     public SovelluslogiikkaTest() {
-        sovelluslogiikka = new Sovelluslogiikka();
+        sovelluslogiikka = new Sovelluslogiikka(new VinkkiJsonDao("testi"));
     }
 
     @BeforeClass
@@ -40,15 +41,4 @@ public class SovelluslogiikkaTest {
     @After
     public void tearDown() {
     }
-
-    @Test
-    public void koeTesti() {
-        int koeTulos = sovelluslogiikka.testiMetodi();
-        assertEquals(100, koeTulos);
-    }
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
 }

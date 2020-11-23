@@ -5,6 +5,7 @@
  */
 package Lukuvinkkiohjelma.ui;
 
+import Lukuvinkkiohjelma.dao.VinkkiJsonDao;
 import Lukuvinkkiohjelma.domain.Sovelluslogiikka;
 import Lukuvinkkiohjelma.domain.Vinkki;
 import java.util.Scanner;
@@ -19,7 +20,7 @@ public class Tekstikayttoliittyma {
     private Scanner lukija;
 
     public Tekstikayttoliittyma() {
-        this.sovelluslogiikka = new Sovelluslogiikka();
+        this.sovelluslogiikka = new Sovelluslogiikka(new VinkkiJsonDao("vinkit"));
         this.lukija = new Scanner(System.in);
     }
 
