@@ -6,7 +6,6 @@
 package Lukuvinkkiohjelma.domain;
 
 import Lukuvinkkiohjelma.dao.VinkkiDao;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

@@ -17,11 +17,18 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class VinkkiJsonDao implements VinkkiDao {
-    
+
     private final File vinkkikirjasto;
-    
-    public VinkkiJsonDao(String tiedosto) { 
+
+    public VinkkiJsonDao(String tiedosto) {
         vinkkikirjasto = new File(tiedosto);
+        if (!vinkkikirjasto.exists()) {
+            try {
+                vinkkikirjasto.createNewFile();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     @Override
@@ -42,14 +49,14 @@ public class VinkkiJsonDao implements VinkkiDao {
             vinkit = new ArrayList<>();
             vinkit.add(vinkki);
         }
-        
+
         try {
             FileWriter writer = new FileWriter(vinkkikirjasto);
             Gson gson = new GsonBuilder().create();
 
             gson.toJson(vinkit, writer);
             writer.close();
-            
+
             return true;
         } catch (IOException ex) {
             Logger.getLogger(VinkkiJsonDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -59,16 +66,17 @@ public class VinkkiJsonDao implements VinkkiDao {
 
     @Override
     public List<Vinkki> haeKaikki() throws IOException {
-        InputStreamReader fileReader 
+        InputStreamReader fileReader
                 = new InputStreamReader(new FileInputStream(
                         (File) vinkkikirjasto), "UTF-8");
-        
+
         JsonReader jsonReader = new JsonReader(fileReader);
-        
+
         Gson gson = new Gson();
-        Type type = new TypeToken<List<Vinkki>>(){}.getType();
+        Type type = new TypeToken<List<Vinkki>>() {
+        }.getType();
         ArrayList<Vinkki> vinkit = gson.fromJson(jsonReader, type);
-        return vinkit;    
+        return vinkit;
     }
 
 }
