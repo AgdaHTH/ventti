@@ -9,7 +9,7 @@
         <module name="Indentation"/>
         <module name="LeftCurly"/>
         <module name="MethodLength">
-            <property name="max" value="15"/>
+            <property name="max" value="40"/>
             <property name="countEmpty" value="false"/>
         </module>
         <module name="DeclarationOrder"/>
