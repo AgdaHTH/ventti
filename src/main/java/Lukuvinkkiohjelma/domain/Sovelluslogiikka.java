@@ -5,6 +5,7 @@
  */
 package Lukuvinkkiohjelma.domain;
 
+import Lukuvinkkiohjelma.dao.VinkkiDao;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,16 +16,19 @@ import java.util.List;
 public class Sovelluslogiikka {
 
     private List<Vinkki> vinkkilista;
+    private VinkkiDao dao;
 
-    public Sovelluslogiikka() {
-        this.vinkkilista = new ArrayList<>();
+    public Sovelluslogiikka(VinkkiDao vinkkiDao) {
+        this.dao = vinkkiDao;
+        try {
+            this.vinkkilista = dao.haeKaikki();
+        } catch (Exception e) {
+            System.out.println("Vinkkien lataus epäonnistui!\n" + e.toString());
+        }
     }
 
     public void lisaaVinkki(Vinkki vinkki) {
         this.vinkkilista.add(vinkki);
-    }
-
-    public int testiMetodi() {
-        return 100;
+        this.dao.lisaaVinkki(vinkki);
     }
 }
