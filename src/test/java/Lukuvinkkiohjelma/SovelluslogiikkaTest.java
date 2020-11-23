@@ -7,6 +7,7 @@ package Lukuvinkkiohjelma;
 
 import Lukuvinkkiohjelma.dao.VinkkiJsonDao;
 import Lukuvinkkiohjelma.domain.Sovelluslogiikka;
+import Lukuvinkkiohjelma.domain.Vinkki;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -40,5 +41,10 @@ public class SovelluslogiikkaTest {
 
     @After
     public void tearDown() {
+    }
+
+    @Test
+    public void vinkinLisaysOnnistuu() {
+        sovelluslogiikka.lisaaVinkki(new Vinkki("otsikko", "tyyppi"));
     }
 }
