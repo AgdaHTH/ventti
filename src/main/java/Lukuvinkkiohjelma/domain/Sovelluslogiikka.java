@@ -22,7 +22,7 @@ public class Sovelluslogiikka {
         try {
             this.vinkkilista = dao.haeKaikki();
         } catch (Exception e) {
-            System.out.println("Vinkkien lataus epäonnistui!\n" + e.toString());
+            System.out.println("Vinkkien lataus epaonnistui!\n" + e.toString());
         }
     }
 
