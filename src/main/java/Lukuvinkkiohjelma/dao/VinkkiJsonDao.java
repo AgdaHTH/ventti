@@ -76,6 +76,9 @@ public class VinkkiJsonDao implements VinkkiDao {
         Type type = new TypeToken<List<Vinkki>>() {
         }.getType();
         ArrayList<Vinkki> vinkit = gson.fromJson(jsonReader, type);
+        if(vinkit == null) {
+            return new ArrayList<Vinkki>();
+        }
         return vinkit;
     }
 
