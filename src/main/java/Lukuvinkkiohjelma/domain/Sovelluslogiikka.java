@@ -26,8 +26,21 @@ public class Sovelluslogiikka {
         }
     }
 
-    public void lisaaVinkki(Vinkki vinkki) {
+    // Metodi kirjaa uuden vinkkiolion sekä paikalliseen listaan että tiedostoon pysyväistallennukseen.
+    public boolean lisaaVinkki(Vinkki vinkki) {
         this.vinkkilista.add(vinkki);
-        this.dao.lisaaVinkki(vinkki);
+        return this.dao.lisaaVinkki(vinkki);
+    }
+
+    // Metodi listaa kaikki tallennetut vinkit tarkastelua varten.
+    // -  Jos vinkkilistassa vinkkejä, tulostetaan ne for-loopin avulla, muulloin ilmoitetaan tyhjyydestä.
+    public void listaaVinkit() {
+        if (!(vinkkilista.isEmpty())) {
+            for (Vinkki vinkki : vinkkilista) {
+                System.out.print(vinkki.toString());
+            }
+        } else {
+            System.out.println("Vinkkejä ei vielä lisätty!");
+        }
     }
 }

@@ -34,6 +34,7 @@ public class Tekstikayttoliittyma {
 
             System.out.println("Komennot:");
             System.out.println("lisaa - Lisää vinkki");
+            System.out.println("listaa - Listaa vinkit");
             System.out.println("sulje - Sulje ohjelma");
             System.out.println("");
 
@@ -48,13 +49,19 @@ public class Tekstikayttoliittyma {
                 String tyyppi = lukija.nextLine();
                 System.out.println("");
 
-                sovelluslogiikka.lisaaVinkki(new Vinkki(otsikko, tyyppi));
+                if (sovelluslogiikka.lisaaVinkki(new Vinkki(otsikko, tyyppi))) {
+                    System.out.println("Vinkki lisätty onnistuneesti!\n");
+                } else {
+                    System.out.println("Jotain meni pieleen vinkin lisäämisessä\n");
+                }
+                
+            } else if (komento.equals("listaa")) {
+                sovelluslogiikka.listaaVinkit();
                 
             } else if (komento.equals("sulje")) {
                 System.out.println("Kiitos käynnistä! Hei hei!");
                 kaynnissa = false;
             }
-
         }
     }
 }

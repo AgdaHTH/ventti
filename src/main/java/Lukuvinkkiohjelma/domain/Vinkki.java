@@ -18,4 +18,20 @@ public class Vinkki {
         this.otsikko = otsikko;
         this.tyyppi = tyyppi;
     }
+
+    // Metodi vinkin muokkaustoiminnallisuutta varten
+    public void setOtsikko(String uusiOtsikko) {
+        this.otsikko = uusiOtsikko;
+    }
+
+    // Metodi vinkin muokkaustoiminnallisuutta varten
+    public void setTyyppi(String uusiTyyppi) {
+        this.tyyppi = uusiTyyppi;
+    }
+
+    // Palauttaa vinkin luettavaksi selkokielisenä. 
+    @Override
+    public String toString() {
+        return "\t Otsikko: " + otsikko + "\n\t Tyyppi: " + tyyppi + "\n\n";
+    }
 }
