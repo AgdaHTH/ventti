@@ -14,3 +14,8 @@ bin
 
 # nb project files
 nbproject
+
+
+# Ohjelmatiedostot
+testi.txt
+vinkit.txt
