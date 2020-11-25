@@ -26,14 +26,13 @@ public class Sovelluslogiikka {
         }
     }
 
-    // Metodi kirjaa uuden vinkkiolion sekä paikalliseen listaan että tiedostoon pysyväistallennukseen.
+    // Metodi lisää uuden vinkkiolion
     public boolean lisaaVinkki(Vinkki vinkki) {
         this.vinkkilista.add(vinkki);
         return this.dao.lisaaVinkki(vinkki);
     }
 
-    // Metodi listaa kaikki tallennetut vinkit tarkastelua varten.
-    // -  Jos vinkkilistassa vinkkejä, tulostetaan ne for-loopin avulla, muulloin ilmoitetaan tyhjyydestä.
+    // Metodi listaa kaikki tallennetut vinkit tarkastelua varten
     public void listaaVinkit() {
         if (!(vinkkilista.isEmpty())) {
             for (Vinkki vinkki : vinkkilista) {
