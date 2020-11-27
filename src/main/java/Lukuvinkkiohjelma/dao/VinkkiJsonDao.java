@@ -50,18 +50,7 @@ public class VinkkiJsonDao implements VinkkiDao {
             vinkit.add(vinkki);
         }
 
-        try {
-            FileWriter writer = new FileWriter(vinkkikirjasto);
-            Gson gson = new GsonBuilder().create();
-
-            gson.toJson(vinkit, writer);
-            writer.close();
-
-            return true;
-        } catch (IOException ex) {
-            Logger.getLogger(VinkkiJsonDao.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
+        return talletaVinkit(vinkit);
     }
 
     @Override
@@ -80,6 +69,22 @@ public class VinkkiJsonDao implements VinkkiDao {
             return new ArrayList<Vinkki>();
         }
         return vinkit;
+    }
+
+    @Override
+    public boolean talletaVinkit(List<Vinkki> vinkit) {
+        try {
+            FileWriter writer = new FileWriter(vinkkikirjasto);
+            Gson gson = new GsonBuilder().create();
+
+            gson.toJson(vinkit, writer);
+            writer.close();
+
+            return true;
+        } catch (IOException ex) {
+            Logger.getLogger(VinkkiJsonDao.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
     }
 
 }
