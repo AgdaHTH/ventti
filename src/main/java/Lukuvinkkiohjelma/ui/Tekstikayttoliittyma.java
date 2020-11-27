@@ -8,6 +8,7 @@ package Lukuvinkkiohjelma.ui;
 import Lukuvinkkiohjelma.dao.VinkkiJsonDao;
 import Lukuvinkkiohjelma.domain.Sovelluslogiikka;
 import Lukuvinkkiohjelma.domain.Vinkki;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -35,6 +36,7 @@ public class Tekstikayttoliittyma {
             System.out.println("Komennot:");
             System.out.println("1 - Lisää vinkki");
             System.out.println("2 - Listaa vinkit");
+            System.out.println("3 - Poista vinkki");
             System.out.println("0 - Sulje ohjelma");
             System.out.println("");
 
@@ -54,10 +56,30 @@ public class Tekstikayttoliittyma {
                 } else {
                     System.out.println("Jotain meni pieleen vinkin lisäämisessä\n");
                 }
-                
+
             } else if (komento.equals("2")) {
-                sovelluslogiikka.listaaVinkit();
-                
+                List<Vinkki> vinkkilista = sovelluslogiikka.listaaVinkit();
+
+                for (Vinkki vinkki : vinkkilista) {
+                    System.out.println(vinkki);
+                }
+
+            } else if (komento.equals("3")) {
+                List<Vinkki> vinkkilista = sovelluslogiikka.listaaVinkit();
+
+                for (int i = 0; i < vinkkilista.size(); i++) {
+                    System.out.println(i + " " + vinkkilista.get(i));
+                }
+
+                System.out.println("Anna poistettavan vinkin numero:");
+                int numero = Integer.valueOf(lukija.nextLine());
+
+                if (sovelluslogiikka.poistaVinkki(vinkkilista.get(numero))) {
+                    System.out.println("Vinkki poistettu onnistuneesti!");
+                } else {
+                    System.out.println("Jotain meni pieleen vinkin lisäämisessä.");
+                }
+
             } else if (komento.equals("0")) {
                 System.out.println("Kiitos käynnistä! Hei hei!");
                 kaynnissa = false;

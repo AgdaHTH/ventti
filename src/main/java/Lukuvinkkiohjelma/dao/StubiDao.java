@@ -4,7 +4,6 @@ import Lukuvinkkiohjelma.domain.Vinkki;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class StubiDao implements VinkkiDao {
 
     private final ArrayList<Vinkki> vinkkikirjasto;
@@ -15,7 +14,7 @@ public class StubiDao implements VinkkiDao {
         vinkkikirjasto.add(new Vinkki("Testi", "Testi"));
         vinkkikirjasto.add(new Vinkki("Testi2", "Testi2"));
         vinkkikirjasto.add(new Vinkki("Erkki Esimerkki", "Erkki Esimerkki"));
-        
+
     }
 
     @Override
@@ -40,10 +39,15 @@ public class StubiDao implements VinkkiDao {
     }
 
     @Override
+    public boolean poistaVinkki(Vinkki vinkki) {
+        return false;
+    }
+
+    @Override
     public List<Vinkki> haeKaikki() {
-        
+
         ArrayList<Vinkki> vinkit = vinkkikirjasto;
-        if(vinkit == null) {
+        if (vinkit == null) {
             return new ArrayList<Vinkki>();
         }
         return vinkit;

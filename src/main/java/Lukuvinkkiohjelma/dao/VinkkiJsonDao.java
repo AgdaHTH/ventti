@@ -63,6 +63,11 @@ public class VinkkiJsonDao implements VinkkiDao {
             return false;
         }
     }
+    
+    @Override
+    public boolean poistaVinkki(Vinkki vinkki) {
+        return false;
+    }
 
     @Override
     public List<Vinkki> haeKaikki() throws IOException {

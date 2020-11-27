@@ -33,13 +33,12 @@ public class Sovelluslogiikka {
     }
 
     // Metodi listaa kaikki tallennetut vinkit tarkastelua varten
-    public void listaaVinkit() {
-        if (!(vinkkilista.isEmpty())) {
-            for (Vinkki vinkki : vinkkilista) {
-                System.out.print(vinkki.toString());
-            }
-        } else {
-            System.out.println("Vinkkejä ei vielä lisätty!");
-        }
+    public List<Vinkki> listaaVinkit() {
+        return vinkkilista;
+    }
+
+    public boolean poistaVinkki(Vinkki vinkki) {
+        this.vinkkilista.remove(vinkki);
+        return this.dao.poistaVinkki(vinkki);
     }
 }
