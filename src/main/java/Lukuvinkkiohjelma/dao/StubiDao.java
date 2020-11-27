@@ -34,7 +34,6 @@ public class StubiDao implements VinkkiDao {
             vinkit.add(vinkki);
         }
 
-
     }
 
     @Override
