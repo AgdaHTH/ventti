@@ -8,16 +8,18 @@ import io.cucumber.java.en.And;
 import java.util.ArrayList;
 import static org.junit.Assert.*;
 import Lukuvinkkiohjelma.dao.VinkkiDao;
+import Lukuvinkkiohjelma.dao.StubiDao;
 import Lukuvinkkiohjelma.dao.VinkkiJsonDao;
 import Lukuvinkkiohjelma.domain.Sovelluslogiikka;
 import java.util.List;
 
 public class Stepdefs {
-    
+    StubiDao stubiDao;
     List<String> inputLines;
     
     @Before
-    public void setup(){  
+    public void setup(){
+        stubiDao = new StubiDao();
         inputLines = new ArrayList<>();      
     }
     
