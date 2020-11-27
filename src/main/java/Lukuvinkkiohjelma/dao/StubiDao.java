@@ -45,15 +45,10 @@ public class StubiDao implements VinkkiDao {
 
     @Override
     public List<Vinkki> haeKaikki() {
-<<<<<<< HEAD
 
-        ArrayList<Vinkki> vinkit = vinkkikirjasto;
-        if (vinkit == null) {
-=======
         
         List<Vinkki> vinkit = vinkkikirjasto;
         if(vinkit == null) {
->>>>>>> cd9d3d17cdfb6a31aca0ea3625e5985f53f20151
             return new ArrayList<Vinkki>();
         }
         return vinkit;
