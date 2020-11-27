@@ -20,7 +20,7 @@ public class StubiDao implements VinkkiDao {
 
     @Override
     public boolean lisaaVinkki(Vinkki vinkki) {
-        List<Vinkki> vinkit = null;
+        List<Vinkki> vinkit = vinkkikirjasto;
         if (!vinkkikirjasto.isEmpty()) {
 
             vinkit = haeKaikki();
@@ -32,7 +32,9 @@ public class StubiDao implements VinkkiDao {
         } else {
             vinkit = new ArrayList<>();
             vinkit.add(vinkki);
+            return true;
         }
+        return false;
 
 
     }
