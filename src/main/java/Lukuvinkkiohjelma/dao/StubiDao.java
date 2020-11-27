@@ -27,6 +27,7 @@ public class StubiDao implements VinkkiDao {
 
             if (!vinkit.contains(vinkki)) {
                 vinkit.add(vinkki);
+                return true;
             }
 
         } else {
