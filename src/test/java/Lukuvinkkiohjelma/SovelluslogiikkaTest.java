@@ -45,6 +45,6 @@ public class SovelluslogiikkaTest {
 
     @Test
     public void vinkinLisaysOnnistuu() {
-        sovelluslogiikka.lisaaVinkki(new Vinkki("otsikko", "tyyppi"));
+        assertTrue(sovelluslogiikka.lisaaVinkki(new Vinkki("otsikko", "tyyppi")));
     }
 }
