@@ -33,16 +33,16 @@ public class Tekstikayttoliittyma {
         while (kaynnissa) {
 
             System.out.println("Komennot:");
-            System.out.println("lisaa - Lisää vinkki");
-            System.out.println("listaa - Listaa vinkit");
-            System.out.println("sulje - Sulje ohjelma");
+            System.out.println("1 - Lisää vinkki");
+            System.out.println("2 - Listaa vinkit");
+            System.out.println("0 - Sulje ohjelma");
             System.out.println("");
 
             System.out.println("Anna komento:");
             String komento = lukija.nextLine();
             System.out.println("");
 
-            if (komento.equals("lisaa")) {
+            if (komento.equals("1")) {
                 System.out.println("Anna otsikko:");
                 String otsikko = lukija.nextLine();
                 System.out.println("Anna tyyppi:");
@@ -55,10 +55,10 @@ public class Tekstikayttoliittyma {
                     System.out.println("Jotain meni pieleen vinkin lisäämisessä\n");
                 }
                 
-            } else if (komento.equals("listaa")) {
+            } else if (komento.equals("2")) {
                 sovelluslogiikka.listaaVinkit();
                 
-            } else if (komento.equals("sulje")) {
+            } else if (komento.equals("0")) {
                 System.out.println("Kiitos käynnistä! Hei hei!");
                 kaynnissa = false;
             }
