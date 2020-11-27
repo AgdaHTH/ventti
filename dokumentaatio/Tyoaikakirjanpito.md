@@ -19,7 +19,7 @@
 | -------------------|:---:|
 | Hilla Halla-aho    |     |
 | Eemeli Ingervo     |  1  |
-| Juha Kauppinen     |     |
+| Juha Kauppinen     | 2,5 |
 | Mari Karlsson      | 2,5 |
 | Ville Lappalainen  |     |
 | Benjamin Blinnikka |     |
