@@ -6,7 +6,7 @@ import java.util.List;
 
 public class StubiDao implements VinkkiDao {
 
-    private final ArrayList<Vinkki> vinkkikirjasto;
+    private List<Vinkki> vinkkikirjasto;
 
     public StubiDao() {
         vinkkikirjasto = new ArrayList<>();
@@ -45,12 +45,24 @@ public class StubiDao implements VinkkiDao {
 
     @Override
     public List<Vinkki> haeKaikki() {
+<<<<<<< HEAD
 
         ArrayList<Vinkki> vinkit = vinkkikirjasto;
         if (vinkit == null) {
+=======
+        
+        List<Vinkki> vinkit = vinkkikirjasto;
+        if(vinkit == null) {
+>>>>>>> cd9d3d17cdfb6a31aca0ea3625e5985f53f20151
             return new ArrayList<Vinkki>();
         }
         return vinkit;
+    }
+
+    @Override
+    public boolean talletaVinkit(List<Vinkki> vinkit) {
+        vinkkikirjasto = vinkit;
+        return true;
     }
 
 }
