@@ -1,6 +1,8 @@
 package Lukuvinkkiohjelma.dao;
 
 import Lukuvinkkiohjelma.domain.Vinkki;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class StubiDao implements VinkkiDao {
@@ -18,8 +20,8 @@ public class StubiDao implements VinkkiDao {
 
     @Override
     public boolean lisaaVinkki(Vinkki vinkki) {
-        List vinkit = null;
-        if (vinkkikirjasto.exists()) {
+        List<Vinkki> vinkit = null;
+        if (!vinkkikirjasto.isEmpty()) {
 
             vinkit = haeKaikki();
 
