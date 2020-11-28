@@ -34,4 +34,6 @@ public class Vinkki {
     public String toString() {
         return "\t Otsikko: " + otsikko + "\n\t Tyyppi: " + tyyppi + "\n\n";
     }
+    
+
 }

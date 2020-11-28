@@ -33,11 +33,14 @@ public class Stepdefs {
         inputLines.add("1");
     }
     
+    
     @When("a new tip with title {string} and type {string} is added")
     public void aNewTipIsAdded(String otsikko, String tyyppi) {
+        
         inputLines.add(otsikko);
         inputLines.add(tyyppi);
-        
+        inputLines.add("0");
+       
         io = new StubIO(inputLines);
         kayttoliittyma = new Tekstikayttoliittyma(io, stubiDao);
         kayttoliittyma.kaynnista();
@@ -50,10 +53,20 @@ public class Stepdefs {
   
     }
     
+
+    
     @Then("system will respond with {string}")
     public void aNewTipCanBeFound(String expectedOutput) {
+        
+        for (String print : io.getPrints()) {
+            System.out.println(print);
+        }
+        
         assertTrue(io.getPrints().contains(expectedOutput));
+        
     }
+    
+
     
     
 }
