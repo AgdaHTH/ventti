@@ -11,31 +11,48 @@ import Lukuvinkkiohjelma.dao.VinkkiDao;
 import Lukuvinkkiohjelma.dao.StubiDao;
 import Lukuvinkkiohjelma.dao.VinkkiJsonDao;
 import Lukuvinkkiohjelma.domain.Sovelluslogiikka;
+import Lukuvinkkiohjelma.ui.Tekstikayttoliittyma;
+import Lukuvinkkiohjelma.io.IO;
+import Lukuvinkkiohjelma.io.StubIO;
 import java.util.List;
 
 public class Stepdefs {
     StubiDao stubiDao;
     List<String> inputLines;
+    Tekstikayttoliittyma kayttoliittyma;
+    StubIO io;
     
     @Before
     public void setup(){
         stubiDao = new StubiDao();
-        inputLines = new ArrayList<>();      
+        inputLines = new ArrayList<>();       
     }
     
     @Given("^command lisaa is selected$")
     public void commandLisaaSelected() throws Throwable {
-        
+        inputLines.add("1");
     }
     
     @When("a new tip with title {string} and type {string} is added")
-    public void aNewTipIsAdded() {
+    public void aNewTipIsAdded(String otsikko, String tyyppi) {
+        inputLines.add(otsikko);
+        inputLines.add(tyyppi);
+        
+        io = new StubIO(inputLines);
+        kayttoliittyma = new Tekstikayttoliittyma(io, stubiDao);
+        kayttoliittyma.kaynnista();
+        
+        /*
+       io = new StubIO(inputLines); 
+       app = new App(io, auth);
+       app.run();
+        */
   
     }
     
-    @Then("a tip with title {string} and type {string} is found in the application")
-    public void aNewTipCanBeFound() {
-    
+    @Then("system will respond with {string}")
+    public void aNewTipCanBeFound(String expectedOutput) {
+        assertTrue(io.getPrints().contains(expectedOutput));
     }
     
     
