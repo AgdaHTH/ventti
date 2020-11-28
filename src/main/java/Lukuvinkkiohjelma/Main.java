@@ -5,6 +5,9 @@
  */
 package Lukuvinkkiohjelma;
 
+import Lukuvinkkiohjelma.dao.VinkkiJsonDao;
+import Lukuvinkkiohjelma.io.ConsoleIO;
+import Lukuvinkkiohjelma.io.IO;
 import Lukuvinkkiohjelma.ui.Tekstikayttoliittyma;
 
 /**
@@ -19,9 +22,9 @@ public class Main {
     public static void main(String[] args) {
         // TODO code application logic here
 
-        Tekstikayttoliittyma tekstikayttoliittyma = new Tekstikayttoliittyma();
-
+        Tekstikayttoliittyma tekstikayttoliittyma = new Tekstikayttoliittyma(new ConsoleIO(), new VinkkiJsonDao("vinkit"));
+        
         tekstikayttoliittyma.kaynnista();
     }
-
+    
 }

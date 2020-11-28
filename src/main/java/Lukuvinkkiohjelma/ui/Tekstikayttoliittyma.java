@@ -5,9 +5,11 @@
  */
 package Lukuvinkkiohjelma.ui;
 
+import Lukuvinkkiohjelma.dao.VinkkiDao;
 import Lukuvinkkiohjelma.dao.VinkkiJsonDao;
 import Lukuvinkkiohjelma.domain.Sovelluslogiikka;
 import Lukuvinkkiohjelma.domain.Vinkki;
+import Lukuvinkkiohjelma.io.IO;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,71 +19,70 @@ import java.util.Scanner;
  */
 public class Tekstikayttoliittyma {
 
+    private IO io;
+    private VinkkiDao dao;
     private Sovelluslogiikka sovelluslogiikka;
-    private Scanner lukija;
 
-    public Tekstikayttoliittyma() {
-        this.sovelluslogiikka = new Sovelluslogiikka(new VinkkiJsonDao("vinkit"));
-        this.lukija = new Scanner(System.in);
+    public Tekstikayttoliittyma(IO io, VinkkiDao dao) { // tarvitseeko parametrina tiedostoa? annettava dao:lle jo aiemmin
+        this.io = io;
+        this.dao = dao;
+        this.sovelluslogiikka = new Sovelluslogiikka(dao);
     }
 
     public void kaynnista() {
-        System.out.println("Tervetuloa hallinnoimaan lukuvinkkejä!");
-        System.out.println("");
+        io.print("Tervetuloa hallinnoimaan lukuvinkkejä!");
+        io.print("");
 
         boolean kaynnissa = true;
 
         while (kaynnissa) {
 
-            System.out.println("Komennot:");
-            System.out.println("1 - Lisää vinkki");
-            System.out.println("2 - Listaa vinkit");
-            System.out.println("3 - Poista vinkki");
-            System.out.println("0 - Sulje ohjelma");
-            System.out.println("");
+            io.print("Komennot:");
+            io.print("1 - Lisää vinkki");
+            io.print("2 - Listaa vinkit");
+            io.print("3 - Poista vinkki");
+            io.print("0 - Sulje ohjelma");
+            io.print("");
 
-            System.out.println("Anna komento:");
-            String komento = lukija.nextLine();
-            System.out.println("");
+            String komento = io.readLine("Anna komento");
+            io.print("");
 
             if (komento.equals("1")) {
-                System.out.println("Anna otsikko:");
-                String otsikko = lukija.nextLine();
-                System.out.println("Anna tyyppi:");
-                String tyyppi = lukija.nextLine();
-                System.out.println("");
+                String otsikko = io.readLine("Anna otsikko:");
+                String tyyppi = io.readLine("Anna tyyppi:");
+                io.print("");
 
                 if (sovelluslogiikka.lisaaVinkki(new Vinkki(otsikko, tyyppi))) {
-                    System.out.println("Vinkki lisätty onnistuneesti!\n");
+                    io.print("Vinkki lisätty onnistuneesti!\n");
                 } else {
-                    System.out.println("Jotain meni pieleen vinkin lisäämisessä\n");
+                    io.print("Jotain meni pieleen vinkin lisäämisessä\n");
                 }
 
             } else if (komento.equals("2")) {
                 List<Vinkki> vinkkilista = sovelluslogiikka.listaaVinkit();
 
                 for (Vinkki vinkki : vinkkilista) {
-                    System.out.println(vinkki);
+                    io.print(vinkki.toString());
                 }
 
             } else if (komento.equals("3")) {
                 List<Vinkki> vinkkilista = sovelluslogiikka.listaaVinkit();
 
                 for (int i = 0; i < vinkkilista.size(); i++) {
-                    System.out.println(i + " " + vinkkilista.get(i));
+                    io.print(i + " " + vinkkilista.get(i));
                 }
 
-                System.out.println("Anna poistettavan vinkin numero:");
-                int numero = Integer.valueOf(lukija.nextLine());
+                io.print("Anna poistettavan vinkin numero:");
+                int numero = io.readInt("Anna poistettavan vinkin numero:");
 
                 if (sovelluslogiikka.poistaVinkki(vinkkilista.get(numero))) {
-                    System.out.println("Vinkki poistettu onnistuneesti!");
+                    io.print("Vinkki poistettu onnistuneesti!");
                 } else {
-                    System.out.println("Jotain meni pieleen vinkin lisäämisessä.");
+                    io.print("Jotain meni pieleen vinkin lisäämisessä.");
                 }
 
             } else if (komento.equals("0")) {
-                System.out.println("Kiitos käynnistä! Hei hei!");
+                io.print("Kiitos käynnistä! Hei hei!");
                 kaynnissa = false;
             }
         }
