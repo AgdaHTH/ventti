@@ -10,32 +10,28 @@ public class StubiDao implements VinkkiDao {
 
     public StubiDao() {
         vinkkikirjasto = new ArrayList<>();
-
-        vinkkikirjasto.add(new Vinkki("Testi", "Testi"));
-        vinkkikirjasto.add(new Vinkki("Testi2", "Testi2"));
-        vinkkikirjasto.add(new Vinkki("Erkki Esimerkki", "Erkki Esimerkki"));
-
+//        vinkkikirjasto.add(new Vinkki("Testi", "Testi"));
+//        vinkkikirjasto.add(new Vinkki("Testi2", "Testi2"));
+//        vinkkikirjasto.add(new Vinkki("Erkki Esimerkki", "Erkki Esimerkki"));
     }
 
     @Override
     public boolean lisaaVinkki(Vinkki vinkki) {
-        List<Vinkki> vinkit = vinkkikirjasto;
-        if (!vinkkikirjasto.isEmpty()) {
 
-            vinkit = haeKaikki();
+        
+        
+        if (vinkkikirjasto.size() >= 1) {
 
-            if (!vinkit.contains(vinkki)) {
-                vinkit.add(vinkki);
-                return true;
+            if (vinkkikirjasto.contains(vinkki)) {
+                return false;
             }
-
-        } else {
-            vinkit = new ArrayList<>();
-            vinkit.add(vinkki);
+            vinkkikirjasto.add(vinkki);
+            return true;            
+        } else {            
+            vinkkikirjasto = new ArrayList<>();
+            vinkkikirjasto.add(vinkki);
             return true;
         }
-        return false;
-
     }
 
     @Override
@@ -44,14 +40,15 @@ public class StubiDao implements VinkkiDao {
     }
 
     @Override
-    public List<Vinkki> haeKaikki() {
+    public List<Vinkki> haeKaikki() {        
+        if (this.vinkkikirjasto == null) {
+            return new ArrayList<>();
+        }        
 
-        
-        List<Vinkki> vinkit = vinkkikirjasto;
-        if(vinkit == null) {
-            return new ArrayList<Vinkki>();
+        if (!this.vinkkikirjasto.isEmpty()) {
+            return this.vinkkikirjasto;
         }
-        return vinkit;
+        return new ArrayList<>();
     }
 
     @Override

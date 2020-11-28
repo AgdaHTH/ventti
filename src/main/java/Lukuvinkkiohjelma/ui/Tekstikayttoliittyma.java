@@ -53,9 +53,9 @@ public class Tekstikayttoliittyma {
                 io.print("");
 
                 if (sovelluslogiikka.lisaaVinkki(new Vinkki(otsikko, tyyppi))) {
-                    io.print("Vinkki lisätty onnistuneesti!\n");
+                    io.print("Vinkki lisatty onnistuneesti!");
                 } else {
-                    io.print("Jotain meni pieleen vinkin lisäämisessä\n");
+                    io.print("Jotain meni pieleen vinkin lisaamisessa");
                 }
 
             } else if (komento.equals("2")) {
