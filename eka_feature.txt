@@ -1,4 +1,0 @@
-Scenario: a tip can be added
-        Given command lisaa is selected
-        When a new tip with title "Opus" and type "Kirja" is added
-        Then system will respond with "Vinkki lisÃ¤tty onnistuneesti!\n"

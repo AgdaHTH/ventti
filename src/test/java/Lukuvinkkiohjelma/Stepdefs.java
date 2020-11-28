@@ -41,7 +41,7 @@ public class Stepdefs {
         io = new StubIO(inputLines);
         kayttoliittyma = new Tekstikayttoliittyma(io, stubiDao);
         kayttoliittyma.kaynnista();
-        
+           
         /*
        io = new StubIO(inputLines); 
        app = new App(io, auth);
