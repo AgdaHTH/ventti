@@ -28,17 +28,19 @@ public class Stepdefs {
         inputLines = new ArrayList<>();       
     }
     
-    @Given("^command lisaa is selected$")
-    public void commandLisaaSelected() throws Throwable {
+    @Given("^command lisaa kirja is selected$")
+    public void commandLisaaKirjaSelected() throws Throwable {
+        inputLines.add("1");
         inputLines.add("1");
     }
     
     
-    @When("a new tip with title {string} and type {string} is added")
-    public void aNewTipIsAdded(String otsikko, String tyyppi) {
+    @When("a new booktip with title {string}, author {string} and ISBN {string} is added")
+    public void aNewTipIsAdded(String otsikko, String kirjoittaja, String isbn) {
         
         inputLines.add(otsikko);
-        inputLines.add(tyyppi);
+        inputLines.add(kirjoittaja);
+        inputLines.add(isbn);
         inputLines.add("0");
        
         io = new StubIO(inputLines);

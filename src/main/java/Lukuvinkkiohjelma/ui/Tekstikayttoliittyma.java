@@ -6,12 +6,10 @@
 package Lukuvinkkiohjelma.ui;
 
 import Lukuvinkkiohjelma.dao.VinkkiDao;
-import Lukuvinkkiohjelma.dao.VinkkiJsonDao;
+import Lukuvinkkiohjelma.domain.Kirja;
 import Lukuvinkkiohjelma.domain.Sovelluslogiikka;
-import Lukuvinkkiohjelma.domain.Vinkki;
 import Lukuvinkkiohjelma.io.IO;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  *
@@ -48,37 +46,54 @@ public class Tekstikayttoliittyma {
             io.print("");
 
             if (komento.equals("1")) {
-                String otsikko = io.readLine("Anna otsikko:");
-                String tyyppi = io.readLine("Anna tyyppi:");
+                
+                io.print("Millainen vinkki lisätään?\n\t1. Kirja\n\t2. Podcast\n\t3. Blogi\n");
+                String vinkkityyppi = io.readLine("Anna komento");
                 io.print("");
-
-                if (sovelluslogiikka.lisaaVinkki(new Vinkki(otsikko, tyyppi))) {
-                    io.print("Vinkki lisatty onnistuneesti!");
-                } else {
-                    io.print("Jotain meni pieleen vinkin lisaamisessa");
+                
+                if (vinkkityyppi.equals("1")) {
+                    String otsikko = io.readLine("Kirjan otsikko: ");
+                    String kirjoittaja = io.readLine("\nKirjan kirjoittaja: ");
+                    String ISBN = io.readLine("\nKirjan ISBN: ");
+                    
+                    
+                    if (sovelluslogiikka.lisaaVinkki(new Kirja(otsikko, kirjoittaja, ISBN))) {
+                        io.print("");
+                        io.print("Uusi kirjavinkki lisatty onnistuneesti!");
+                        io.print("");
+                    } else {
+                        io.print("\nJotain meni pieleen uuden kirjavinkin lisamisessa...\n");
+                    }
                 }
 
             } else if (komento.equals("2")) {
-                List<Vinkki> vinkkilista = sovelluslogiikka.listaaVinkit();
-
-                for (Vinkki vinkki : vinkkilista) {
-                    io.print(vinkki.toString());
+                List<Kirja> kirjalista = sovelluslogiikka.listaaKirjat();
+                // Tähän myös podcastien ja blogien haku...
+                
+                if (!kirjalista.isEmpty()) {
+                    for (Kirja kirja : kirjalista) {
+                        io.print(kirja.toString());
+                    }
+                } else {
+                    io.print("Ei vielä lisättyjä vinkkejä!\n");
                 }
+                
 
             } else if (komento.equals("3")) {
-                List<Vinkki> vinkkilista = sovelluslogiikka.listaaVinkit();
+                List<Kirja> kirjalista = sovelluslogiikka.listaaKirjat();
 
-                for (int i = 0; i < vinkkilista.size(); i++) {
-                    io.print(i + " " + vinkkilista.get(i));
+                if (!kirjalista.isEmpty()) {
+                    for (int i = 0; i < kirjalista.size(); i++) {
+                        io.print(i + " " + kirjalista.get(i));
+                    }
                 }
 
-                io.print("Anna poistettavan vinkin numero:");
                 int numero = io.readInt("Anna poistettavan vinkin numero:");
 
-                if (sovelluslogiikka.poistaVinkki(vinkkilista.get(numero))) {
-                    io.print("Vinkki poistettu onnistuneesti!");
+                if (sovelluslogiikka.poistaVinkki(kirjalista.get(numero))) {
+                    io.print("\nVinkki poistettu onnistuneesti!\n");
                 } else {
-                    io.print("Jotain meni pieleen vinkin lisäämisessä.");
+                    io.print("\nJotain meni pieleen vinkin poistamisessa.\n");
                 }
 
             } else if (komento.equals("0")) {

@@ -1,12 +1,11 @@
 package Lukuvinkkiohjelma.dao;
 
-import Lukuvinkkiohjelma.domain.Vinkki;
 import java.util.ArrayList;
 import java.util.List;
 
 public class StubiDao implements VinkkiDao {
 
-    private List<Vinkki> vinkkikirjasto;
+    private List<Object> vinkkikirjasto;
 
     public StubiDao() {
         vinkkikirjasto = new ArrayList<>();
@@ -16,7 +15,7 @@ public class StubiDao implements VinkkiDao {
     }
 
     @Override
-    public boolean lisaaVinkki(Vinkki vinkki) {
+    public boolean lisaaVinkki(Object vinkki) {
 
         
         
@@ -35,12 +34,12 @@ public class StubiDao implements VinkkiDao {
     }
 
     @Override
-    public boolean poistaVinkki(Vinkki vinkki) {
+    public boolean poistaVinkki(Object vinkki) {
         return false;
     }
 
     @Override
-    public List<Vinkki> haeKaikki() {        
+    public List<Object> haeKaikki() {        
         if (this.vinkkikirjasto == null) {
             return new ArrayList<>();
         }        
@@ -52,7 +51,7 @@ public class StubiDao implements VinkkiDao {
     }
 
     @Override
-    public boolean talletaVinkit(List<Vinkki> vinkit) {
+    public boolean talletaVinkit(List<Object> vinkit) {
         vinkkikirjasto = vinkit;
         return true;
     }

@@ -1,6 +1,5 @@
 package Lukuvinkkiohjelma.dao;
 
-import Lukuvinkkiohjelma.domain.Vinkki;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -30,9 +29,10 @@ public class VinkkiJsonDao implements VinkkiDao {
             }
         }
     }
-
+    
+// Vinkin lisääminen Object-muotoisena vinkkilistaan
     @Override
-    public boolean lisaaVinkki(Vinkki vinkki) {
+    public boolean lisaaVinkki(Object vinkki) {
         List vinkit = null;
         if (vinkkikirjasto.exists()) {
             try {
@@ -53,13 +53,15 @@ public class VinkkiJsonDao implements VinkkiDao {
         return talletaVinkit(vinkit);
     }
     
+    // TODO
     @Override
-    public boolean poistaVinkki(Vinkki vinkki) {
+    public boolean poistaVinkki(Object vinkki) {
         return false;
     }
 
+    // Vinkkien hakeminen tiedostosta JSON-muodossa
     @Override
-    public List<Vinkki> haeKaikki() throws IOException {
+    public List<Object> haeKaikki() throws IOException {
         InputStreamReader fileReader
                 = new InputStreamReader(new FileInputStream(
                         (File) vinkkikirjasto), "UTF-8");
@@ -67,17 +69,21 @@ public class VinkkiJsonDao implements VinkkiDao {
         JsonReader jsonReader = new JsonReader(fileReader);
 
         Gson gson = new Gson();
-        Type type = new TypeToken<List<Vinkki>>() {
+        Type type = new TypeToken<List<Object>>() {
         }.getType();
-        ArrayList<Vinkki> vinkit = gson.fromJson(jsonReader, type);
+        
+        // Raakadata muotoa JSON, käsittely sovelluslogiikassa
+        ArrayList<Object> vinkit = gson.fromJson(jsonReader, type);
         if(vinkit == null) {
-            return new ArrayList<Vinkki>();
+            return new ArrayList<Object>();
         }
+        
         return vinkit;
     }
 
+    // Vinkkien tallennus tiedostoon JSON-muodossa
     @Override
-    public boolean talletaVinkit(List<Vinkki> vinkit) {
+    public boolean talletaVinkit(List<Object> vinkit) {
         try {
             FileWriter writer = new FileWriter(vinkkikirjasto);
             Gson gson = new GsonBuilder().create();
