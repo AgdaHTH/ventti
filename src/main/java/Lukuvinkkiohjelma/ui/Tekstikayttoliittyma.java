@@ -59,10 +59,10 @@ public class Tekstikayttoliittyma {
                     
                     if (sovelluslogiikka.lisaaVinkki(new Kirja(otsikko, kirjoittaja, ISBN))) {
                         io.print("");
-                        io.print("Uusi kirjavinkki lisatty onnistuneesti!");
+                        io.print("Uusi kirjavinkki lisätty onnistuneesti!");
                         io.print("");
                     } else {
-                        io.print("\nJotain meni pieleen uuden kirjavinkin lisamisessa...\n");
+                        io.print("\nJotain meni pieleen uuden kirjavinkin lisäämisessä...\n");
                     }
                 }
 
