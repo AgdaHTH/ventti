@@ -6,8 +6,8 @@
 package Lukuvinkkiohjelma;
 
 import Lukuvinkkiohjelma.dao.VinkkiJsonDao;
+import Lukuvinkkiohjelma.domain.Kirja;
 import Lukuvinkkiohjelma.domain.Sovelluslogiikka;
-import Lukuvinkkiohjelma.domain.Vinkki;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -45,6 +45,7 @@ public class SovelluslogiikkaTest {
 
     @Test
     public void vinkinLisaysOnnistuu() {
-        assertTrue(sovelluslogiikka.lisaaVinkki(new Vinkki("otsikko", "tyyppi")));
+        assertTrue(sovelluslogiikka.lisaaVinkki(new Kirja(
+                "Testikirja", "Testikirjoittaja", "TestiISBN")));
     }
 }

@@ -15,11 +15,11 @@
 
 ## Viikko 2 (25.11.-1.12.)
 
-|                    | ke  | pe  | la  |                                    
-| -------------------|:---:|:---:|:---:|
-| Hilla Halla-aho    | 0,5 | 2,5 | 1,5 |
-| Eemeli Ingervo     | 0,5 |  1  |     |
-| Juha Kauppinen     | 0,5 | 2,5 |     |
-| Mari Karlsson      | 0,5 | 2,5 | 1,5 |
-| Ville Lappalainen  | 0,5 | 2   | 2,5 |
-| Benjamin Blinnikka | 0,5 | 2,5 |     |
+|                    | ke  | pe  | la  | su  |                             
+| -------------------|:---:|:---:|:---:|:---:|
+| Hilla Halla-aho    | 0,5 | 2,5 | 1,5 |     |
+| Eemeli Ingervo     | 0,5 |  1  |     |     |
+| Juha Kauppinen     | 0,5 | 2,5 |     |     |
+| Mari Karlsson      | 0,5 | 2,5 | 1,5 |     |
+| Ville Lappalainen  | 0,5 | 2   | 2,5 |     |
+| Benjamin Blinnikka | 0,5 | 2,5 | 2,5 | 1,0 |
