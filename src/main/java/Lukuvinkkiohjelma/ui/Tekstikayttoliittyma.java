@@ -52,22 +52,22 @@ public class Tekstikayttoliittyma {
                 io.print("");
 
                 if (keskeytetaan(vinkkityyppi)) {
-                    break;
+                    continue;
                 }
 
                 if (vinkkityyppi.equals("1")) {
                     String otsikko = io.readLine("Kirjan otsikko: ");
                     if (keskeytetaan(otsikko)) {
-                        break;
+                        continue;
                     }
 
                     String kirjoittaja = io.readLine("\nKirjan kirjoittaja: ");
                     if (keskeytetaan(kirjoittaja)) {
-                        break;
+                        continue;
                     }
                     String ISBN = io.readLine("\nKirjan ISBN: ");
                     if (keskeytetaan(ISBN)) {
-                        break;
+                        continue;
                     }
 
                     if (sovelluslogiikka.lisaaVinkki(new Kirja(otsikko, kirjoittaja, ISBN))) {
@@ -100,7 +100,13 @@ public class Tekstikayttoliittyma {
                     }
                 }
 
-                int numero = io.readInt("Anna poistettavan vinkin numero:");
+                String numeroString = io.readLine("Anna poistettavan vinkin numero:");
+
+                if (keskeytetaan(numeroString)) {
+                    continue;
+                }
+                
+                int numero = Integer.parseInt(numeroString);
 
                 if (sovelluslogiikka.poistaVinkki(kirjalista.get(numero))) {
                     io.print("\nVinkki poistettu onnistuneesti!\n");
@@ -111,13 +117,15 @@ public class Tekstikayttoliittyma {
             } else if (komento.equals("0")) {
                 io.print("Kiitos käynnistä! Hei hei!");
                 kaynnissa = false;
+            } else {
+                io.print("Komento tuntematon, syötä uusi komento.\n");
             }
         }
     }
 
     private boolean keskeytetaan(String syote) {
         if (syote.equals("")) {
-            io.print("Toiminto keskeytetään!");
+            io.print("Toiminto keskeytetään!\n");
             return true;
         }
 
