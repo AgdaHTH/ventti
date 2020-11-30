@@ -19,7 +19,7 @@
 | -------------------|:---:|:---:|:---:|:---:|:---:|
 | Hilla Halla-aho    | 0,5 | 2,5 | 1,5 |     |  1  |
 | Eemeli Ingervo     | 0,5 |  1  |     | 0,5 |  2  |
-| Juha Kauppinen     | 0,5 | 2,5 |     |     |     |
+| Juha Kauppinen     | 0,5 | 2,5 |     |     |  2  |
 | Mari Karlsson      | 0,5 | 2,5 | 1,5 |     | 1,5 |
 | Ville Lappalainen  | 0,5 | 2   | 2,5 |     | 1   |
 | Benjamin Blinnikka | 0,5 | 2,5 | 2,5 | 1,0 |     |
