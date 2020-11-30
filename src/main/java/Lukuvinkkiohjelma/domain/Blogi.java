@@ -1,16 +1,20 @@
 package Lukuvinkkiohjelma.domain;
 
-public class Kirja extends Vinkki {
+/**
+ *
+ * @author Eemeli
+ */
+public class Blogi extends Vinkki {
     
-    private final String tyyppi = "kirja";
+    private final String tyyppi = "blogi";
     private String otsikko;
     private String kirjoittaja;
-    private String ISBN;
+    private String url;
     
-    public Kirja(String otsikko, String kirjoittaja, String ISBN) {
+    public Blogi(String otsikko, String kirjoittaja, String url) {
         this.otsikko = otsikko;
         this.kirjoittaja = kirjoittaja;
-        this.ISBN = ISBN;
+        this.url = url;
     }
     
     public void setKirjoittaja(String uusiKirjoittaja) {
@@ -21,7 +25,7 @@ public class Kirja extends Vinkki {
     
     public void setISBN(String uusiISBN) {
         if (!(uusiISBN.equals(""))) {
-            this.ISBN = uusiISBN;
+            this.url = uusiISBN;
         }
     }
 
@@ -34,18 +38,18 @@ public class Kirja extends Vinkki {
     @Override
     public String toString() {
         return "Tyyppi: " + tyyppi + "\nOtsikko: " + otsikko + "\nKirjoittaja: " 
-                + kirjoittaja + "\nISBN: " + ISBN + "\n";
+                + kirjoittaja + "\nURL: " + url + "\n";
     }
     
-    public boolean equals(Kirja obj) {
-        if (!(obj instanceof Kirja))
+    public boolean equals(Blogi obj) {
+        if (!(obj instanceof Blogi))
             return false;	
         if (obj == this)
             return true;
-        boolean otsikotSamat = this.otsikko.equals(((Kirja) obj).otsikko);
-        boolean tyypitSamat = this.tyyppi.equals(((Kirja) obj).tyyppi);
-        boolean ISBNSamat = this.ISBN.equals(((Kirja) obj).ISBN);
-        return (otsikotSamat && tyypitSamat && ISBNSamat);
+        boolean otsikotSamat = this.otsikko.equals(((Blogi) obj).otsikko);
+        boolean tyypitSamat = this.tyyppi.equals(((Blogi) obj).tyyppi);
+        boolean URLSamat = this.url.equals(((Blogi) obj).url);
+        return (otsikotSamat && tyypitSamat && URLSamat);
     }
     
     public int hashCode(){ // yksinkertainen versio
@@ -53,7 +57,7 @@ public class Kirja extends Vinkki {
         int hashCodeSumma = 0;
         
         hashCodeSumma += this.otsikko.hashCode()+this.kirjoittaja.hashCode();
-        hashCodeSumma += this.ISBN.hashCode();
+        hashCodeSumma += this.url.hashCode();
         
         return hashCodeSumma;
         

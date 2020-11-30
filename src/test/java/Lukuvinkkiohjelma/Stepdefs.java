@@ -41,18 +41,32 @@ public class Stepdefs {
         inputLines.add(otsikko);
         inputLines.add(kirjoittaja);
         inputLines.add(isbn);
-        inputLines.add("0");
+//        inputLines.add("0");
        
         io = new StubIO(inputLines);
         kayttoliittyma = new Tekstikayttoliittyma(io, stubiDao);
         kayttoliittyma.kaynnista();
+           
+
+//        io = new StubIO(inputLines);
+//        kayttoliittyma = new Tekstikayttoliittyma(io, stubiDao);
+//        kayttoliittyma.kaynnista();
         
+
         /*
        io = new StubIO(inputLines); 
        app = new App(io, auth);
        app.run();
         */
   
+    }
+    
+    @When("program is terminated")
+    public void programIsTerminated() throws Throwable {
+        inputLines.add("0");
+        io = new StubIO(inputLines);
+        kayttoliittyma = new Tekstikayttoliittyma(io, stubiDao);
+        kayttoliittyma.kaynnista();
     }
     
 
