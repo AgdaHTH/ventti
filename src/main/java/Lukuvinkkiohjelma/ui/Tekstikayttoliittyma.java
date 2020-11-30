@@ -43,20 +43,33 @@ public class Tekstikayttoliittyma {
             io.print("");
 
             String komento = io.readLine("Anna komento");
-            io.print("");
+            io.print("\nTyhjä syöte eli pelkkä enter keskeyttää toiminnon.\n");
 
             if (komento.equals("1")) {
-                
+
                 io.print("Millainen vinkki lisätään?\n\t1. Kirja\n\t2. Podcast\n\t3. Blogi\n");
                 String vinkkityyppi = io.readLine("Anna komento");
                 io.print("");
-                
+
+                if (keskeytetaan(vinkkityyppi)) {
+                    break;
+                }
+
                 if (vinkkityyppi.equals("1")) {
                     String otsikko = io.readLine("Kirjan otsikko: ");
+                    if (keskeytetaan(otsikko)) {
+                        break;
+                    }
+
                     String kirjoittaja = io.readLine("\nKirjan kirjoittaja: ");
+                    if (keskeytetaan(kirjoittaja)) {
+                        break;
+                    }
                     String ISBN = io.readLine("\nKirjan ISBN: ");
-                    
-                    
+                    if (keskeytetaan(ISBN)) {
+                        break;
+                    }
+
                     if (sovelluslogiikka.lisaaVinkki(new Kirja(otsikko, kirjoittaja, ISBN))) {
                         io.print("");
                         io.print("Uusi kirjavinkki lisatty onnistuneesti!");
@@ -69,7 +82,7 @@ public class Tekstikayttoliittyma {
             } else if (komento.equals("2")) {
                 List<Kirja> kirjalista = sovelluslogiikka.listaaKirjat();
                 // Tähän myös podcastien ja blogien haku...
-                
+
                 if (!kirjalista.isEmpty()) {
                     for (Kirja kirja : kirjalista) {
                         io.print(kirja.toString());
@@ -77,7 +90,6 @@ public class Tekstikayttoliittyma {
                 } else {
                     io.print("Ei vielä lisättyjä vinkkejä!\n");
                 }
-                
 
             } else if (komento.equals("3")) {
                 List<Kirja> kirjalista = sovelluslogiikka.listaaKirjat();
@@ -101,5 +113,14 @@ public class Tekstikayttoliittyma {
                 kaynnissa = false;
             }
         }
+    }
+
+    private boolean keskeytetaan(String syote) {
+        if (syote.equals("")) {
+            io.print("Toiminto keskeytetään!");
+            return true;
+        }
+
+        return false;
     }
 }
