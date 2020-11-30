@@ -6,7 +6,9 @@
 package Lukuvinkkiohjelma.ui;
 
 import Lukuvinkkiohjelma.dao.VinkkiDao;
+import Lukuvinkkiohjelma.domain.Blogi;
 import Lukuvinkkiohjelma.domain.Kirja;
+import Lukuvinkkiohjelma.domain.Podcast;
 import Lukuvinkkiohjelma.domain.Sovelluslogiikka;
 import Lukuvinkkiohjelma.io.IO;
 import java.util.List;
@@ -74,7 +76,48 @@ public class Tekstikayttoliittyma {
                         } else {
                             io.print("\nJotain meni pieleen uuden kirjavinkin lisamisessa...\n");
                         }
-                    }   break;
+                    } else if (vinkkityyppi.equals("2")) {
+                        String otsikko = io.readLine("Podcastin otsikko: ");
+                        if (keskeytetaan(otsikko)) {
+                            continue;
+                        }
+
+                        String Url = io.readLine("\nPodcastin Url: ");
+                        if (keskeytetaan(Url)) {
+                            continue;
+                        }
+                        
+                        if (sovelluslogiikka.lisaaVinkki(new Podcast(otsikko, Url))) {
+                            io.print("");
+                            io.print("Uusi podcastvinkki lisatty onnistuneesti!");
+                            io.print("");
+                        } else {
+                            io.print("\nJotain meni pieleen uuden blogivinkin lisamisessa...\n");
+                        }  break;
+                    }
+                    else if (vinkkityyppi.equals("3")) {
+                        String otsikko = io.readLine("Blogin otsikko: ");
+                        if (keskeytetaan(otsikko)) {
+                            continue;
+                        }
+                        
+                        String kirjoittaja = io.readLine("\nBlogin kirjoittaja: ");
+                        if (keskeytetaan(kirjoittaja)) {
+                            continue;
+                        }
+                        String Url = io.readLine("\nBlogin Url: ");
+                        if (keskeytetaan(Url)) {
+                            continue;
+                        }
+                        
+                        if (sovelluslogiikka.lisaaVinkki(new Blogi(otsikko, kirjoittaja, Url))) {
+                            io.print("");
+                            io.print("Uusi blogivinkki lisatty onnistuneesti!");
+                            io.print("");
+                        } else {
+                            io.print("\nJotain meni pieleen uuden blogivinkin lisamisessa...\n");
+                        }  break;
+                    }
                 case "2":
                     {
                         List<Kirja> kirjalista = sovelluslogiikka.listaaKirjat();
