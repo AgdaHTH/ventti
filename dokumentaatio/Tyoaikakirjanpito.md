@@ -17,7 +17,7 @@
 
 |                    | ke  | pe  | la  | su  | ma  |                             
 | -------------------|:---:|:---:|:---:|:---:|:---:|
-| Hilla Halla-aho    | 0,5 | 2,5 | 1,5 |     |     |
+| Hilla Halla-aho    | 0,5 | 2,5 | 1,5 |     |  1  |
 | Eemeli Ingervo     | 0,5 |  1  |     | 0,5 |  2  |
 | Juha Kauppinen     | 0,5 | 2,5 |     |     |     |
 | Mari Karlsson      | 0,5 | 2,5 | 1,5 |     | 1,5 |
