@@ -43,16 +43,10 @@ public class Stepdefs {
         inputLines.add(isbn);
 //        inputLines.add("0");
        
-        io = new StubIO(inputLines);
-        kayttoliittyma = new Tekstikayttoliittyma(io, stubiDao);
-        kayttoliittyma.kaynnista();
-           
-
 //        io = new StubIO(inputLines);
 //        kayttoliittyma = new Tekstikayttoliittyma(io, stubiDao);
 //        kayttoliittyma.kaynnista();
         
-
         /*
        io = new StubIO(inputLines); 
        app = new App(io, auth);
@@ -81,8 +75,6 @@ public class Stepdefs {
         assertTrue(io.getPrints().contains(expectedOutput));
         
     }
-    
-
     
     
 }
