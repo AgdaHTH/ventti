@@ -3,6 +3,8 @@
 
 ![GitHub Actions](https://github.com/AgdaHTH/ventti/workflows/Java%20CI%20with%20Gradle/badge.svg)
 
+[![codecov](https://codecov.io/gh/AgdaHTH/ventti/branch/main/graph/badge.svg?token=GH0GZ6EFAT)](https://codecov.io/gh/AgdaHTH/ventti)
+
 [Product backlog](https://github.com/AgdaHTH/ventti/projects/2)
 
 [Definition of Done](https://github.com/AgdaHTH/ventti/blob/main/dokumentaatio/DefinitionOfDone.md)
