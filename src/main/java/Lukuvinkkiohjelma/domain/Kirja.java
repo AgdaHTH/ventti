@@ -1,6 +1,6 @@
 package Lukuvinkkiohjelma.domain;
 
-public class Kirja {
+public class Kirja extends Vinkki {
     
     private final String tyyppi = "kirja";
     private String otsikko;

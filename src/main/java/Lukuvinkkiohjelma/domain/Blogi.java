@@ -4,7 +4,7 @@ package Lukuvinkkiohjelma.domain;
  *
  * @author Eemeli
  */
-public class Blogi {
+public class Blogi extends Vinkki {
     
     private final String tyyppi = "blogi";
     private String otsikko;
