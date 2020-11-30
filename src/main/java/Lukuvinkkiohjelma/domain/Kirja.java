@@ -36,4 +36,27 @@ public class Kirja {
         return "Tyyppi: " + tyyppi + "\nOtsikko: " + otsikko + "\nKirjoittaja: " 
                 + kirjoittaja + "\nISBN: " + ISBN + "\n";
     }
+    
+    public boolean equals(Kirja obj) {
+        if (!(obj instanceof Kirja))
+            return false;	
+        if (obj == this)
+            return true;
+        boolean otsikotSamat = this.otsikko.equals(((Kirja) obj).otsikko);
+        boolean tyypitSamat = this.tyyppi.equals(((Kirja) obj).tyyppi);
+        boolean ISBNSamat = this.ISBN.equals(((Kirja) obj).ISBN);
+        return (otsikotSamat && tyypitSamat && ISBNSamat);
+    }
+    
+    public int hashCode(){ // yksinkertainen versio
+        
+        int hashCodeSumma = 0;
+        
+        hashCodeSumma += this.otsikko.hashCode()+this.kirjoittaja.hashCode();
+        hashCodeSumma += this.ISBN.hashCode();
+        
+        return hashCodeSumma;
+        
+        
+    }
 }
