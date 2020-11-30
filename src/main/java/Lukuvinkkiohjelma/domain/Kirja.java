@@ -36,4 +36,16 @@ public class Kirja {
         return "Tyyppi: " + tyyppi + "\nOtsikko: " + otsikko + "\nKirjoittaja: " 
                 + kirjoittaja + "\nISBN: " + ISBN + "\n";
     }
+    
+    public boolean equals(Kirja obj) {
+		if (!(obj instanceof Kirja))
+			return false;	
+		if (obj == this)
+			return true;
+		return (this.otsikko.equals(((Kirja) obj).otsikko) && this.tyyppi.equals(((Kirja) obj).tyyppi) && this.ISBN.equals(((Kirja) obj).ISBN));
+    }
+    
+    public int hashCode(){
+            return this.otsikko.hashCode()+this.kirjoittaja.hashCode()+this.ISBN.hashCode();//for simplicity reasons
+    }
 }
