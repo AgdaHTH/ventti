@@ -56,7 +56,22 @@ public class VinkkiJsonDao implements VinkkiDao {
     // TODO
     @Override
     public boolean poistaVinkki(Object vinkki) {
-        return false;
+        List vinkit = null;
+        if (vinkkikirjasto.exists()) {
+            try {
+                vinkit = haeKaikki();
+                
+                if (vinkit.contains(vinkki)) {
+                    vinkit.remove(vinkki);
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(VinkkiJsonDao.class.getName()).log(Level.SEVERE, null, ex);
+                return false;
+            }
+        }
+        
+        return talletaVinkit(vinkit);
+        
     }
 
     // Vinkkien hakeminen tiedostosta JSON-muodossa
