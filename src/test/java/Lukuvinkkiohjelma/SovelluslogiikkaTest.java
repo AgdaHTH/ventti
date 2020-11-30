@@ -58,35 +58,35 @@ public class SovelluslogiikkaTest {
         assertFalse(sovelluslogiikka.listaaKirjat().contains(kirja));
     }
 
-//    @Test
-//    public void bloginLisaysOnnistuu() {
-//        Blogi blogi = new Blogi("TestO", "TestK", "TestURL");
-//        sovelluslogiikka.lisaaVinkki(blogi);
-//        assertTrue(sovelluslogiikka.listaaBlogit().contains(blogi));
-//    }
-//
-//    @Test
-//    public void bloginPoistaminenOnnistuu() {
-//        Blogi blogi = new Blogi("TestO", "TestK", "TestURL");
-//        sovelluslogiikka.lisaaVinkki(blogi);
-//        assertTrue(sovelluslogiikka.listaaBlogit().contains(blogi));
-//        sovelluslogiikka.poistaVinkki(blogi);
-//        assertFalse(sovelluslogiikka.listaaKirjat().contains(blogi));
-//    }
-//
-//    @Test
-//    public void podcastinLisaysOnnistuu() {
-//        Podcast podcast = new Podcast("TestO", "TestURL");
-//        sovelluslogiikka.lisaaVinkki(podcast);
-//        assertTrue(sovelluslogiikka.listaaPodcastit().contains(podcast));
-//    }
-//
-//    @Test
-//    public void podcastinPoistaminenOnnistuu() {
-//        Podcast podcast = new Podcast("TestO", "TestURL");
-//        sovelluslogiikka.lisaaVinkki(podcast);
-//        assertTrue(sovelluslogiikka.listaaPodcastit().contains(podcast));
-//        sovelluslogiikka.poistaVinkki(podcast);
-//        assertFalse(sovelluslogiikka.listaaKirjat().contains(podcast));
-//    }
+    @Test
+    public void bloginLisaysOnnistuu() {
+        Blogi blogi = new Blogi("TestO", "TestK", "TestURL");
+        sovelluslogiikka.lisaaVinkki(blogi);
+        assertTrue(sovelluslogiikka.listaaBlogit().contains(blogi));
+    }
+
+    @Test
+    public void bloginPoistaminenOnnistuu() {
+        Blogi blogi = new Blogi("TestO", "TestK", "TestURL");
+        sovelluslogiikka.lisaaVinkki(blogi);
+        assertTrue(sovelluslogiikka.listaaBlogit().contains(blogi));
+        sovelluslogiikka.poistaVinkki(blogi);
+        assertFalse(sovelluslogiikka.listaaBlogit().contains(blogi));
+    }
+
+    @Test
+    public void podcastinLisaysOnnistuu() {
+        Podcast podcast = new Podcast("TestO", "TestURL");
+        sovelluslogiikka.lisaaVinkki(podcast);
+        assertTrue(sovelluslogiikka.listaaPodcastit().contains(podcast));
+    }
+
+    @Test
+    public void podcastinPoistaminenOnnistuu() {
+        Podcast podcast = new Podcast("TestO", "TestURL");
+        sovelluslogiikka.lisaaVinkki(podcast);
+        assertTrue(sovelluslogiikka.listaaPodcastit().contains(podcast));
+        sovelluslogiikka.poistaVinkki(podcast);
+        assertFalse(sovelluslogiikka.listaaBlogit().contains(podcast));
+    }
 }
