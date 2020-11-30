@@ -30,6 +30,8 @@ public class Sovelluslogiikka {
         try {
             this.vinkkilista = dao.haeKaikki();
             this.kirjalista = new ArrayList<>();
+            this.podcastlista = new ArrayList<>();
+            this.blogilista = new ArrayList<>();
         } catch (Exception e) {
             System.out.println("Vinkkien lataus epaonnistui!\n" + e.toString());
         }
