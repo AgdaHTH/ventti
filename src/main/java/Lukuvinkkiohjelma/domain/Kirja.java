@@ -48,7 +48,15 @@ public class Kirja {
         return (otsikotSamat && tyypitSamat && ISBNSamat);
     }
     
-    public int hashCode(){
-        return this.otsikko.hashCode()+this.kirjoittaja.hashCode()+this.ISBN.hashCode();//for simplicity reasons
+    public int hashCode(){ // yksinkertainen versio
+        
+        int hashCodeSumma = 0;
+        
+        hashCodeSumma += this.otsikko.hashCode()+this.kirjoittaja.hashCode();
+        hashCodeSumma += this.ISBN.hashCode();
+        
+        return hashCodeSumma;
+        
+        
     }
 }
