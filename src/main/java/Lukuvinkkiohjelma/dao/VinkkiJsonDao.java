@@ -1,5 +1,9 @@
 package Lukuvinkkiohjelma.dao;
 
+import Lukuvinkkiohjelma.domain.Blogi;
+import Lukuvinkkiohjelma.domain.Kirja;
+import Lukuvinkkiohjelma.domain.Podcast;
+import Lukuvinkkiohjelma.domain.Vinkki;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -29,10 +33,10 @@ public class VinkkiJsonDao implements VinkkiDao {
             }
         }
     }
-    
-// Vinkin lisääminen Object-muotoisena vinkkilistaan
+
+// Vinkin lisääminen Vinkki-muotoisena vinkkilistaan
     @Override
-    public boolean lisaaVinkki(Object vinkki) {
+    public boolean lisaaVinkki(Vinkki vinkki) {
         List vinkit = null;
         if (vinkkikirjasto.exists()) {
             try {
@@ -52,15 +56,15 @@ public class VinkkiJsonDao implements VinkkiDao {
 
         return talletaVinkit(vinkit);
     }
-    
+
     // TODO
     @Override
-    public boolean poistaVinkki(Object vinkki) {
+    public boolean poistaVinkki(Vinkki vinkki) {
         List vinkit = null;
         if (vinkkikirjasto.exists()) {
             try {
                 vinkit = haeKaikki();
-                
+
                 if (vinkit.contains(vinkki)) {
                     vinkit.remove(vinkki);
                 }
@@ -69,36 +73,40 @@ public class VinkkiJsonDao implements VinkkiDao {
                 return false;
             }
         }
-        
+
         return talletaVinkit(vinkit);
-        
+
     }
 
-    // Vinkkien hakeminen tiedostosta JSON-muodossa
+    // Vinkkien hakeminen tiedostosta Vinkki-muodossa
     @Override
-    public List<Object> haeKaikki() throws IOException {
+    public List<Vinkki> haeKaikki() throws IOException {
         InputStreamReader fileReader
                 = new InputStreamReader(new FileInputStream(
                         (File) vinkkikirjasto), "UTF-8");
 
         JsonReader jsonReader = new JsonReader(fileReader);
 
-        Gson gson = new Gson();
-        Type type = new TypeToken<List<Object>>() {
-        }.getType();
+        VinkkiDeserializer deserializer = new VinkkiDeserializer("tyyppi");
+        deserializer.lisaaLuokka("kirja", Kirja.class);
+        deserializer.lisaaLuokka("podcast", Podcast.class);
+        deserializer.lisaaLuokka("blogi", Blogi.class);
         
-        // Raakadata muotoa JSON, käsittely sovelluslogiikassa
-        ArrayList<Object> vinkit = gson.fromJson(jsonReader, type);
-        if(vinkit == null) {
-            return new ArrayList<Object>();
-        }
+        Gson gsonbuilder = new GsonBuilder()
+                .registerTypeAdapter(Vinkki.class, deserializer)
+                .create();
         
+        List<Vinkki> vinkit = new ArrayList<>();
+
+        Type typeToken = new TypeToken<List<Vinkki>>(){}.getType();
+        vinkit = gsonbuilder.fromJson(jsonReader, typeToken);
+
         return vinkit;
     }
 
     // Vinkkien tallennus tiedostoon JSON-muodossa
     @Override
-    public boolean talletaVinkit(List<Object> vinkit) {
+    public boolean talletaVinkit(List<Vinkki> vinkit) {
         try {
             FileWriter writer = new FileWriter(vinkkikirjasto);
             Gson gson = new GsonBuilder().create();
