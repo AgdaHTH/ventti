@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Lukuvinkkiohjelma;
 
 import Lukuvinkkiohjelma.dao.VinkkiJsonDao;
@@ -16,14 +11,14 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Hilla
+ * @author Ventti
  */
 public class SovelluslogiikkaTest {
 
-    Sovelluslogiikka sovelluslogiikka;
+    private Sovelluslogiikka sovelluslogiikka;
 
     public SovelluslogiikkaTest() {
-        sovelluslogiikka = new Sovelluslogiikka(new VinkkiJsonDao("testi"));
+        this.sovelluslogiikka = new Sovelluslogiikka(new VinkkiJsonDao("testi"));
     }
 
     @BeforeClass

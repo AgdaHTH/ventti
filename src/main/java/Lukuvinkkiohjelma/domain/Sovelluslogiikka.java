@@ -17,7 +17,7 @@ import java.util.List;
 public class Sovelluslogiikka {
 
     // JSON-raakadatalista:
-    private List<Object> vinkkilista;
+    private List<Vinkki> vinkkilista;
 
     private List<Kirja> kirjalista;
     private List<Podcast> podcastlista;
@@ -40,7 +40,7 @@ public class Sovelluslogiikka {
     // Metodi lisää uuden vinkkiolion
     // - paikallisiin listoihin tyypeittäin
     // - ja toimittaa objectin daolle tallennettavaksi
-    public boolean lisaaVinkki(Object vinkki) {
+    public boolean lisaaVinkki(Vinkki vinkki) {
         if (vinkki instanceof Kirja) {
             this.kirjalista.add((Kirja) vinkki);
         } else if (vinkki instanceof Podcast) {
@@ -48,8 +48,7 @@ public class Sovelluslogiikka {
         } else if (vinkki instanceof Blogi) {
             this.blogilista.add((Blogi) vinkki);
         }
-
-        // Daolle object-muodossa tallennettavaksi
+        
         return this.dao.lisaaVinkki(vinkki);
     }
 
@@ -104,7 +103,7 @@ public class Sovelluslogiikka {
     }
 
     // Tällä hetkellä (29.11.) poistaa vain paikallisesta listasta.
-    public boolean poistaVinkki(Object vinkki) {
+    public boolean poistaVinkki(Vinkki vinkki) {
         if (vinkki instanceof Kirja) {
             kirjalista.remove((Kirja) vinkki);
         } else if (vinkki instanceof Podcast) {

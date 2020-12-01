@@ -37,7 +37,7 @@ public class VinkkiJsonDao implements VinkkiDao {
 // Vinkin lisääminen Vinkki-muotoisena vinkkilistaan
     @Override
     public boolean lisaaVinkki(Vinkki vinkki) {
-        List vinkit = null;
+        List vinkit = new ArrayList();
         if (vinkkikirjasto.exists()) {
             try {
                 vinkit = haeKaikki();
@@ -60,7 +60,7 @@ public class VinkkiJsonDao implements VinkkiDao {
     // TODO
     @Override
     public boolean poistaVinkki(Vinkki vinkki) {
-        List vinkit = null;
+        List vinkit = new ArrayList();
         if (vinkkikirjasto.exists()) {
             try {
                 vinkit = haeKaikki();

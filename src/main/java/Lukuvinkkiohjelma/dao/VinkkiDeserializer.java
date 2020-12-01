@@ -26,7 +26,8 @@ public class VinkkiDeserializer implements JsonDeserializer<Vinkki> {
     }
 
     @Override
-    public Vinkki deserialize(JsonElement json, java.lang.reflect.Type type, JsonDeserializationContext contex) throws JsonParseException {
+    public Vinkki deserialize(JsonElement json, java.lang.reflect.Type type, 
+            JsonDeserializationContext contex) throws JsonParseException {
         JsonObject vinkkiObject = json.getAsJsonObject();
         JsonElement typeElement = vinkkiObject.get(luokanTyyppikentta);
  
