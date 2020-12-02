@@ -78,6 +78,7 @@ public class Sovelluslogiikka {
                 for (Object jsonvinkki : vinkkilista) {
                     // fromJson aiheuttaa virheen, jos .toJsonia ei ole ja missä tahansa
                     // kentässä on välilyönti!
+                    
                     if (jsonvinkki instanceof Kirja) {
                         Kirja kirja = gson.fromJson(gson.toJson(jsonvinkki), Kirja.class);
                         kirjalista.add(kirja);
