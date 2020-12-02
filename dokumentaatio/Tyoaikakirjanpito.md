@@ -22,4 +22,4 @@
 | Juha Kauppinen     | 0,5 | 2,5 |     |     |  2  | 1,5 |
 | Mari Karlsson      | 0,5 | 2,5 | 1,5 |     | 1,5 |     |
 | Ville Lappalainen  | 0,5 | 2   | 2,5 |     | 1   |     |
-| Benjamin Blinnikka | 0,5 | 2,5 | 2,5 | 1,0 |     |     |
+| Benjamin Blinnikka | 0,5 | 2,5 | 2,5 | 1,0 | 0,25|     |
