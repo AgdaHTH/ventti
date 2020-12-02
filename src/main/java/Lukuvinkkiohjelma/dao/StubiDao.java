@@ -35,7 +35,7 @@ public class StubiDao implements VinkkiDao {
 
     @Override
     public boolean poistaVinkki(Object vinkki) {
-        return false;
+        return true;
     }
 
     @Override

@@ -7,8 +7,11 @@ Feature: A user can add a tip in the application
         Then system will respond with "Uusi kirjavinkki lisatty onnistuneesti!" 
         And output will contain text "Opus"
 
-
-
-
-
+    Scenario: a booktip can be deleted
+        Given command lisaa kirja is selected
+        When a new booktip with title "Opus", author "Kirjoittaja" and ISBN "1234" is added
+        And command poista vinkki is selected
+        And tip number "0" is selected
+        And program is terminated
+        And output will contain text "Vinkki poistettu onnistuneesti!"
 
