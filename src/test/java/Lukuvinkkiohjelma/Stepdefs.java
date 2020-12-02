@@ -15,6 +15,7 @@ import Lukuvinkkiohjelma.ui.Tekstikayttoliittyma;
 import Lukuvinkkiohjelma.io.IO;
 import Lukuvinkkiohjelma.io.StubIO;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class Stepdefs {
     StubiDao stubiDao;
@@ -32,6 +33,12 @@ public class Stepdefs {
     public void commandLisaaKirjaSelected() throws Throwable {
         inputLines.add("1");
         inputLines.add("1");
+    }
+    
+    @When("^command listaa vinkit is selected$")
+    public void commandListaaIsSelected() throws Throwable {
+        inputLines.add("2");
+
     }
     
     
@@ -72,8 +79,35 @@ public class Stepdefs {
             System.out.println(print);
         }
         
+        // assertTrue(sisaltaaTekstin(io.getPrints(), expectedOutput));
         assertTrue(io.getPrints().contains(expectedOutput));
         
+    }
+    
+    @Then("output will contain text {string}")
+    public void outputWillContainText(String expectedOutput) {
+        
+//        for (String print : io.getPrints()) {
+//            System.out.println(print);
+//        }
+        // expectedOutput = "kirja";
+        
+        assertTrue(sisaltaaTekstin(io.getPrints(), expectedOutput));
+        // assertTrue(io.getPrints().contains(expectedOutput));
+        
+    }
+//    
+    private boolean sisaltaaTekstin(List<String> lista, String teksti) {
+        
+        String regex = ".*"+teksti+".*";
+        
+        for (String stringi : lista) {
+            if (Pattern.matches(regex, stringi)) {
+                return true;
+            }
+        }
+        
+        return false;
     }
     
     
