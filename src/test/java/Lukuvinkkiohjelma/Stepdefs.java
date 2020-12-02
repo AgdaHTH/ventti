@@ -15,7 +15,7 @@ import Lukuvinkkiohjelma.ui.Tekstikayttoliittyma;
 import Lukuvinkkiohjelma.io.IO;
 import Lukuvinkkiohjelma.io.StubIO;
 import java.util.List;
-import java.util.regex.Pattern;
+
 
 public class Stepdefs {
     StubiDao stubiDao;
@@ -75,9 +75,9 @@ public class Stepdefs {
     @Then("system will respond with {string}")
     public void aNewTipCanBeFound(String expectedOutput) {
         
-        for (String print : io.getPrints()) {
-            System.out.println(print);
-        }
+//        for (String print : io.getPrints()) {
+//            System.out.println(print);
+//        }
         
         // assertTrue(sisaltaaTekstin(io.getPrints(), expectedOutput));
         assertTrue(io.getPrints().contains(expectedOutput));
@@ -85,25 +85,23 @@ public class Stepdefs {
     }
     
     @Then("output will contain text {string}")
-    public void outputWillContainText(String expectedOutput) {
-        
-//        for (String print : io.getPrints()) {
-//            System.out.println(print);
-//        }
-        // expectedOutput = "kirja";
-        
-        assertTrue(sisaltaaTekstin(io.getPrints(), expectedOutput));
-        // assertTrue(io.getPrints().contains(expectedOutput));
+    public void outputWillContainText(String expectedOutput) {        
+     
+        assertTrue(includesText(io.getPrints(), expectedOutput));
         
     }
 //    
-    private boolean sisaltaaTekstin(List<String> lista, String teksti) {
+    private boolean includesText(List<String> list, String text) {
         
-        String regex = ".*"+teksti+".*";
-        
-        for (String stringi : lista) {
-            if (Pattern.matches(regex, stringi)) {
+        for (String candidate : list) {
+            
+            if (candidate.contains(text)) { 
+//                System.out.println("");
+//                System.out.println("Löydetty rivi: ");
+//                System.out.println(stringi);
+                
                 return true;
+
             }
         }
         
