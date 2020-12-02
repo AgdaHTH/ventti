@@ -48,18 +48,18 @@ public class Stepdefs {
         inputLines.add(otsikko);
         inputLines.add(kirjoittaja);
         inputLines.add(isbn);
-//        inputLines.add("0");
-       
-//        io = new StubIO(inputLines);
-//        kayttoliittyma = new Tekstikayttoliittyma(io, stubiDao);
-//        kayttoliittyma.kaynnista();
-        
-        /*
-       io = new StubIO(inputLines); 
-       app = new App(io, auth);
-       app.run();
-        */
   
+    }
+    
+    @When("^command poista vinkki is selected$")
+    public void commandPoistaVinkkiSelected() {
+        inputLines.add("3");
+    }
+    
+    @When("tip number {string} is selected")
+    public void firstTipSelected(String number) {
+        System.out.println("selected " + number);
+        inputLines.add(number);
     }
     
     @When("program is terminated")
