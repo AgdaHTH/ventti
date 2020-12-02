@@ -17,16 +17,14 @@ public class StubiDao implements VinkkiDao {
     @Override
     public boolean lisaaVinkki(Object vinkki) {
 
-        
-        
         if (vinkkikirjasto.size() >= 1) {
 
             if (vinkkikirjasto.contains(vinkki)) {
                 return false;
             }
             vinkkikirjasto.add(vinkki);
-            return true;            
-        } else {            
+            return true;
+        } else {
             vinkkikirjasto = new ArrayList<>();
             vinkkikirjasto.add(vinkki);
             return true;
@@ -35,14 +33,24 @@ public class StubiDao implements VinkkiDao {
 
     @Override
     public boolean poistaVinkki(Object vinkki) {
-        return true;
+        if (vinkkikirjasto.size() >= 1) {
+
+            if (vinkkikirjasto.contains(vinkki)) {
+                vinkkikirjasto.remove(vinkki);
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 
     @Override
-    public List<Object> haeKaikki() {        
+    public List<Object> haeKaikki() {
         if (this.vinkkikirjasto == null) {
             return new ArrayList<>();
-        }        
+        }
 
         if (!this.vinkkikirjasto.isEmpty()) {
             return this.vinkkikirjasto;
