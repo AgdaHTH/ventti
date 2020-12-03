@@ -6,8 +6,6 @@
 package Lukuvinkkiohjelma.domain;
 
 import Lukuvinkkiohjelma.dao.VinkkiDao;
-import com.google.gson.Gson;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,20 +16,12 @@ public class Sovelluslogiikka {
 
     // JSON-raakadatalista:
     private List<Vinkki> vinkkilista;
-
-    private List<Kirja> kirjalista;
-    private List<Podcast> podcastlista;
-    private List<Blogi> blogilista;
-
     private VinkkiDao dao;
 
     public Sovelluslogiikka(VinkkiDao vinkkiDao) {
         this.dao = vinkkiDao;
         try {
             this.vinkkilista = dao.haeKaikki();
-            this.kirjalista = new ArrayList<>();
-            this.podcastlista = new ArrayList<>();
-            this.blogilista = new ArrayList<>();
         } catch (Exception e) {
             System.out.println("Vinkkien lataus epaonnistui!\n" + e.toString());
         }
@@ -41,77 +31,42 @@ public class Sovelluslogiikka {
     // - paikallisiin listoihin tyypeittäin
     // - ja toimittaa objectin daolle tallennettavaksi
     public boolean lisaaVinkki(Vinkki vinkki) {
-        if (vinkki instanceof Kirja) {
-            this.kirjalista.add((Kirja) vinkki);
-        } else if (vinkki instanceof Podcast) {
-            this.podcastlista.add((Podcast) vinkki);
-        } else if (vinkki instanceof Blogi) {
-            this.blogilista.add((Blogi) vinkki);
-        }
-        
-        return this.dao.lisaaVinkki(vinkki);
-    }
-
-    public List<Kirja> listaaKirjat() {
-        parsiVinkitListoille();
-        return kirjalista;
-    }
-
-    public List<Podcast> listaaPodcastit() {
-        parsiVinkitListoille();
-        return podcastlista;
-    }
-
-    public List<Blogi> listaaBlogit() {
-        parsiVinkitListoille();
-        return blogilista;
-    }
-
-    // Metodi listaa kaikki tallennetut vinkit tarkastelua varten
-    private boolean parsiVinkitListoille() {
-        List<Object> poistettavatjsonit = new ArrayList<>();
-
-        try {
-            if (!vinkkilista.isEmpty()) {
-                Gson gson = new Gson();
-
-                for (Object jsonvinkki : vinkkilista) {
-                    // fromJson aiheuttaa virheen, jos .toJsonia ei ole ja missä tahansa
-                    // kentässä on välilyönti!
-                    
-                    if (jsonvinkki instanceof Kirja) {
-                        Kirja kirja = gson.fromJson(gson.toJson(jsonvinkki), Kirja.class);
-                        kirjalista.add(kirja);
-                    } else if (jsonvinkki instanceof Podcast) {
-                        Podcast podcast = gson.fromJson(gson.toJson(jsonvinkki), Podcast.class);
-                        podcastlista.add(podcast);
-                    } else if (jsonvinkki instanceof Blogi) {
-                        Blogi blogi = gson.fromJson(gson.toJson(jsonvinkki), Blogi.class);
-                        blogilista.add(blogi);
-                    }
-                    poistettavatjsonit.add(jsonvinkki);
-                }
-
-                vinkkilista.removeAll(poistettavatjsonit);
+        if (this.dao.lisaaVinkki(vinkki)) {
+            try {
+                this.vinkkilista = dao.haeKaikki();
+                return true;
+            } catch (Exception e) {
+                System.out.println("Vinkkien lataus epaonnistui!\n" + e.toString());
             }
-        } catch (Exception e) {
-            System.out.println("Listauksessa tapahtui virhe:\n");
-            e.printStackTrace();
-            return false;
         }
-
-        return true;
+        return false;
     }
 
-    // Tällä hetkellä (29.11.) poistaa vain paikallisesta listasta.
-    public boolean poistaVinkki(Vinkki vinkki) {
-        if (vinkki instanceof Kirja) {
-            kirjalista.remove((Kirja) vinkki);
-        } else if (vinkki instanceof Podcast) {
-            podcastlista.remove((Podcast) vinkki);
-        } else if (vinkki instanceof Blogi) {
-            blogilista.remove((Blogi) vinkki);
+    public boolean poistaVinkki(int indeksi) {
+        if (this.dao.poistaVinkki(indeksi)) {
+            try {
+                this.vinkkilista = dao.haeKaikki();
+                return true;
+            } catch (Exception e) {
+                System.out.println("Vinkkien lataus epaonnistui!\n" + e.toString());
+            }
         }
-        return this.dao.poistaVinkki(vinkki);
+        return false;
+    }
+
+    public List<Vinkki> listaaKirjat() {
+        return dao.getKirjat();
+    }
+
+    public List<Vinkki> listaaBlogit() {
+        return dao.getBlogit();
+    }
+
+    public List<Vinkki> listaaPodcastit() {
+        return dao.getPodcastit();
+    }
+    
+    public List<Vinkki> listaaKaikkiVinkit() {
+        return this.vinkkilista;
     }
 }

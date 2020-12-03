@@ -7,7 +7,10 @@ import java.util.List;
 public interface VinkkiDao {
 
     boolean lisaaVinkki(Vinkki vinkki);
-    boolean poistaVinkki(Vinkki vinkki);
-    boolean talletaVinkit(List<Vinkki> vinkit);
+    boolean poistaVinkki(int nro);
+    boolean talletaVinkit();
+    List<Vinkki> getKirjat();
+    List<Vinkki> getBlogit();
+    List<Vinkki> getPodcastit();
     List<Vinkki> haeKaikki() throws IOException;
 }

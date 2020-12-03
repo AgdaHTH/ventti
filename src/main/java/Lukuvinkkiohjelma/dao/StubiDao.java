@@ -35,7 +35,7 @@ public class StubiDao implements VinkkiDao {
     }
 
     @Override
-    public boolean poistaVinkki(Vinkki vinkki) {
+    public boolean poistaVinkki(int indeksi) {
         return false;
     }
 
@@ -52,9 +52,22 @@ public class StubiDao implements VinkkiDao {
     }
 
     @Override
-    public boolean talletaVinkit(List<Vinkki> vinkit) {
-        vinkkikirjasto = vinkit;
+    public boolean talletaVinkit() {
         return true;
     }
 
+    @Override
+    public List<Vinkki> getKirjat() {
+        return new ArrayList<>();
+    }
+
+    @Override
+    public List<Vinkki> getBlogit() {
+        return new ArrayList<>();
+    }
+
+    @Override
+    public List<Vinkki> getPodcastit() {
+        return new ArrayList<>();
+    }
 }

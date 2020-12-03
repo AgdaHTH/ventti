@@ -23,7 +23,7 @@ public class Main {
         // TODO code application logic here
 
         Tekstikayttoliittyma tekstikayttoliittyma
-                = new Tekstikayttoliittyma(new ConsoleIO(), new VinkkiJsonDao("vinkit"));
+                = new Tekstikayttoliittyma(new ConsoleIO(), new VinkkiJsonDao("vinkit.json"));
 
         tekstikayttoliittyma.kaynnista();
     }
