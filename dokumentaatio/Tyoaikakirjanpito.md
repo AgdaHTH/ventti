@@ -30,7 +30,7 @@
 |                    | ke  | to  | pe  | ma  | ti  | ke  |                             
 | -------------------|:---:|:---:|:---:|:---:|:---:|:---:|
 | Hilla Halla-aho    |     |     |     |     |     |     |
-| Eemeli Ingervo     |     |     |     |     |     |     |
+| Eemeli Ingervo     |     |  3  |     |     |     |     |
 | Juha Kauppinen     |     |     |     |     |     |     |
 | Mari Karlsson      |     |     |     |     |     |     |
 | Ville Lappalainen  | 1   | 0,5 |     |     |     |     |
