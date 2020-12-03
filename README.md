@@ -13,6 +13,8 @@
 
 [Sprint 2 backlog](https://github.com/AgdaHTH/ventti/projects/3)
 
+[Sprint 3 backlog](https://github.com/AgdaHTH/ventti/projects/4)
+
 [Työaikakirjanpito](https://github.com/AgdaHTH/ventti/blob/main/dokumentaatio/Tyoaikakirjanpito.md)
 
 [Burndown](https://docs.google.com/spreadsheets/d/1TqD8HNOnqZwzVPIPCUq5l3AHGi7V4ykqisKdluWRB1g/edit?usp=sharing)
