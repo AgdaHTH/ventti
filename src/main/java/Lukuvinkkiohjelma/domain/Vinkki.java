@@ -10,6 +10,7 @@ public abstract class Vinkki {
         this.otsikko = otsikko;
     }
     
+    /*
     public boolean equals(Object object) {
         if (!(object instanceof Vinkki)) {
             return false;
@@ -34,12 +35,13 @@ public abstract class Vinkki {
         return hashCodeSumma;
     }
     
+    
     public String getOtsikko() {
         return this.otsikko;
     }
     
     public String getTyyppi() {
         return this.tyyppi;
-    }
+    }*/
 
 }
