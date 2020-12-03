@@ -1,9 +1,9 @@
-Ryhmämme sitoutuu noudattamaan tätä ohjetta, joka määrittää milloin jonkin ominaisuuden voi todeta valmiiksi.
+Ryhmämme sitoutuu noudattamaan tätä ohjetta, joka määrittää, milloin jonkin ominaisuuden voi todeta valmiiksi:
 
-1. Testit on luotu ja ne on järkeviä ohjelman toimivuuden osalta
+1. Testit on luotu ja ne ovat järkeviä ohjelman toimivuuden kannalta.
 
-2. CI on määritelty ominaisuuden osalta, ja sen testit menee läpi, jos ei mene - korjataan heti
+2. CI on määritelty ja sen testit menevät läpi ominaisuuden tultua lisätyksi. Jos eivät, tilanne korjataan heti.
 
-3. Koodi on dokumentoitu siten, että ryhmäläinen pystyy sen avulla tulkitsemaan ja käyttämään ohjelmaa
+3. Koodi on dokumentoitu siten, että toinen ryhmäläinen pystyy sen avulla ymmärtämään, mitä koodissa tapahtuu.
 
-4. Kun jokin toiminnallisuus koetaan valmiiksi, pyydetään ryhmäläistä kokeilemaan sitä ja katsastamaan koodin läpi
+4. Kun jokin toiminnallisuus koetaan valmiiksi, pyydetään toista ryhmäläistä kokeilemaan sitä ja katsastamaan koodi läpi.
