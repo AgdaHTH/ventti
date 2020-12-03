@@ -23,3 +23,15 @@
 | Mari Karlsson      | 0,5 | 2,5 | 1,5 |     | 1,5 |     |
 | Ville Lappalainen  | 0,5 | 2   | 2,5 |     | 1   |     |
 | Benjamin Blinnikka | 0,5 | 2,5 | 2,5 | 1,0 | 0,25|     |
+
+
+## Viikko 3 (2.12.-9.12.)
+
+|                    | ke  | to  | pe  | ma  | ti  | ke  |                             
+| -------------------|:---:|:---:|:---:|:---:|:---:|:---:|
+| Hilla Halla-aho    |     |     |     |     |     |     |
+| Eemeli Ingervo     |     |     |     |     |     |     |
+| Juha Kauppinen     |     |     |     |     |     |     |
+| Mari Karlsson      |     |     |     |     |     |     |
+| Ville Lappalainen  | 1   | 0,5 |     |     |     |     |
+| Benjamin Blinnikka |     |     |     |     |     |     |
