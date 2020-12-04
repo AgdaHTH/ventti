@@ -1,51 +1,60 @@
 package Lukuvinkkiohjelma.domain;
 
-public class Podcast extends Vinkki{
-    
-    private final String tyyppi = "podcast";
-    private String otsikko;
+public class Podcast extends Vinkki {
+
     private String url;
-    
+
     public Podcast(String otsikko, String url) {
-        this.otsikko = otsikko;
+        super("podcast", otsikko);
         this.url = url;
     }
-    
+
     public void setOtsikko(String otsikko) {
         this.otsikko = otsikko;
     }
-    
+
     public void setUrl(String url) {
         this.url = url;
     }
-    
+
     @Override
     public String toString() {
-        return "Tyyppi: " + tyyppi + "\nOtsikko: " + otsikko + "\nUrl: " 
+        return "Tyyppi: " + tyyppi + "\nOtsikko: " + otsikko + "\nUrl: "
                 + url + "\n";
     }
-    
-    public boolean equals(Podcast obj) {
-        if (!(obj instanceof Podcast))
-            return false;	
-        if (obj == this)
+
+    public boolean equals(Podcast podcast) {
+        if (!(podcast instanceof Podcast)) {
+            return false;
+        }
+        if (podcast == this) {
             return true;
-        boolean otsikotSamat = this.otsikko.equals(((Podcast) obj).otsikko);
-        boolean tyypitSamat = this.tyyppi.equals(((Podcast) obj).tyyppi);
-        boolean URLSamat = this.url.equals(((Podcast) obj).url);
+        }
+        boolean otsikotSamat = this.otsikko.equals(podcast.getOtsikko());
+        boolean tyypitSamat = this.tyyppi.equals(podcast.getTyyppi());
+        boolean URLSamat = this.url.equals(podcast.getUrl());
         return (otsikotSamat && tyypitSamat && URLSamat);
     }
-    
-    public int hashCode(){ // yksinkertainen versio
-        
+
+    public int hashCode() { // yksinkertainen versio
+
         int hashCodeSumma = 0;
-        
+
         hashCodeSumma += this.otsikko.hashCode();
         hashCodeSumma += this.url.hashCode();
-        
+
         return hashCodeSumma;
-        
-        
     }
-    
+
+    public String getTyyppi() {
+        return tyyppi;
+    }
+
+    public String getOtsikko() {
+        return otsikko;
+    }
+
+    public String getUrl() {
+        return url;
+    }
 }

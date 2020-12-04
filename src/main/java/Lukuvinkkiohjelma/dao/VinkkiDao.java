@@ -1,12 +1,16 @@
 package Lukuvinkkiohjelma.dao;
 
+import Lukuvinkkiohjelma.domain.Vinkki;
 import java.io.IOException;
 import java.util.List;
 
 public interface VinkkiDao {
 
-    boolean lisaaVinkki(Object vinkki);
-    boolean poistaVinkki(Object vinkki);
-    boolean talletaVinkit(List<Object> vinkit);
-    List<Object> haeKaikki() throws IOException;
+    boolean lisaaVinkki(Vinkki vinkki);
+    boolean poistaVinkki(int nro);
+    boolean talletaVinkit();
+    List<Vinkki> getKirjat();
+    List<Vinkki> getBlogit();
+    List<Vinkki> getPodcastit();
+    List<Vinkki> haeKaikki() throws IOException;
 }

@@ -10,6 +10,7 @@ import Lukuvinkkiohjelma.domain.Blogi;
 import Lukuvinkkiohjelma.domain.Kirja;
 import Lukuvinkkiohjelma.domain.Podcast;
 import Lukuvinkkiohjelma.domain.Sovelluslogiikka;
+import Lukuvinkkiohjelma.domain.Vinkki;
 import Lukuvinkkiohjelma.io.IO;
 import java.util.List;
 
@@ -116,36 +117,37 @@ public class Tekstikayttoliittyma {
                             io.print("");
                         } else {
                             io.print("\nJotain meni pieleen uuden blogivinkin lisamisessa...\n");
-                        }  break;
+                        } break;
                     }
                 case "2":
                     {
-                        List<Kirja> kirjalista = sovelluslogiikka.listaaKirjat();
-                        // Tähän myös podcastien ja blogien haku...
-                        if (!kirjalista.isEmpty()) {
-                            for (Kirja kirja : kirjalista) {
-                                io.print(kirja.toString());
+                        List<Vinkki> vinkit = sovelluslogiikka.listaaKaikkiVinkit();
+                        if (!vinkit.isEmpty()) {
+                            for (Vinkki vinkki : vinkit) {
+                                io.print(vinkki.toString());
                             }
                         } else {
                             io.print("Ei vielä lisättyjä vinkkejä!\n");
-                        }       break;
+                        } break;
                     }
                 case "3":
                     {
-                        List<Kirja> kirjalista = sovelluslogiikka.listaaKirjat();
-                        if (!kirjalista.isEmpty()) {
-                            for (int i = 0; i < kirjalista.size(); i++) {
-                                io.print(i + " " + kirjalista.get(i));
+                        List<Vinkki> vinkit = sovelluslogiikka.listaaKaikkiVinkit();
+                        if (!vinkit.isEmpty()) {
+                            for (int i = 0; i < vinkit.size(); i++) {
+                                io.print(i + " " + vinkit.get(i));
                             }
-                        }       String numeroString = io.readLine("Anna poistettavan vinkin numero:");
+                        }       
+                        String numeroString = io.readLine("Anna poistettavan vinkin numero:");
                         if (keskeytetaan(numeroString)) {
                             continue;
-                        }       int numero = Integer.parseInt(numeroString);
-                        if (sovelluslogiikka.poistaVinkki(kirjalista.get(numero))) {
+                        }       
+                        int indeksi = Integer.parseInt(numeroString);
+                        if (sovelluslogiikka.poistaVinkki(indeksi)) {
                             io.print("\nVinkki poistettu onnistuneesti!\n");
                         } else {
                             io.print("\nJotain meni pieleen vinkin poistamisessa.\n");
-                        }       break;
+                        } break;
                     }
                 case "0":
                     io.print("Kiitos käynnistä! Hei hei!");

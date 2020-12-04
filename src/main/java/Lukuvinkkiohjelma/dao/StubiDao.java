@@ -1,11 +1,12 @@
 package Lukuvinkkiohjelma.dao;
 
+import Lukuvinkkiohjelma.domain.Vinkki;
 import java.util.ArrayList;
 import java.util.List;
 
 public class StubiDao implements VinkkiDao {
 
-    private List<Object> vinkkikirjasto;
+    private List<Vinkki> vinkkikirjasto;
 
     public StubiDao() {
         vinkkikirjasto = new ArrayList<>();
@@ -15,7 +16,7 @@ public class StubiDao implements VinkkiDao {
     }
 
     @Override
-    public boolean lisaaVinkki(Object vinkki) {
+    public boolean lisaaVinkki(Vinkki vinkki) {
 
         if (vinkkikirjasto.size() >= 1) {
 
@@ -32,22 +33,16 @@ public class StubiDao implements VinkkiDao {
     }
 
     @Override
-    public boolean poistaVinkki(Object vinkki) {
+    public boolean poistaVinkki(int indeksi) {
         if (vinkkikirjasto.size() >= 1) {
-
-            if (vinkkikirjasto.contains(vinkki)) {
-                vinkkikirjasto.remove(vinkki);
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
+            vinkkikirjasto.remove(indeksi);
+            return true;
         }
+        return false;
     }
 
     @Override
-    public List<Object> haeKaikki() {
+    public List<Vinkki> haeKaikki() {
         if (this.vinkkikirjasto == null) {
             return new ArrayList<>();
         }
@@ -59,9 +54,22 @@ public class StubiDao implements VinkkiDao {
     }
 
     @Override
-    public boolean talletaVinkit(List<Object> vinkit) {
-        vinkkikirjasto = vinkit;
+    public boolean talletaVinkit() {
         return true;
     }
 
+    @Override
+    public List<Vinkki> getKirjat() {
+        return new ArrayList<>();
+    }
+
+    @Override
+    public List<Vinkki> getBlogit() {
+        return new ArrayList<>();
+    }
+
+    @Override
+    public List<Vinkki> getPodcastit() {
+        return new ArrayList<>();
+    }
 }
