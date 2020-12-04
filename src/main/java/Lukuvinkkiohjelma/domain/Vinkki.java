@@ -22,8 +22,12 @@ public abstract class Vinkki {
         return this.luettu;
     }
     
+
     
     /*
+=======
+    @Override
+>>>>>>> f53f7c4cf6d9c32d817de9975b8b13e5ab61777c
     public boolean equals(Object object) {
         if (!(object instanceof Vinkki)) {
             return false;
@@ -55,6 +59,8 @@ public abstract class Vinkki {
     
     public String getTyyppi() {
         return this.tyyppi;
-    }*/
+    }
+
+    */
 
 }
