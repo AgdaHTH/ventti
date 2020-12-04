@@ -34,4 +34,4 @@
 | Juha Kauppinen     |     |     |     |     |     |     |
 | Mari Karlsson      |     |     |     |     |     |     |
 | Ville Lappalainen  | 1   | 0,5 |     |     |     |     |
-| Benjamin Blinnikka |     |     |     |     |     |     |
+| Benjamin Blinnikka | 0,5 |     | 0,5 |     |     |     |
