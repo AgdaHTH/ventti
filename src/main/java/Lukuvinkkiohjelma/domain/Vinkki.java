@@ -4,11 +4,24 @@ public abstract class Vinkki {
 
     protected final String tyyppi;
     protected String otsikko;
+    protected boolean luettu;
+    
 
     public Vinkki(String tyyppi, String otsikko) {
         this.tyyppi = tyyppi;
         this.otsikko = otsikko;
+
     }
+    
+    public void toggleLuettu() {
+        this.luettu = !this.luettu;
+        
+    }
+    
+    public boolean getLuettu() {
+        return this.luettu;
+    }
+    
     
     /*
     public boolean equals(Object object) {

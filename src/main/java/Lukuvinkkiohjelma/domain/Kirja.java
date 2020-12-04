@@ -31,8 +31,17 @@ public class Kirja extends Vinkki {
 
     @Override
     public String toString() {
+        
+        String luettuSuomeksi = "";
+        
+        if (this.luettu) {
+            luettuSuomeksi = "Kyllä";
+        } else {
+            luettuSuomeksi = "Ei";
+        }
+        
         return "Tyyppi: " + tyyppi + "\nOtsikko: " + otsikko + "\nKirjoittaja: "
-                + kirjoittaja + "\nISBN: " + isbn + "\n";
+                + kirjoittaja + "\nISBN: " + isbn + "\nLuettu: " + luettuSuomeksi+"\n";
     }
 
     public boolean equals(Kirja kirja) {

@@ -35,8 +35,17 @@ public class Blogi extends Vinkki {
 
     @Override
     public String toString() {
+        
+        String luettuSuomeksi = "";
+        
+        if (this.luettu) {
+            luettuSuomeksi = "Kyllä";
+        } else {
+            luettuSuomeksi = "Ei";
+        }
+        
         return "Tyyppi: " + tyyppi + "\nOtsikko: " + otsikko + "\nKirjoittaja: "
-                + kirjoittaja + "\nURL: " + url + "\n";
+                + kirjoittaja + "\nURL: " + url + "\nLuettu: " + luettuSuomeksi+"\n";
     }
 
     public boolean equals(Blogi blogi) {

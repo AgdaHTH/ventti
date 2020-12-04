@@ -19,8 +19,17 @@ public class Podcast extends Vinkki {
 
     @Override
     public String toString() {
+        
+        String luettuSuomeksi = "";
+        
+        if (this.luettu) {
+            luettuSuomeksi = "Kyllä";
+        } else {
+            luettuSuomeksi = "Ei";
+        }
+        
         return "Tyyppi: " + tyyppi + "\nOtsikko: " + otsikko + "\nUrl: "
-                + url + "\n";
+                + url + "\nKuunneltu: " + luettuSuomeksi+"\n";
     }
 
     public boolean equals(Podcast podcast) {
