@@ -22,6 +22,14 @@ public abstract class Vinkki {
         return this.luettu;
     }
     
+    public String getLuettuSuomeksi() {
+        if (this.luettu) {
+            return "Kyllä";
+        } else {
+            return "Ei";
+        }
+    }
+    
 
     
     /*
