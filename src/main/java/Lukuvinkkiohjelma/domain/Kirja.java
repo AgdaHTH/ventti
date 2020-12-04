@@ -35,13 +35,17 @@ public class Kirja extends Vinkki {
                 + kirjoittaja + "\nISBN: " + isbn + "\n";
     }
 
-    public boolean equals(Kirja kirja) {
-        if (!(kirja instanceof Kirja)) {
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof Kirja)) {
             return false;
         }
-        if (kirja == this) {
+        if (object == this) {
             return true;
         }
+        
+        Kirja kirja = (Kirja) object;
+        
         boolean otsikotSamat = this.otsikko.equals(kirja.getOtsikko());
         boolean kirjoittajatSamat = this.kirjoittaja.equals(kirja.getKirjoittaja());
         boolean ISBNSamat = this.isbn.equals(kirja.getISBN());

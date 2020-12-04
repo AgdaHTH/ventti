@@ -39,13 +39,16 @@ public class Blogi extends Vinkki {
                 + kirjoittaja + "\nURL: " + url + "\n";
     }
 
-    public boolean equals(Blogi blogi) {
-        if (!(blogi instanceof Blogi)) {
+    public boolean equals(Object object) {
+        if (!(object instanceof Blogi)) {
             return false;
         }
-        if (blogi == this) {
+        if (object == this) {
             return true;
         }
+        
+        Blogi blogi = (Blogi) object;
+        
         boolean otsikotSamat = this.otsikko.equals(blogi.getOtsikko());
         boolean kirjoittajatSamat = this.kirjoittaja.equals(blogi.getKirjoittaja());
         boolean URLSamat = this.url.equals(blogi.getUrl());

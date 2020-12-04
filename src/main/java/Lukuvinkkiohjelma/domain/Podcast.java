@@ -23,13 +23,17 @@ public class Podcast extends Vinkki {
                 + url + "\n";
     }
 
-    public boolean equals(Podcast podcast) {
-        if (!(podcast instanceof Podcast)) {
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof Podcast)) {
             return false;
         }
-        if (podcast == this) {
+        if (object == this) {
             return true;
         }
+        
+        Podcast podcast = (Podcast) object;
+        
         boolean otsikotSamat = this.otsikko.equals(podcast.getOtsikko());
         boolean tyypitSamat = this.tyyppi.equals(podcast.getTyyppi());
         boolean URLSamat = this.url.equals(podcast.getUrl());

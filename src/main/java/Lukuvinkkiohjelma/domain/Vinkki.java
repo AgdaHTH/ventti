@@ -10,7 +10,7 @@ public abstract class Vinkki {
         this.otsikko = otsikko;
     }
     
-    /*
+    @Override
     public boolean equals(Object object) {
         if (!(object instanceof Vinkki)) {
             return false;
@@ -42,6 +42,6 @@ public abstract class Vinkki {
     
     public String getTyyppi() {
         return this.tyyppi;
-    }*/
+    }
 
 }
