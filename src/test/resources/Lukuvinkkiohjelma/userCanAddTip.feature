@@ -13,6 +13,12 @@ Feature: A user can add a tip in the application
         And program is terminated
         Then system will respond with "Uusi blogivinkki lisatty onnistuneesti!" 
 
+    Scenario: a podcasttip can be added
+        Given command lisaa podcast is selected
+        When a new podcasttip with title "Hauska podcast" and url "www.podcast.org" is added
+        And program is terminated
+        Then system will respond with "Uusi podcastvinkki lisatty onnistuneesti!" 
+
     Scenario: a booktip can be deleted
         Given command lisaa kirja is selected
         When a new booktip with title "Opus", author "Kirjoittaja" and ISBN "1234" is added

@@ -35,6 +35,12 @@ public class Stepdefs {
         inputLines.add("1");
     }
     
+    @Given("^command lisaa podcast is selected$")
+    public void commandLisaaPodcastSelected() throws Throwable {
+        inputLines.add("1");
+        inputLines.add("2");
+    }
+    
     @Given("^command lisaa blogi is selected$")
     public void commandLisaaBlogiSelected() throws Throwable {
         inputLines.add("1");
@@ -54,6 +60,14 @@ public class Stepdefs {
         inputLines.add(otsikko);
         inputLines.add(kirjoittaja);
         inputLines.add(isbn);
+  
+    }
+    
+    @When("a new podcasttip with title {string} and url {string} is added")
+    public void aNewPodcastTipIsAdded(String otsikko, String url) {
+        
+        inputLines.add(otsikko);
+        inputLines.add(url);
   
     }
     
