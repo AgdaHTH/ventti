@@ -19,6 +19,7 @@ import java.util.List;
 
 public class Stepdefs {
     StubiDao stubiDao;
+    VinkkiJsonDao dao;
     List<String> inputLines;
     Tekstikayttoliittyma kayttoliittyma;
     StubIO io;
@@ -26,6 +27,7 @@ public class Stepdefs {
     @Before
     public void setup(){
         stubiDao = new StubiDao();
+        dao = new VinkkiJsonDao("koetiedosto");
         inputLines = new ArrayList<>();       
     }
     
@@ -95,7 +97,8 @@ public class Stepdefs {
     public void programIsTerminated() throws Throwable {
         inputLines.add("0");
         io = new StubIO(inputLines);
-        kayttoliittyma = new Tekstikayttoliittyma(io, stubiDao);
+        kayttoliittyma = new Tekstikayttoliittyma(io, dao);
+        //kayttoliittyma = new Tekstikayttoliittyma(io, stubiDao);
         kayttoliittyma.kaynnista();
     }
     
