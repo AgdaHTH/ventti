@@ -39,8 +39,8 @@ public class Tekstikayttoliittyma {
         while (kaynnissa) {
 
             io.print("Komennot:");
-            io.print("1 - Listaa vinkit");
-            io.print("2 - Lisää vinkki");
+            io.print("1 - Lisää vinkki");
+            io.print("2 - Listaa vinkit");
             io.print("3 - Poista vinkki");
             //io.print("3 - Muokkaa vinkkiä");
             //io.print("5 - Muokkaa listauksen parametreja");
@@ -53,11 +53,11 @@ public class Tekstikayttoliittyma {
             List<Vinkki> vinkit;
             
             switch (komento) {
-                case "1":
+                case "2":
                     vinkit = sovelluslogiikka.listaaKaikkiVinkit();
                     listaaVinkit(vinkit);
                     break;
-                case "2":
+                case "1":
                     lisaaVinkki();
                     break;
                 case "3":
@@ -70,7 +70,7 @@ public class Tekstikayttoliittyma {
                             continue;
                         }       
                         int indeksi = Integer.parseInt(numeroString);
-                        if (sovelluslogiikka.poistaVinkki(indeksi - 1)) {
+                        if (sovelluslogiikka.poistaVinkki(indeksi)) {
                             io.print("\nVinkki poistettu onnistuneesti!\n");
                         } else {
                             io.print("\nJotain meni pieleen vinkin poistamisessa.\n");
@@ -153,7 +153,12 @@ public class Tekstikayttoliittyma {
     
     private void talletaVinkki(Vinkki vinkki) {
         if (sovelluslogiikka.lisaaVinkki(vinkki)) {
-            io.print("\nUusi " + vinkki.getClass().getSimpleName() + "vinkki" + " lisatty onnistuneesti!\n");
+            String tyyppi = vinkki.getClass().getSimpleName().toLowerCase();
+            io.print("");
+            io.print("Uusi " + tyyppi + "vinkki" + " lisatty onnistuneesti!");
+            io.print("");
+            
+            io.print(vinkki.toString());
         } else {
             io.print("\nJotain meni pieleen uuden kirjavinkin lisamisessa...\n");
         }
@@ -161,7 +166,7 @@ public class Tekstikayttoliittyma {
     
     private void listaaVinkit(List<Vinkki> vinkit) {
         if (!vinkit.isEmpty()) {
-            for (int i = 1; i < vinkit.size(); i++) {
+            for (int i = 0; i < vinkit.size(); i++) {
                 io.print(i + " " + vinkit.get(i));
             }
         } else {
@@ -176,17 +181,6 @@ public class Tekstikayttoliittyma {
         }
 
         return false;
-    }
-    
-    private int lueLukuValilta(String prompt, int suurin) {
-        while(true) {            
-            int luku = io.readInt(prompt);
-            if (luku <= suurin) {
-               return luku; 
-            } else {
-                io.print("Virheellinen syöte!\n");
-            }
-        }
     }
    
 }
