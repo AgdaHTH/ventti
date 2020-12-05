@@ -47,8 +47,8 @@ public class Tekstikayttoliittyma {
             io.print("0 - Sulje ohjelma");
             io.print("");
 
+            io.print("Tyhjä syöte eli pelkkä enter keskeyttää toiminnon.\n");
             String komento = io.readLine("Anna komento");
-            io.print("\nTyhjä syöte eli pelkkä enter keskeyttää toiminnon.\n");
 
             List<Vinkki> vinkit;
             
