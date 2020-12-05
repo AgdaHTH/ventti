@@ -35,6 +35,12 @@ public class Stepdefs {
         inputLines.add("1");
     }
     
+    @Given("^command lisaa blogi is selected$")
+    public void commandLisaaBlogiSelected() throws Throwable {
+        inputLines.add("1");
+        inputLines.add("3");
+    }
+    
     @When("^command listaa vinkit is selected$")
     public void commandListaaIsSelected() throws Throwable {
         inputLines.add("2");
@@ -43,11 +49,20 @@ public class Stepdefs {
     
     
     @When("a new booktip with title {string}, author {string} and ISBN {string} is added")
-    public void aNewTipIsAdded(String otsikko, String kirjoittaja, String isbn) {
+    public void aNewBookTipIsAdded(String otsikko, String kirjoittaja, String isbn) {
         
         inputLines.add(otsikko);
         inputLines.add(kirjoittaja);
         inputLines.add(isbn);
+  
+    }
+    
+    @When("a new blogtip with title {string}, author {string} and url {string} is added")
+    public void aNewBlogTipIsAdded(String otsikko, String kirjoittaja, String url) {
+        
+        inputLines.add(otsikko);
+        inputLines.add(kirjoittaja);
+        inputLines.add(url);
   
     }
     
@@ -75,9 +90,9 @@ public class Stepdefs {
     @Then("system will respond with {string}")
     public void aNewTipCanBeFound(String expectedOutput) {
         
-//        for (String print : io.getPrints()) {
-//            System.out.println(print);
-//        }
+        for (String print : io.getPrints()) {
+            System.out.println(print);
+        }
         
         // assertTrue(sisaltaaTekstin(io.getPrints(), expectedOutput));
         assertTrue(io.getPrints().contains(expectedOutput));
