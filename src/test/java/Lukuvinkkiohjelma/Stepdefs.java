@@ -19,6 +19,7 @@ import java.util.List;
 
 public class Stepdefs {
     StubiDao stubiDao;
+    VinkkiJsonDao dao;
     List<String> inputLines;
     Tekstikayttoliittyma kayttoliittyma;
     StubIO io;
@@ -26,6 +27,7 @@ public class Stepdefs {
     @Before
     public void setup(){
         stubiDao = new StubiDao();
+        dao = new VinkkiJsonDao("koetiedosto");
         inputLines = new ArrayList<>();       
     }
     
@@ -33,6 +35,18 @@ public class Stepdefs {
     public void commandLisaaKirjaSelected() throws Throwable {
         inputLines.add("1");
         inputLines.add("1");
+    }
+    
+    @Given("^command lisaa podcast is selected$")
+    public void commandLisaaPodcastSelected() throws Throwable {
+        inputLines.add("1");
+        inputLines.add("2");
+    }
+    
+    @Given("^command lisaa blogi is selected$")
+    public void commandLisaaBlogiSelected() throws Throwable {
+        inputLines.add("1");
+        inputLines.add("3");
     }
     
     @When("^command listaa vinkit is selected$")
@@ -43,11 +57,28 @@ public class Stepdefs {
     
     
     @When("a new booktip with title {string}, author {string} and ISBN {string} is added")
-    public void aNewTipIsAdded(String otsikko, String kirjoittaja, String isbn) {
+    public void aNewBookTipIsAdded(String otsikko, String kirjoittaja, String isbn) {
         
         inputLines.add(otsikko);
         inputLines.add(kirjoittaja);
         inputLines.add(isbn);
+  
+    }
+    
+    @When("a new podcasttip with title {string} and url {string} is added")
+    public void aNewPodcastTipIsAdded(String otsikko, String url) {
+        
+        inputLines.add(otsikko);
+        inputLines.add(url);
+  
+    }
+    
+    @When("a new blogtip with title {string}, author {string} and url {string} is added")
+    public void aNewBlogTipIsAdded(String otsikko, String kirjoittaja, String url) {
+        
+        inputLines.add(otsikko);
+        inputLines.add(kirjoittaja);
+        inputLines.add(url);
   
     }
     
@@ -66,18 +97,19 @@ public class Stepdefs {
     public void programIsTerminated() throws Throwable {
         inputLines.add("0");
         io = new StubIO(inputLines);
-        kayttoliittyma = new Tekstikayttoliittyma(io, stubiDao);
+        kayttoliittyma = new Tekstikayttoliittyma(io, dao);
+        //kayttoliittyma = new Tekstikayttoliittyma(io, stubiDao);
         kayttoliittyma.kaynnista();
     }
     
 
     
     @Then("system will respond with {string}")
-    public void aNewTipCanBeFound(String expectedOutput) {
+    public void systemWillRespondWith(String expectedOutput) {
         
-//        for (String print : io.getPrints()) {
-//            System.out.println(print);
-//        }
+        for (String print : io.getPrints()) {
+            System.out.println(print);
+        }
         
         // assertTrue(sisaltaaTekstin(io.getPrints(), expectedOutput));
         assertTrue(io.getPrints().contains(expectedOutput));
