@@ -6,7 +6,7 @@ Feature: A user can delete an existing a tip
         And command poista vinkki is selected
         And tip number "0" is selected
         And program is terminated
-        And output will contain text "Vinkki poistettu onnistuneesti!"
+        Then output will contain text "Vinkki poistettu onnistuneesti!"
 
     Scenario: a podcasttip can be deleted
         Given command lisaa podcast is selected
@@ -14,12 +14,12 @@ Feature: A user can delete an existing a tip
         And command poista vinkki is selected
         And tip number "0" is selected
         And program is terminated
-        And output will contain text "Vinkki poistettu onnistuneesti!"
+        Then output will contain text "Vinkki poistettu onnistuneesti!"
 
-    Scenario: a blogtip can be added
+    Scenario: a blogtip can be deleted
         Given command lisaa blogi is selected
         When a new blogtip with title "Kivablogi", author "Bloggaaja" and url "www.blogi.org" is added
         And command poista vinkki is selected
         And tip number "0" is selected
         And program is terminated
-        And output will contain text "Vinkki poistettu onnistuneesti!"
+        Then output will contain text "Vinkki poistettu onnistuneesti!"
