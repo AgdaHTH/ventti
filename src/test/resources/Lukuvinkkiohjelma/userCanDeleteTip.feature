@@ -1,4 +1,4 @@
-Feature: A user can delete an existing a tip in the application
+Feature: A user can delete an existing a tip
 
     Scenario: a booktip can be deleted
         Given command lisaa kirja is selected
