@@ -102,7 +102,7 @@ public class Stepdefs {
 
     
     @Then("system will respond with {string}")
-    public void aNewTipCanBeFound(String expectedOutput) {
+    public void systemWillRespondWith(String expectedOutput) {
         
         for (String print : io.getPrints()) {
             System.out.println(print);
