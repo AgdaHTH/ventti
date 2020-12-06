@@ -45,7 +45,7 @@ public class VinkkiJsonDao implements VinkkiDao {
 
     /**
      *
-     * @param vinkki - tiedostoon lisättävä vinkki
+     * @param vinkki - tiedostoon lisï¿½ttï¿½vï¿½ vinkki
      * @return palauttaa true, jos tiedoston muuttaminen on onnistunt.
      */
     @Override
@@ -62,10 +62,10 @@ public class VinkkiJsonDao implements VinkkiDao {
     }
 
     /**
-     * Jos vinkkejä on käsitelty yksittäisinä listoina, indeksi lasketaan
+     * Jos vinkkejï¿½ on kï¿½sitelty yksittï¿½isinï¿½ listoina, indeksi lasketaan
      * suhteessa kaikkiin listoihin; kirjat, blogit, podcastit.
      *
-     * Esimerkki: Jos vinkki on listan blogit indeksissä 3, annetaan
+     * Esimerkki: Jos vinkki on listan blogit indeksissï¿½ 3, annetaan
      * parametriksi (kirjat.size() + 3)
      *
      * @param indeksi vinkin indeksi
@@ -79,6 +79,19 @@ public class VinkkiJsonDao implements VinkkiDao {
             blogit.remove(indeksi - kirjat.size());
         } else if (indeksi < kirjat.size() + blogit.size() + podcastit.size()) {
             podcastit.remove(indeksi - (kirjat.size() + blogit.size()));
+        }
+
+        return talletaVinkit();
+    }
+    
+    @Override
+    public boolean poistaVinkki(Vinkki vinkki) {
+        if (kirjat.contains(vinkki)) {
+            kirjat.remove(vinkki);
+        } else if (podcastit.contains(vinkki)) {
+            podcastit.remove(vinkki);
+        } else if (blogit.contains(vinkki)) {
+            blogit.remove(vinkki);
         }
 
         return talletaVinkit();
@@ -101,9 +114,9 @@ public class VinkkiJsonDao implements VinkkiDao {
 
     /**
      *
-     * @return palauttaa kaikki vinkit yhtenä listana
-     * @throws IOException aiheutuu epäonnistuneesta tiedoston
-     * lukemisyrityksestä
+     * @return palauttaa kaikki vinkit yhtenï¿½ listana
+     * @throws IOException aiheutuu epï¿½onnistuneesta tiedoston
+     * lukemisyrityksestï¿½
      */
     @Override
     public List<Vinkki> haeKaikki() throws IOException {
@@ -125,8 +138,8 @@ public class VinkkiJsonDao implements VinkkiDao {
     }
 
     /**
-     * Listat tärkeää tallentaa järjestyksessä; kirjat, blogit, podcastit Muussa
-     * tapauksessa metodin puraTiedosto() parsimisjärjestystä myös muutettava.
+     * Listat tï¿½rkeï¿½ï¿½ tallentaa jï¿½rjestyksessï¿½; kirjat, blogit, podcastit Muussa
+     * tapauksessa metodin puraTiedosto() parsimisjï¿½rjestystï¿½ myï¿½s muutettava.
      */
     @Override
     public boolean talletaVinkit() {
@@ -151,7 +164,7 @@ public class VinkkiJsonDao implements VinkkiDao {
     }
 
     /**
-     * Alustaa tiedoston tyhjillä listoilla. Yksi jokaista vinkkityyppiä kohden.
+     * Alustaa tiedoston tyhjillï¿½ listoilla. Yksi jokaista vinkkityyppiï¿½ kohden.
      */
     private void alustaTyhjaTiedosto() {
         List<Vinkki> k = new ArrayList<>();

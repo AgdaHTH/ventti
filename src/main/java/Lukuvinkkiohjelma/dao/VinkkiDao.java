@@ -8,6 +8,7 @@ public interface VinkkiDao {
 
     boolean lisaaVinkki(Vinkki vinkki);
     boolean poistaVinkki(int indeksi);
+    boolean poistaVinkki(Vinkki vinkki);
     boolean talletaVinkit();
     List<Vinkki> getKirjat();
     List<Vinkki> getBlogit();

@@ -40,6 +40,15 @@ public class StubiDao implements VinkkiDao {
         }
         return false;
     }
+    
+    @Override
+    public boolean poistaVinkki(Vinkki vinkki) {
+        if (vinkkikirjasto.contains(vinkki)) {
+            vinkkikirjasto.remove(vinkki);
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public List<Vinkki> haeKaikki() {
@@ -72,4 +81,5 @@ public class StubiDao implements VinkkiDao {
     public List<Vinkki> getPodcastit() {
         return new ArrayList<>();
     }
+
 }
