@@ -103,7 +103,7 @@ public class Tekstikayttoliittyma {
                     }
                     String kirjoittaja = io.readLine("\nKirjan kirjoittaja: ");
                     if (keskeytetaan(kirjoittaja)) {
-                        //continue;
+                        return;
                     }
                     String ISBN = io.readLine("\nKirjan ISBN: ");
                     if (keskeytetaan(ISBN)) {
@@ -131,7 +131,7 @@ public class Tekstikayttoliittyma {
                 {
                     String otsikko = io.readLine("Blogin otsikko: ");
                     if (keskeytetaan(otsikko)) {
-                        //continue;
+                        return;
                     }
                     String kirjoittaja = io.readLine("\nBlogin kirjoittaja: ");
                     if (keskeytetaan(kirjoittaja)) {
