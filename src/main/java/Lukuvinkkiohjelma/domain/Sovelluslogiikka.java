@@ -6,7 +6,10 @@
 package Lukuvinkkiohjelma.domain;
 
 import Lukuvinkkiohjelma.dao.VinkkiDao;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -17,14 +20,37 @@ public class Sovelluslogiikka {
     // JSON-raakadatalista:
     private List<Vinkki> vinkkilista;
     private VinkkiDao dao;
+    private Map<String, Boolean> listauksenParametrit;
 
     public Sovelluslogiikka(VinkkiDao vinkkiDao) {
+        listauksenParametrit = new HashMap();
+        listauksenParametrit.put("luettu", true);
+        listauksenParametrit.put("lukematta", true);
+        listauksenParametrit.put("kirja", true);
+        listauksenParametrit.put("podcast", true);
+        listauksenParametrit.put("blogi", true);
+        
         this.dao = vinkkiDao;
         try {
             this.vinkkilista = dao.haeKaikki();
         } catch (Exception e) {
             System.out.println("Vinkkien lataus epaonnistui!\n" + e.toString());
         }
+    }
+    
+    public boolean muutaListauksenParametria(String parametri, boolean arvo) {
+        if (listauksenParametrit.containsKey(parametri)) {
+            listauksenParametrit.put(parametri, arvo);
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean getListauksenParametri(String parametri) {
+        if (listauksenParametrit.containsKey(parametri)) {
+            return listauksenParametrit.get(parametri);
+        }
+        return false;
     }
 
     // Metodi lisää uuden vinkkiolion
@@ -68,5 +94,18 @@ public class Sovelluslogiikka {
     
     public List<Vinkki> listaaKaikkiVinkit() {
         return this.vinkkilista;
+    }
+    
+    public List<Vinkki> listaaParametrienMukaan() {
+        List<Vinkki> rajattuLista = new ArrayList<>();
+        
+        for (Vinkki vinkki : vinkkilista) {
+            if (vinkki.getLuettu() == listauksenParametrit.get("luettu")
+                    || vinkki.getLuettu() != listauksenParametrit.get("lukematta")
+                    && listauksenParametrit.get(vinkki.getTyyppi())) {
+                rajattuLista.add(vinkki);
+            }
+        }
+        return rajattuLista;
     }
 }

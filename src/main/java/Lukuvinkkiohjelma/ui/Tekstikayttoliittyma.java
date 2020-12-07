@@ -42,7 +42,7 @@ public class Tekstikayttoliittyma {
             io.print("1 - Lisää vinkki");
             io.print("2 - Listaa vinkit");
             io.print("3 - Poista vinkki");
-            //io.print("3 - Muokkaa vinkkiä");
+            //io.print("4 - Muokkaa vinkkiä");
             //io.print("5 - Muokkaa listauksen parametreja");
             io.print("0 - Sulje ohjelma");
             io.print("");
@@ -55,6 +55,18 @@ public class Tekstikayttoliittyma {
             switch (komento) {
                 case "2":
                     vinkit = sovelluslogiikka.listaaKaikkiVinkit();
+                    
+                    /*
+                    // listauksen filtteröinti
+                    sovelluslogiikka.muutaListauksenParametria("luettu", true);
+                    sovelluslogiikka.muutaListauksenParametria("lukematta", true);
+                    sovelluslogiikka.muutaListauksenParametria("kirja", true);
+                    sovelluslogiikka.muutaListauksenParametria("blogi", true);
+                    sovelluslogiikka.muutaListauksenParametria("podcast", true);
+                    
+                    vinkit = sovelluslogiikka.listaaParametrienMukaan();
+                    */
+                    
                     listaaVinkit(vinkit);
                     break;
                 case "1":
@@ -70,6 +82,7 @@ public class Tekstikayttoliittyma {
                             continue;
                         }       
                         int indeksi = Integer.parseInt(numeroString);
+                        
                         if (sovelluslogiikka.poistaVinkki(indeksi)) {
                             io.print("\nVinkki poistettu onnistuneesti!\n");
                         } else {
