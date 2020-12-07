@@ -36,9 +36,8 @@ public class Blogi extends Vinkki {
     @Override
     public String toString() {
 
-        
         return "Tyyppi: " + tyyppi + "\nOtsikko: " + otsikko + "\nKirjoittaja: "
-                + kirjoittaja + "\nURL: " + url + "\nLuettu: " + this.getLuettuSuomeksi()+"\n";
+                + kirjoittaja + "\nURL: " + url + "\nLuettu: " + this.getLuettuSuomeksi() + "\n";
     }
 
     public boolean equals(Object object) {
@@ -48,9 +47,9 @@ public class Blogi extends Vinkki {
         if (object == this) {
             return true;
         }
-        
+
         Blogi blogi = (Blogi) object;
-        
+
         boolean otsikotSamat = this.otsikko.equals(blogi.getOtsikko());
         boolean kirjoittajatSamat = this.kirjoittaja.equals(blogi.getKirjoittaja());
         boolean URLSamat = this.url.equals(blogi.getUrl());
@@ -65,14 +64,6 @@ public class Blogi extends Vinkki {
         hashCodeSumma += this.url.hashCode();
 
         return hashCodeSumma;
-    }
-
-    public String getTyyppi() {
-        return tyyppi;
-    }
-
-    public String getOtsikko() {
-        return otsikko;
     }
 
     public String getKirjoittaja() {

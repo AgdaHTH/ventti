@@ -20,9 +20,8 @@ public class Podcast extends Vinkki {
     @Override
     public String toString() {
 
-        
         return "Tyyppi: " + tyyppi + "\nOtsikko: " + otsikko + "\nUrl: "
-                + url + "\nKuunneltu: " + this.getLuettuSuomeksi()+"\n";
+                + url + "\nKuunneltu: " + this.getLuettuSuomeksi() + "\n";
     }
 
     @Override
@@ -33,9 +32,9 @@ public class Podcast extends Vinkki {
         if (object == this) {
             return true;
         }
-        
+
         Podcast podcast = (Podcast) object;
-        
+
         boolean otsikotSamat = this.otsikko.equals(podcast.getOtsikko());
         boolean tyypitSamat = this.tyyppi.equals(podcast.getTyyppi());
         boolean URLSamat = this.url.equals(podcast.getUrl());
@@ -50,14 +49,6 @@ public class Podcast extends Vinkki {
         hashCodeSumma += this.url.hashCode();
 
         return hashCodeSumma;
-    }
-
-    public String getTyyppi() {
-        return tyyppi;
-    }
-
-    public String getOtsikko() {
-        return otsikko;
     }
 
     public String getUrl() {
