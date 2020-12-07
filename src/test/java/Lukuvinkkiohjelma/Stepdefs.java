@@ -93,6 +93,11 @@ public class Stepdefs {
         inputLines.add(number);
     }
     
+    @When("confirmation {string} is entered")
+    public void deleteConfirmationGiven(String confirmation) {
+        inputLines.add(confirmation);
+    }
+    
     @When("program is terminated")
     public void programIsTerminated() throws Throwable {
         inputLines.add("0");
@@ -129,7 +134,7 @@ public class Stepdefs {
             
             if (candidate.contains(text)) { 
 //                System.out.println("");
-//                System.out.println("Löydetty rivi: ");
+//                System.out.println("Lï¿½ydetty rivi: ");
 //                System.out.println(stringi);
                 
                 return true;

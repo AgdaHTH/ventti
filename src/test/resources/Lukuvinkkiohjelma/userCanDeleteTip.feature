@@ -5,6 +5,7 @@ Feature: A user can delete an existing a tip
         When a new booktip with title "Opus", author "Kirjoittaja" and ISBN "1234" is added
         And command poista vinkki is selected
         And tip number "0" is selected
+        And confirmation "y" is entered
         And program is terminated
         Then output will contain text "Vinkki poistettu onnistuneesti!"
 
@@ -13,6 +14,7 @@ Feature: A user can delete an existing a tip
         When a new podcasttip with title "Hauska podcast" and url "www.podcast.org" is added
         And command poista vinkki is selected
         And tip number "0" is selected
+        And confirmation "y" is entered
         And program is terminated
         Then output will contain text "Vinkki poistettu onnistuneesti!"
 
@@ -21,5 +23,6 @@ Feature: A user can delete an existing a tip
         When a new blogtip with title "Kivablogi", author "Bloggaaja" and url "www.blogi.org" is added
         And command poista vinkki is selected
         And tip number "0" is selected
+        And confirmation "y" is entered
         And program is terminated
         Then output will contain text "Vinkki poistettu onnistuneesti!"
