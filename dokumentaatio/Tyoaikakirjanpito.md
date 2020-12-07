@@ -33,5 +33,5 @@
 | Eemeli Ingervo     | 0,5 |  3  | 0,5 |     |  2  |     |     |
 | Juha Kauppinen     | 0,5 |     |  1  |  1  |     |     |     |
 | Mari Karlsson      |     |     |     |     |     |     |     |
-| Ville Lappalainen  | 1   | 0,5 | 1,5 |     |     |     |     |
+| Ville Lappalainen  | 1   | 0,5 | 1,5 |     |  2  |     |     |
 | Benjamin Blinnikka | 0,5 |     | 0,5 |     |     |     |     |
