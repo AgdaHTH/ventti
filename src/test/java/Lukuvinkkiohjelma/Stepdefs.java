@@ -24,7 +24,7 @@ public class Stepdefs {
     
     @Before
     public void setup(){
-        dao = new VinkkiJsonDao("koetiedosto");
+        dao = new VinkkiJsonDao("koetiedosto.json");
         inputLines = new ArrayList<>();       
     }
     
