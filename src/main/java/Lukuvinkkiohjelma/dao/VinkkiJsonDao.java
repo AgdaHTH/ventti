@@ -4,11 +4,9 @@ import Lukuvinkkiohjelma.domain.Blogi;
 import Lukuvinkkiohjelma.domain.Kirja;
 import Lukuvinkkiohjelma.domain.Podcast;
 import Lukuvinkkiohjelma.domain.Vinkki;
-import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
-import java.lang.reflect.Type;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
@@ -79,19 +77,6 @@ public class VinkkiJsonDao implements VinkkiDao {
             blogit.remove(indeksi - kirjat.size());
         } else if (indeksi < kirjat.size() + blogit.size() + podcastit.size()) {
             podcastit.remove(indeksi - (kirjat.size() + blogit.size()));
-        }
-
-        return talletaVinkit();
-    }
-    
-    @Override
-    public boolean poistaVinkki(Vinkki vinkki) {
-        if (kirjat.contains(vinkki)) {
-            kirjat.remove(vinkki);
-        } else if (podcastit.contains(vinkki)) {
-            podcastit.remove(vinkki);
-        } else if (blogit.contains(vinkki)) {
-            blogit.remove(vinkki);
         }
 
         return talletaVinkit();

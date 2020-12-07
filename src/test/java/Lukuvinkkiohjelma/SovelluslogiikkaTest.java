@@ -1,5 +1,6 @@
 package Lukuvinkkiohjelma;
 
+import Lukuvinkkiohjelma.dao.StubDao;
 import Lukuvinkkiohjelma.dao.VinkkiJsonDao;
 import Lukuvinkkiohjelma.domain.*;
 import org.junit.After;
@@ -18,7 +19,6 @@ public class SovelluslogiikkaTest {
     private Sovelluslogiikka sovelluslogiikka;
 
     public SovelluslogiikkaTest() {
-        this.sovelluslogiikka = new Sovelluslogiikka(new VinkkiJsonDao("testi.json"));
     }
 
     @BeforeClass
@@ -31,6 +31,7 @@ public class SovelluslogiikkaTest {
 
     @Before
     public void setUp() {
+        this.sovelluslogiikka = new Sovelluslogiikka(new StubDao());
     }
 
     @After
@@ -38,52 +39,86 @@ public class SovelluslogiikkaTest {
     }
 
     @Test
-    public void kirjanLisaysOnnistuu() {
+    public void kirjanLisays() {
         String otsikko = "TestO";
-        Kirja kirja = new Kirja(otsikko, "TestK", "TestISBN");
+        String kirjoittaja = "TestK";
+        String isbn = "TestISBN";
+        
+        Kirja kirja = new Kirja(otsikko, kirjoittaja, isbn);
         sovelluslogiikka.lisaaVinkki(kirja);
+        
         kirja = (Kirja) sovelluslogiikka.listaaKirjat().get(0);
         assertTrue(kirja.getOtsikko().equals(otsikko));
+        assertTrue(kirja.getKirjoittaja().equals(kirjoittaja));
+        assertTrue(kirja.getISBN().equals(isbn));
     }
 
-//    @Test
-//    public void kirjanPoistaminenOnnistuu() {
-//        Kirja kirja = new Kirja("TestO", "TestK", "TestISBN");
-//        sovelluslogiikka.lisaaVinkki(kirja);
-//        assertTrue(sovelluslogiikka.listaaKirjat().contains(kirja));
-//        sovelluslogiikka.poistaVinkki(0);
-//        assertFalse(sovelluslogiikka.listaaKirjat().contains(kirja));
-//    }
-//
-//    @Test
-//    public void bloginLisaysOnnistuu() {
-//        Blogi blogi = new Blogi("TestO", "TestK", "TestURL");
-//        sovelluslogiikka.lisaaVinkki(blogi);
-//        assertTrue(sovelluslogiikka.listaaBlogit().contains(blogi));
-//    }
-//
-//    @Test
-//    public void bloginPoistaminenOnnistuu() {
-//        Blogi blogi = new Blogi("TestO", "TestK", "TestURL");
-//        sovelluslogiikka.lisaaVinkki(blogi);
-//        assertTrue(sovelluslogiikka.listaaBlogit().contains(blogi));
-//        sovelluslogiikka.poistaVinkki(0);
-//        assertFalse(sovelluslogiikka.listaaBlogit().contains(blogi));
-//    }
-//
-//    @Test
-//    public void podcastinLisaysOnnistuu() {
-//        Podcast podcast = new Podcast("TestO", "TestURL");
-//        sovelluslogiikka.lisaaVinkki(podcast);
-//        assertTrue(sovelluslogiikka.listaaPodcastit().contains(podcast));
-//    }
-//
-//    @Test
-//    public void podcastinPoistaminenOnnistuu() {
-//        Podcast podcast = new Podcast("TestO", "TestURL");
-//        sovelluslogiikka.lisaaVinkki(podcast);
-//        assertTrue(sovelluslogiikka.listaaPodcastit().contains(podcast));
-//        sovelluslogiikka.poistaVinkki(0);
-//        assertFalse(sovelluslogiikka.listaaBlogit().contains(podcast));
-//    }
+    @Test
+    public void kirjanPoistaminen() {
+        String otsikko = "TestO";
+        String kirjoittaja = "TestK";
+        String isbn = "TestISBN";
+        
+        Kirja kirja = new Kirja(otsikko, kirjoittaja, isbn);
+        sovelluslogiikka.lisaaVinkki(kirja);
+        assertTrue(sovelluslogiikka.listaaKaikkiVinkit().size() == 1);
+        
+        sovelluslogiikka.poistaVinkki(0);
+        assertTrue(sovelluslogiikka.listaaKaikkiVinkit().isEmpty());
+    }
+
+    @Test
+    public void bloginLisays() {
+        String otsikko = "TestO";
+        String kirjoittaja = "TestK";
+        String url = "TestURL";
+        
+        Blogi blogi = new Blogi(otsikko, kirjoittaja, url);
+        sovelluslogiikka.lisaaVinkki(blogi);
+        
+        blogi = (Blogi) sovelluslogiikka.listaaBlogit().get(0);
+        assertTrue(blogi.getOtsikko().equals(otsikko));
+        assertTrue(blogi.getKirjoittaja().equals(kirjoittaja));
+        assertTrue(blogi.getUrl().equals(url));
+    }
+
+    @Test
+    public void bloginPoistaminen() {
+        String otsikko = "TestO";
+        String kirjoittaja = "TestK";
+        String url = "TestURL";
+        
+        Blogi blogi = new Blogi(otsikko, kirjoittaja, url);
+        sovelluslogiikka.lisaaVinkki(blogi);
+        assertTrue(sovelluslogiikka.listaaKaikkiVinkit().size() == 1);
+        
+        sovelluslogiikka.poistaVinkki(0);
+        assertTrue(sovelluslogiikka.listaaKaikkiVinkit().isEmpty());
+    }
+
+    @Test
+    public void podcastinLisays() {
+        String otsikko = "TestO";
+        String url = "TestURL";
+        
+        Podcast podccast = new Podcast(otsikko, url);
+        sovelluslogiikka.lisaaVinkki(podccast);
+        
+        podccast = (Podcast) sovelluslogiikka.listaaPodcastit().get(0);
+        assertTrue(podccast.getOtsikko().equals(otsikko));
+        assertTrue(podccast.getUrl().equals(url));
+    }
+
+    @Test
+    public void podcastinPoistaminen() {
+        String otsikko = "TestO";
+        String url = "TestURL";
+        
+        Podcast podccast = new Podcast(otsikko, url);
+        sovelluslogiikka.lisaaVinkki(podccast);
+        assertTrue(sovelluslogiikka.listaaKaikkiVinkit().size() == 1);
+        
+        sovelluslogiikka.poistaVinkki(0);
+        assertTrue(sovelluslogiikka.listaaKaikkiVinkit().isEmpty());
+    }
 }

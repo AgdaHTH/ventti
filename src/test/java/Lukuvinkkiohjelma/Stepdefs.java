@@ -8,7 +8,6 @@ import io.cucumber.java.en.And;
 import java.util.ArrayList;
 import static org.junit.Assert.*;
 import Lukuvinkkiohjelma.dao.VinkkiDao;
-import Lukuvinkkiohjelma.dao.StubiDao;
 import Lukuvinkkiohjelma.dao.VinkkiJsonDao;
 import Lukuvinkkiohjelma.domain.Sovelluslogiikka;
 import Lukuvinkkiohjelma.ui.Tekstikayttoliittyma;
@@ -18,7 +17,6 @@ import java.util.List;
 
 
 public class Stepdefs {
-    StubiDao stubiDao;
     VinkkiJsonDao dao;
     List<String> inputLines;
     Tekstikayttoliittyma kayttoliittyma;
@@ -26,7 +24,6 @@ public class Stepdefs {
     
     @Before
     public void setup(){
-        stubiDao = new StubiDao();
         dao = new VinkkiJsonDao("koetiedosto");
         inputLines = new ArrayList<>();       
     }
