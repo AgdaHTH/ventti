@@ -1,0 +1,9 @@
+Feature: A user can modify an existing a tip
+
+    Scenario: a booktip can be modified
+        Given command lisaa kirja is selected
+        When a new booktip with title "Opus", author "Kirjoittaja" and ISBN "1234" is added
+        And command muokkaa vinkkia is selected
+        And tip number "0" is selected
+        And program is terminated
+        Then output will contain text "Vinkki poistettu onnistuneesti!"
