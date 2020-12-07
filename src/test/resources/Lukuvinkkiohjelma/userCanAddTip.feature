@@ -37,6 +37,7 @@ Feature: A user can add a new tip
         And program is terminated
         And output will contain text "Toiminto" 
 
+
     Scenario: adding a booktip can be cancelled at the title
         Given command lisaa kirja is selected
         When cancel command "" is entered
@@ -58,6 +59,7 @@ Feature: A user can add a new tip
         And program is terminated
         Then output will contain text "Toiminto"
 
+
     Scenario: adding a podcasttip can be cancelled at the title
         Given command lisaa podcast is selected
         When cancel command "" is entered
@@ -70,6 +72,7 @@ Feature: A user can add a new tip
         And cancel command "" is entered
         And program is terminated
         Then output will contain text "Toiminto"
+
 
     Scenario: adding a blogtip can be cancelled at the title
         Given command lisaa blogi is selected
@@ -87,7 +90,7 @@ Feature: A user can add a new tip
     Scenario: adding a blogtip can be cancelled at the url
         Given command lisaa blogi is selected
         When input "Testiblogi" is entered
-        When input "www.testiblogi.fi" is entered
+        When input "Blogin kirjoittjaja" is entered
         And cancel command "" is entered
         And program is terminated
         Then output will contain text "Toiminto"
