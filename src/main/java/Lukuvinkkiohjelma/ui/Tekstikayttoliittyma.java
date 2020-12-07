@@ -73,22 +73,8 @@ public class Tekstikayttoliittyma {
                     lisaaVinkki();
                     break;
                 case "3":
-                    {
-                        vinkit = sovelluslogiikka.listaaKaikkiVinkit();
-                        listaaVinkit(vinkit);
-                             
-                        String numeroString = io.readLine("Anna poistettavan vinkin numero:");
-                        if (keskeytetaan(numeroString)) {
-                            continue;
-                        }       
-                        int indeksi = Integer.parseInt(numeroString);
-                        
-                        if (sovelluslogiikka.poistaVinkki(indeksi)) {
-                            io.print("\nVinkki poistettu onnistuneesti!\n");
-                        } else {
-                            io.print("\nJotain meni pieleen vinkin poistamisessa.\n");
-                        } break;
-                    }
+                    poistaVinkki();
+                    break;
                 case "0":
                     io.print("Kiitos käynnistä! Hei hei!");
                     kaynnissa = false;
@@ -117,7 +103,7 @@ public class Tekstikayttoliittyma {
                     }
                     String kirjoittaja = io.readLine("\nKirjan kirjoittaja: ");
                     if (keskeytetaan(kirjoittaja)) {
-                        //continue;
+                        return;
                     }
                     String ISBN = io.readLine("\nKirjan ISBN: ");
                     if (keskeytetaan(ISBN)) {
@@ -145,7 +131,7 @@ public class Tekstikayttoliittyma {
                 {
                     String otsikko = io.readLine("Blogin otsikko: ");
                     if (keskeytetaan(otsikko)) {
-                        //continue;
+                        return;
                     }
                     String kirjoittaja = io.readLine("\nBlogin kirjoittaja: ");
                     if (keskeytetaan(kirjoittaja)) {
@@ -185,6 +171,41 @@ public class Tekstikayttoliittyma {
         } else {
             io.print("Ei vielä lisättyjä vinkkejä!\n");
         }
+    }
+    
+    private void poistaVinkki() {
+        List<Vinkki> vinkit = sovelluslogiikka.listaaKaikkiVinkit();
+        listaaVinkit(vinkit);
+        
+        if (vinkit.isEmpty()) {
+            return;
+        }
+        
+        String numeroString = io.readLine("Anna poistettavan vinkin numero:");
+        
+        if (keskeytetaan(numeroString)) {
+            return;
+        }       
+        int indeksi = Integer.parseInt(numeroString);
+                        
+        if (indeksi >= vinkit.size() || indeksi < 0) {
+            io.print("Ei vinkkiä syötetyllä numerolla!\n");
+        } else {
+            String vahvistus = io.readLine("Poistetaanko varmasti? y/n:");
+
+            switch (vahvistus) {
+                case "y":
+                    if (sovelluslogiikka.poistaVinkki(indeksi)) {
+                        io.print("\nVinkki poistettu onnistuneesti!\n");
+                    } else {
+                        io.print("\nJotain meni pieleen vinkin poistamisessa.\n");
+                    } break;                                
+                default:
+                    io.print("Ei poistettu mitään!\n");
+                    break;
+            } 
+            
+        }                        
     }
 
     private boolean keskeytetaan(String syote) {
