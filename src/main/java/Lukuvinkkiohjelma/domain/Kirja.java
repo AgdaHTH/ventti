@@ -23,12 +23,6 @@ public class Kirja extends Vinkki {
         }
     }
 
-    public void setOtsikko(String uusiOtsikko) {
-        if (!(uusiOtsikko.equals(""))) {
-            this.otsikko = uusiOtsikko;
-        }
-    }
-
     @Override
     public String toString() {
 

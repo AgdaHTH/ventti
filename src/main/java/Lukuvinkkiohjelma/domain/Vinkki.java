@@ -5,23 +5,22 @@ public abstract class Vinkki {
     protected final String tyyppi;
     protected String otsikko;
     protected boolean luettu;
-    
 
     public Vinkki(String tyyppi, String otsikko) {
         this.tyyppi = tyyppi;
         this.otsikko = otsikko;
 
     }
-    
+
     public void toggleLuettu() {
         this.luettu = !this.luettu;
-        
+
     }
-    
+
     public boolean getLuettu() {
         return this.luettu;
     }
-    
+
     public String getLuettuSuomeksi() {
         if (this.luettu) {
             return "Kyllä";
@@ -29,9 +28,7 @@ public abstract class Vinkki {
             return "Ei";
         }
     }
-    
 
-    
     @Override
     public boolean equals(Object object) {
         if (!(object instanceof Vinkki)) {
@@ -40,7 +37,7 @@ public abstract class Vinkki {
         if (object == this) {
             return true;
         }
-        
+
         Vinkki vinkki = (Vinkki) object;
         boolean otsikotSamat = this.otsikko.equals(vinkki.getOtsikko());
         boolean tyypitSamat = this.tyyppi.equals(vinkki.getTyyppi());
@@ -56,12 +53,17 @@ public abstract class Vinkki {
 
         return hashCodeSumma;
     }
-    
-    
+
+    public void setOtsikko(String otsikko) {
+        if (!(otsikko.equals(""))) {
+            this.otsikko = otsikko;
+        }
+    }
+
     public String getOtsikko() {
         return this.otsikko;
     }
-    
+
     public String getTyyppi() {
         return this.tyyppi;
     }

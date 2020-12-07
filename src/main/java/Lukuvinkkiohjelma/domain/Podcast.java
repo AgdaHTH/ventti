@@ -9,10 +9,6 @@ public class Podcast extends Vinkki {
         this.url = url;
     }
 
-    public void setOtsikko(String otsikko) {
-        this.otsikko = otsikko;
-    }
-
     public void setUrl(String url) {
         this.url = url;
     }
