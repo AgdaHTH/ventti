@@ -95,6 +95,16 @@ public class Stepdefs {
         inputLines.add(confirmation);
     }
     
+    @When("cancel command {string} is entered")
+    public void cancelGiven(String cancel) {
+        inputLines.add(cancel);
+    }
+    
+    @When("input {string} is entered")
+    public void stringInput(String input) {
+        inputLines.add(input);
+    }
+    
     @When("program is terminated")
     public void programIsTerminated() throws Throwable {
         inputLines.add("0");
@@ -124,7 +134,7 @@ public class Stepdefs {
         assertTrue(includesText(io.getPrints(), expectedOutput));
         
     }
-//    
+    
     private boolean includesText(List<String> list, String text) {
         
         for (String candidate : list) {
