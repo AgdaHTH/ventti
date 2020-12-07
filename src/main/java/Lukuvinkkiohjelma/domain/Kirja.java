@@ -1,7 +1,7 @@
 package Lukuvinkkiohjelma.domain;
 
 public class Kirja extends Vinkki {
-    
+
     private String kirjoittaja;
     private String isbn;
 
@@ -23,18 +23,11 @@ public class Kirja extends Vinkki {
         }
     }
 
-    public void setOtsikko(String uusiOtsikko) {
-        if (!(uusiOtsikko.equals(""))) {
-            this.otsikko = uusiOtsikko;
-        }
-    }
-
     @Override
     public String toString() {
 
-        
         return "Tyyppi: " + tyyppi + "\nOtsikko: " + otsikko + "\nKirjoittaja: "
-                + kirjoittaja + "\nISBN: " + isbn + "\nLuettu: " + this.getLuettuSuomeksi()+"\n";
+                + kirjoittaja + "\nISBN: " + isbn + "\nLuettu: " + this.getLuettuSuomeksi() + "\n";
     }
 
     @Override
@@ -45,9 +38,9 @@ public class Kirja extends Vinkki {
         if (object == this) {
             return true;
         }
-        
+
         Kirja kirja = (Kirja) object;
-        
+
         boolean otsikotSamat = this.otsikko.equals(kirja.getOtsikko());
         boolean kirjoittajatSamat = this.kirjoittaja.equals(kirja.getKirjoittaja());
         boolean ISBNSamat = this.isbn.equals(kirja.getISBN());
@@ -62,14 +55,6 @@ public class Kirja extends Vinkki {
         hashCodeSumma += this.isbn.hashCode();
 
         return hashCodeSumma;
-    }
-
-    public String getTyyppi() {
-        return tyyppi;
-    }
-
-    public String getOtsikko() {
-        return otsikko;
     }
 
     public String getKirjoittaja() {
