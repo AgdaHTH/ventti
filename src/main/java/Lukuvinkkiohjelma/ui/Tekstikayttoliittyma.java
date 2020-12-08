@@ -42,8 +42,9 @@ public class Tekstikayttoliittyma {
             io.print("1 - Lisää vinkki");
             io.print("2 - Listaa vinkit");
             io.print("3 - Poista vinkki");
-            //io.print("4 - Muokkaa vinkkiä");
-            //io.print("5 - Muokkaa listauksen parametreja");
+            io.print("4 - Merkitse vinkki luetuksi");
+            //io.print("5 - Muokkaa vinkkiä");
+            //io.print("6 - Muokkaa listauksen parametreja");
             io.print("0 - Sulje ohjelma");
             io.print("");
 
@@ -74,6 +75,9 @@ public class Tekstikayttoliittyma {
                     break;
                 case "3":
                     poistaVinkki();
+                    break;
+                case "4":                
+                    merkitseVinkkiLuetuksi();  
                     break;
                 case "0":
                     io.print("Kiitos käynnistä! Hei hei!");
@@ -170,6 +174,38 @@ public class Tekstikayttoliittyma {
             }
         } else {
             io.print("Ei vielä lisättyjä vinkkejä!\n");
+        }
+    }
+
+    private void merkitseVinkkiLuetuksi() {
+        List<Vinkki> vinkit = sovelluslogiikka.listaaKaikkiVinkit();
+        listaaVinkit(vinkit);
+        
+        if (vinkit.isEmpty()) {
+            return;
+        }
+        
+        String numeroString = io.readLine("Anna luetun vinkin numero:");
+        
+        if (keskeytetaan(numeroString)) {
+            return;
+        }       
+        int indeksi = Integer.parseInt(numeroString);
+                        
+        if (indeksi >= vinkit.size() || indeksi < 0) {
+            io.print("Ei vinkkiä syötetyllä numerolla!\n");
+        } else {
+            //hae ensin vinkin tiedot
+            //ja luo niiden avulla uusi vinkki + toggleLuettu() 
+            Vinkki luettu = sovelluslogiikka.haeVinkki(indeksi);
+            io.print(luettu.toString());
+            luettu.toggleLuettu();
+            io.print(luettu.toString());
+            //sitten poista vanha
+            sovelluslogiikka.poistaVinkki(indeksi);
+            //ja lopuksi uusi talletetaan
+            sovelluslogiikka.lisaaVinkki(luettu);
+            io.print("Vinkki merkittiin luetuksi!");
         }
     }
     

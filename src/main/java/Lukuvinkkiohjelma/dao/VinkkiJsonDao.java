@@ -81,6 +81,19 @@ public class VinkkiJsonDao implements VinkkiDao {
 
         return talletaVinkit();
     }
+    
+    @Override
+    public Vinkki haeVinkki(int indeksi) {
+        Vinkki haettu = null;
+        if (0 <= indeksi && indeksi < kirjat.size()) {
+            haettu = kirjat.get(indeksi);
+        } else if (indeksi < kirjat.size() + blogit.size()) {
+            haettu = blogit.get(indeksi - kirjat.size());
+        } else if (indeksi < kirjat.size() + blogit.size() + podcastit.size()) {
+            haettu = podcastit.get(indeksi - (kirjat.size() + blogit.size()));
+        }
+        return haettu;
+    }
 
     @Override
     public List<Vinkki> getKirjat() {

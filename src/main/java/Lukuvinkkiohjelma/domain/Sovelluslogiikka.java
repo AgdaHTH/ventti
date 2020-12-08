@@ -61,6 +61,10 @@ public class Sovelluslogiikka {
             return false;
         }
     }
+    
+    public Vinkki haeVinkki(int indeksi) {
+        return dao.haeVinkki(indeksi);
+    }
 
     public List<Vinkki> listaaKirjat() {
         return dao.getKirjat();

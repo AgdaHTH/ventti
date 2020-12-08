@@ -11,6 +11,8 @@ public interface VinkkiDao {
     boolean poistaVinkki(int indeksi);
 
     boolean talletaVinkit();
+    
+    Vinkki haeVinkki(int indeksi);
 
     List<Vinkki> getKirjat();
 
