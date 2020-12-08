@@ -121,4 +121,30 @@ public class SovelluslogiikkaTest {
         sovelluslogiikka.poistaVinkki(0);
         assertTrue(sovelluslogiikka.listaaKaikkiVinkit().isEmpty());
     }
+    
+    @Test
+    public void listausLuetuksiMerkitsemisenMukaan() {
+        Kirja kirja1 = new Kirja("TestiOts1", "Testi Kirjoittaja1", "1234567890");
+        Kirja kirja2 = new Kirja("TestiOts2", "Testi Kirjoittaja2", "0987654321");
+        kirja1.toggleLuettu();
+        sovelluslogiikka.lisaaVinkki(kirja1);
+        sovelluslogiikka.lisaaVinkki(kirja2);
+        
+        sovelluslogiikka.muutaListauksenParametria("luettu", false);
+        
+        assertTrue(sovelluslogiikka.listaaParametrienMukaan().size() == 1);
+    }
+    
+    @Test
+    public void listauksenParametrienMuuttaminenToimii() {
+        sovelluslogiikka.kaikkiParametritPaalle();
+        assertTrue(sovelluslogiikka.getListauksenParametri("luettu"));
+        assertTrue(sovelluslogiikka.getListauksenParametri("lukematta"));
+        
+        sovelluslogiikka.muutaListauksenParametria("luettu", false);
+        sovelluslogiikka.muutaListauksenParametria("lukematta", false);
+        
+        assertFalse(sovelluslogiikka.getListauksenParametri("luettu"));
+        assertFalse(sovelluslogiikka.getListauksenParametri("lukematta"));
+    }
 }
