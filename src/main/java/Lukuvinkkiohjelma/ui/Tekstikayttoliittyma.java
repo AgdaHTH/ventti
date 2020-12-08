@@ -176,7 +176,7 @@ public class Tekstikayttoliittyma {
             return;
         }
         
-        String numeroString = io.readLine("Anna luetun vinkin numero:");
+        String numeroString = io.readLine("Anna luetun tai kuunnellun vinkin numero:");
         
         if (keskeytetaan(numeroString)) {
             return;
@@ -187,16 +187,22 @@ public class Tekstikayttoliittyma {
             io.print("Ei vinkkiä syötetyllä numerolla!\n");
         } else {
             //hae ensin vinkin tiedot
-            //ja luo niiden avulla uusi vinkki + toggleLuettu() 
-            Vinkki luettu = sovelluslogiikka.haeVinkki(indeksi);
-            io.print(luettu.toString());
+            //ja luo niiden avulla uusi vinkki + toggleLuettu()
+            
+            //Vinkki luettu = sovelluslogiikka.haeVinkki(indeksi);
+            Vinkki luettu = vinkit.get(indeksi);
+            //io.print(luettu.toString());
             luettu.toggleLuettu();
-            io.print(luettu.toString());
+            //io.print(luettu.toString());
             //sitten poista vanha
             sovelluslogiikka.poistaVinkki(indeksi);
             //ja lopuksi uusi talletetaan
             sovelluslogiikka.lisaaVinkki(luettu);
-            io.print("Vinkki merkittiin luetuksi!");
+            io.print("");
+            io.print(luettu.toString());
+            io.print("");
+            io.print("Vinkki merkittiin luetuksi/kuunnelluksi!");
+            io.print("");
         }
     }
     

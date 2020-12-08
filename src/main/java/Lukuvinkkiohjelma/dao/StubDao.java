@@ -43,11 +43,6 @@ public class StubDao implements VinkkiDao {
         return true;
     }
     
-    //NB TÄMÄ ON VAIN VÄLIAIKAINEN!
-    @Override
-    public Vinkki haeVinkki(int indeksi) {
-        return kirjat.get(0);
-    }
 
     @Override
     public List<Vinkki> haeKaikki() {
