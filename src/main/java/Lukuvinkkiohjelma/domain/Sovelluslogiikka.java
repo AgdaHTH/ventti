@@ -22,15 +22,20 @@ public class Sovelluslogiikka {
 
     public Sovelluslogiikka(VinkkiDao vinkkiDao) {
         listauksenParametrit = new HashMap();
+        kaikkiParametritPaalle();
+
+        this.dao = vinkkiDao;
+    }
+
+    public void kaikkiParametritPaalle() {
+        listauksenParametrit = new HashMap();
         listauksenParametrit.put("luettu", true);
         listauksenParametrit.put("lukematta", true);
         listauksenParametrit.put("kirja", true);
         listauksenParametrit.put("podcast", true);
         listauksenParametrit.put("blogi", true);
-
-        this.dao = vinkkiDao;
     }
-
+    
     public boolean muutaListauksenParametria(String parametri, boolean arvo) {
         if (listauksenParametrit.containsKey(parametri)) {
             listauksenParametrit.put(parametri, arvo);
@@ -92,9 +97,8 @@ public class Sovelluslogiikka {
 
         try {
             for (Vinkki vinkki : this.dao.haeKaikki()) {
-                if (vinkki.getLuettu() == listauksenParametrit.get("luettu")
-                        || vinkki.getLuettu() != listauksenParametrit.get("lukematta")
-                        && listauksenParametrit.get(vinkki.getTyyppi())) {
+                if ((vinkki.getLuettu() == listauksenParametrit.get("luettu") && listauksenParametrit.get(vinkki.getTyyppi()))
+                    || (vinkki.getLuettu() != listauksenParametrit.get("lukematta") && listauksenParametrit.get(vinkki.getTyyppi()))) {
                     rajattuLista.add(vinkki);
                 }
             }

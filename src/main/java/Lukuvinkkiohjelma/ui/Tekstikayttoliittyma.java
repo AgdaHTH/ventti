@@ -43,8 +43,8 @@ public class Tekstikayttoliittyma {
             io.print("2 - Listaa vinkit");
             io.print("3 - Poista vinkki");
             io.print("4 - Merkitse vinkki luetuksi");
-            //io.print("5 - Muokkaa vinkkiä");
-            //io.print("6 - Muokkaa listauksen parametreja");
+            io.print("5 - Muokkaa listauksen parametreja");
+            //io.print("6 - Muokkaa vinkkiä");
             io.print("0 - Sulje ohjelma");
             io.print("");
 
@@ -55,19 +55,7 @@ public class Tekstikayttoliittyma {
             
             switch (komento) {
                 case "2":
-                    vinkit = sovelluslogiikka.listaaKaikkiVinkit();
-                    
-                    /*
-                    // listauksen filtteröinti
-                    sovelluslogiikka.muutaListauksenParametria("luettu", true);
-                    sovelluslogiikka.muutaListauksenParametria("lukematta", true);
-                    sovelluslogiikka.muutaListauksenParametria("kirja", true);
-                    sovelluslogiikka.muutaListauksenParametria("blogi", true);
-                    sovelluslogiikka.muutaListauksenParametria("podcast", true);
-                    
-                    vinkit = sovelluslogiikka.listaaParametrienMukaan();
-                    */
-                    
+                    vinkit = sovelluslogiikka.listaaParametrienMukaan();                    
                     listaaVinkit(vinkit);
                     break;
                 case "1":
@@ -78,6 +66,9 @@ public class Tekstikayttoliittyma {
                     break;
                 case "4":                
                     merkitseVinkkiLuetuksi();  
+                    break;
+                case "5":                
+                    valitseListauksenParametrit();  
                     break;
                 case "0":
                     io.print("Kiitos käynnistä! Hei hei!");
@@ -251,6 +242,57 @@ public class Tekstikayttoliittyma {
         }
 
         return false;
+    }
+
+    private void valitseListauksenParametrit() {
+        while(true) {
+           io.print("Valitse listaukseen sisältyvät asiat");
+           
+            String luettu = sovelluslogiikka.getListauksenParametri("luettu") ? "x" : " ";
+            String lukematta = sovelluslogiikka.getListauksenParametri("lukematta") ? "x" : " ";
+            String kirja = sovelluslogiikka.getListauksenParametri("kirja") ? "x" : " ";
+            String podcast = sovelluslogiikka.getListauksenParametri("podcast") ? "x" : " ";
+            String blogi = sovelluslogiikka.getListauksenParametri("blogi") ? "x" : " ";
+        
+            String parametrit = ""
+                    + "1:[" + luettu + "] Luetut, "
+                    + "2:[" + lukematta + "] Lukematta, "
+                    + "3:[" + kirja + "] Kirjat, "
+                    + "4:[" + podcast + "] Podcastit, "
+                    + "5:[" + blogi + "] Blogit, "
+                    + "6: valitse kaikki";
+            
+            io.print(parametrit); 
+            
+            String valinta = io.readLine("Anna parametrin numero. Tyhjä syöte keskeyttää toiminnon.");
+                if (keskeytetaan(valinta)) {
+                return;
+            }
+                
+            switch (valinta) {
+                case "1":
+                    sovelluslogiikka.muutaListauksenParametria("luettu", !sovelluslogiikka.getListauksenParametri("luettu"));
+                    break;
+                case "2":
+                    sovelluslogiikka.muutaListauksenParametria("lukematta", !sovelluslogiikka.getListauksenParametri("lukematta"));
+                    break;
+                case "3":
+                    sovelluslogiikka.muutaListauksenParametria("kirja", !sovelluslogiikka.getListauksenParametri("kirja"));
+                    break;
+                case "4":
+                    sovelluslogiikka.muutaListauksenParametria("podcast", !sovelluslogiikka.getListauksenParametri("podcast"));
+                    break;
+                case "5":
+                    sovelluslogiikka.muutaListauksenParametria("blogi", !sovelluslogiikka.getListauksenParametri("blogi"));
+                    break;
+                case "6":
+                    sovelluslogiikka.kaikkiParametritPaalle();
+                    break;
+                default:
+                    break;
+            }
+        }
+        
     }
    
 }
