@@ -253,7 +253,7 @@ public class Tekstikayttoliittyma {
         
         listaaVinkit(vinkit);
         
-        String vinkki = io.readLine("Muokattava vinkki: ");
+        String vinkki = io.readLine("Anna muokattavan vinkin numero, tyhjä syöte keskeyttää muokkaamisen: ");
         
         if (keskeytetaan(vinkki)) {
             return;
