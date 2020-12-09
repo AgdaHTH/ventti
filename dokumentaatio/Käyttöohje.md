@@ -29,4 +29,5 @@
             
             0 - Sulje ohjelma
             
-
+            Kaikissa vaiheissa toiminnon voi keskeyttää tai siitä voi poistua antamalla tyhjän syötteen
+            eli painamalle enteriä.
