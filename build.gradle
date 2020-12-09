@@ -63,7 +63,8 @@ jacocoTestReport {
     afterEvaluate {
         classDirectories.from = files(classDirectories.files.collect {
             fileTree(dir: it, exclude:  [
-                    '**/io/*'
+                    '**/io/*',
+                    '**/Lukuvinkkiohjelma/Main.java'
                     
             ])
         })
