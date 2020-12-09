@@ -21,9 +21,9 @@ public class Blogi extends Vinkki {
         }
     }
 
-    public void setISBN(String uusiISBN) {
-        if (!(uusiISBN.equals(""))) {
-            this.url = uusiISBN;
+    public void setUrl(String uusiUrl) {
+        if (!(uusiUrl.equals(""))) {
+            this.url = uusiUrl;
         }
     }
 

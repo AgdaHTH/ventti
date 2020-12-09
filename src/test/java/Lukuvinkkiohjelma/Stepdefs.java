@@ -57,6 +57,11 @@ public class Stepdefs {
         inputLines.add("4");
     }
     
+    @When("^command muokkaa vinkki is selected$")
+    public void commandMuokkaaVinkkiSelected() throws Throwable {
+        inputLines.add("6");
+    }
+    
     @When("a new booktip with title {string}, author {string} and ISBN {string} is added")
     public void aNewBookTipIsAdded(String otsikko, String kirjoittaja, String isbn) {
         
