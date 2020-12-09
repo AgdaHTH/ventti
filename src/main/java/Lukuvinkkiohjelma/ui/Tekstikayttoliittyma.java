@@ -95,16 +95,28 @@ public class Tekstikayttoliittyma {
         switch (vinkkityyppi) {
             case "1":
                 {
-                    String otsikko = io.readLine("Kirjan otsikko: ");
+                    String otsikko = io.readLine("Kirjan otsikko: (Maksimipituus 50 merkkiä)");
                     if (keskeytetaan(otsikko)) {
                         return;
                     }
-                    String kirjoittaja = io.readLine("\nKirjan kirjoittaja: ");
+                    if (otsikko.length() > 50) {
+                        pituusherja("otsikko");
+                        return;
+                    }
+                    String kirjoittaja = io.readLine("\nKirjan kirjoittaja: (Maksimipituus 50 merkkiä)");
                     if (keskeytetaan(kirjoittaja)) {
                         return;
                     }
-                    String ISBN = io.readLine("\nKirjan ISBN: ");
+                    if (kirjoittaja.length() > 50) {
+                        pituusherja("kirjoittaja");
+                        return;
+                    }
+                    String ISBN = io.readLine("\nKirjan ISBN: (Maksimipituus 20 merkkiä)");
                     if (keskeytetaan(ISBN)) {
+                        return;
+                    }
+                    if (ISBN.length() > 20) {
+                        pituusherja("ISBN");
                         return;
                     }
                     talletaVinkki(new Kirja(otsikko, kirjoittaja, ISBN));
@@ -113,12 +125,20 @@ public class Tekstikayttoliittyma {
                 }
             case "2":
                 {
-                    String otsikko = io.readLine("Podcastin otsikko: ");
+                    String otsikko = io.readLine("Podcastin otsikko: (Maksimipituus 50 merkkiä)");
                     if (keskeytetaan(otsikko)) {
                         return;
                     }
-                    String Url = io.readLine("\nPodcastin Url: ");
+                    if (otsikko.length() > 50) {
+                        pituusherja("otsikko");
+                        return;
+                    }
+                    String Url = io.readLine("\nPodcastin Url: (Maksimipituus 50 merkkiä)");
                     if (keskeytetaan(Url)) {
+                        return;
+                    }
+                    if (Url.length() > 50) {
+                        pituusherja("Url");
                         return;
                     }
                     talletaVinkki(new Podcast(otsikko, Url));
@@ -127,16 +147,28 @@ public class Tekstikayttoliittyma {
                 }
             case "3":
                 {
-                    String otsikko = io.readLine("Blogin otsikko: ");
+                    String otsikko = io.readLine("Blogin otsikko: (Maksimipituus 50 merkkiä)");
                     if (keskeytetaan(otsikko)) {
+                        return;
+                    }
+                    if (otsikko.length() > 50) {
+                        pituusherja("otsikko");
                         return;
                     }
                     String kirjoittaja = io.readLine("\nBlogin kirjoittaja: ");
                     if (keskeytetaan(kirjoittaja)) {
                         return;
                     }
+                    if (kirjoittaja.length() > 50) {
+                        pituusherja("kirjoittaja");
+                        return;
+                    }
                     String Url = io.readLine("\nBlogin Url: ");
                     if (keskeytetaan(Url)) {
+                        return;
+                    }
+                    if (Url.length() > 50) {
+                        pituusherja("Url");
                         return;
                     }
                     talletaVinkki(new Blogi(otsikko, kirjoittaja, Url));
@@ -414,6 +446,10 @@ public class Tekstikayttoliittyma {
 
         return false;
     }
+    
+    private void pituusherja(String teksti) {
+        io.print("Liian pitkä " + teksti + ", keskeytetään toiminto!");
+    }
 
     private void valitseListauksenParametrit() {
         while(true) {
@@ -481,4 +517,5 @@ public class Tekstikayttoliittyma {
         
         return true;
     }
+    
 }
