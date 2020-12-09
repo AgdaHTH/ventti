@@ -1,4 +1,4 @@
-1. Lataa uusin release. Varmista, että koneellasi on asennettuna Java 11.
+1. Lataa uusin release: Latest-tagilla merkitty linkki kohdassa Releases. Varmista, että koneellasi on asennettuna Java 11.
 
 2. Navigoi siihen kansioon, johon latasit ohjelman ja käynnistä se komennolla java -jar Lukuvinkkikirjasto-all.jar.
 
