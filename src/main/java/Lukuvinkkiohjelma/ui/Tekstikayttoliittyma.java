@@ -365,7 +365,7 @@ public class Tekstikayttoliittyma {
                                 case "2":
                                     io.print("Nykyinen URL: " + ((Blogi) muokattava).getUrl());
                                     String uusiURL = io.readLine("Uusi URL: ");
-                                    ((Blogi) muokattava).setISBN(uusiURL);
+                                    ((Blogi) muokattava).setUrl(uusiURL);
                                     break;
 
                                 default:
@@ -403,7 +403,6 @@ public class Tekstikayttoliittyma {
                         }
                     } else {
                         io.print("Virheellinen syöte");
-
                     }
                 }
             }
