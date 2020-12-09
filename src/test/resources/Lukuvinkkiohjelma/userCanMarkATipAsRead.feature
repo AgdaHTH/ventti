@@ -23,3 +23,11 @@ Feature: A user can mark a tip as read
         And tip number "0" is selected
         And program is terminated
         Then output will contain text "Vinkki merkittiin luetuksi/kuunnelluksi!"
+
+    Scenario: a nonexisting tip can't be marked as read
+        Given command lisaa kirja is selected
+        When a new booktip with title "Opus", author "Kirjoittaja" and ISBN "1234" is added
+        And command merkitse luetuksi is selected
+        And tip number "-1" is selected
+        And program is terminated
+        Then output will contain text "Ei"
