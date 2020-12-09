@@ -42,7 +42,7 @@ public class Tekstikayttoliittyma {
             io.print("1 - Lisää vinkki");
             io.print("2 - Listaa vinkit");
             io.print("3 - Poista vinkki");
-            io.print("4 - Merkitse vinkki luetuksi");
+            io.print("4 - Merkitse vinkki luetuksi/lukemattomaksi");
             io.print("5 - Muokkaa listauksen parametreja");
             io.print("6 - Muokkaa vinkkiä");
             io.print("0 - Sulje ohjelma");
@@ -180,7 +180,7 @@ public class Tekstikayttoliittyma {
             return;
         }
         
-        String numeroString = io.readLine("Anna luetun tai kuunnellun vinkin numero:");
+        String numeroString = io.readLine("Anna sen vinkin numero, jonka haluat merkitä luetuksi tai lukemattomaksi:");
         
         if (keskeytetaan(numeroString)) {
             return;
