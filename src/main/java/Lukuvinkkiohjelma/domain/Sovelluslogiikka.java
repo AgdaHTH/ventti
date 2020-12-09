@@ -66,6 +66,14 @@ public class Sovelluslogiikka {
             return false;
         }
     }
+    
+    public boolean muokkaaVinkki(int indeksi, Vinkki vinkki) {
+        if (poistaVinkki(indeksi)) {
+            return (lisaaVinkki(vinkki));
+        }
+        
+        return false;
+    }
 
     public List<Vinkki> listaaKirjat() {
         return dao.getKirjat();
