@@ -108,7 +108,7 @@ public class Sovelluslogiikka {
 
         @Override
         public int compare(Vinkki vinkki, Vinkki verrattava) {
-            if (vinkki.getTimestamp() != null && verrattava.getTimestamp() != null) {
+            if (vinkki.getTimestamp() != null) {
                 return verrattava.getTimestamp().compareTo(vinkki.getTimestamp());
             } else {
                 return 0;
