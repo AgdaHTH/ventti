@@ -1,15 +1,18 @@
 package Lukuvinkkiohjelma.domain;
 
+import java.sql.Timestamp;
+
 public abstract class Vinkki {
 
     protected final String tyyppi;
     protected String otsikko;
     protected boolean luettu;
+    protected Timestamp timestamp;
 
     public Vinkki(String tyyppi, String otsikko) {
         this.tyyppi = tyyppi;
         this.otsikko = otsikko;
-
+        this.timestamp = new Timestamp(System.currentTimeMillis());
     }
 
     public void toggleLuettu() {
@@ -66,6 +69,10 @@ public abstract class Vinkki {
 
     public String getTyyppi() {
         return this.tyyppi;
+    }
+    
+    public Timestamp getTimestamp() {
+        return this.timestamp;
     }
 
 }

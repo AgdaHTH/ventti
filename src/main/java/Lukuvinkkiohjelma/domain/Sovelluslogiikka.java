@@ -7,6 +7,8 @@ package Lukuvinkkiohjelma.domain;
 
 import Lukuvinkkiohjelma.dao.VinkkiDao;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -104,6 +106,27 @@ public class Sovelluslogiikka {
             System.out.println("Vinkkien lataus epaonnistui!\n" + e.toString());
             return new ArrayList<>();
         }
+        Collections.sort(rajattuLista, new timeComparator());
+        //Collections.sort(rajattuLista, new otsikkoComparator());
+        
         return rajattuLista;
+    }
+
+    static class timeComparator implements Comparator<Vinkki> {
+        @Override
+        public int compare(Vinkki vinkki, Vinkki verrattava) {
+            if (vinkki.getTimestamp() != null) {
+                return verrattava.getTimestamp().compareTo(vinkki.getTimestamp());
+            } else {
+                return 0;
+            }
+        }
+    }
+    
+    static class otsikkoComparator implements Comparator<Vinkki> {
+        @Override
+        public int compare(Vinkki vinkki, Vinkki verrattava) {
+            return vinkki.getOtsikko().compareToIgnoreCase(verrattava.getOtsikko());
+        }
     }
 }
