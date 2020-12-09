@@ -95,10 +95,9 @@ public class Sovelluslogiikka {
 
         try {
             for (Vinkki vinkki : this.dao.haeKaikki()) {
-                if ((vinkki.getLuettu() == listauksenParametrit.get("luettu") 
-                        && listauksenParametrit.get(vinkki.getTyyppi()))
-                    || (vinkki.getLuettu() != listauksenParametrit.get("lukematta") 
-                        && listauksenParametrit.get(vinkki.getTyyppi()))) {
+                if (((listauksenParametrit.get("luettu") && (vinkki.getLuettu() == true)) 
+                        || (listauksenParametrit.get("lukematta") && (vinkki.getLuettu() == false)))
+                        && listauksenParametrit.get(vinkki.getTyyppi())) {
                     rajattuLista.add(vinkki);
                 }
             }
@@ -123,10 +122,12 @@ public class Sovelluslogiikka {
         }
     }
     
+    /*
     static class otsikkoComparator implements Comparator<Vinkki> {
         @Override
         public int compare(Vinkki vinkki, Vinkki verrattava) {
             return vinkki.getOtsikko().compareToIgnoreCase(verrattava.getOtsikko());
         }
     }
+*/
 }
