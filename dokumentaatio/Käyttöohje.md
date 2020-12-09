@@ -8,7 +8,8 @@
             Vaihtoehdot ovat kirja, podcast ja blogi.
             
             2 - Listaa kaikki vinkit
-            Listaa kaikki olemassaolevat vinkit.
+            Listaa vinkit rajauskriteerien perusteella. Rajauskriteereitä voi muuttaa valitsemalla vaihtoehdon 5. 
+            Oletuksena listataan kaikki vinkit.
             
             3 - Poista vinkki
             Tulostaa ensin listan olemassaolevista vinkeistä, minkä jälkeen
