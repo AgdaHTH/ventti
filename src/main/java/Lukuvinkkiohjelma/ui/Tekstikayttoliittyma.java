@@ -93,53 +93,64 @@ public class Tekstikayttoliittyma {
             return;
         }
         switch (vinkkityyppi) {
-            case "1": {
-                String otsikko = io.readLine("Kirjan otsikko: ");
-                if (keskeytetaan(otsikko)) {
-                    return;
-                }
-                String kirjoittaja = io.readLine("\nKirjan kirjoittaja: ");
-                if (keskeytetaan(kirjoittaja)) {
-                    return;
-                }
-                String ISBN = io.readLine("\nKirjan ISBN: ");
-                if (keskeytetaan(ISBN)) {
-                    return;
-                }
-                talletaVinkki(new Kirja(otsikko, kirjoittaja, ISBN));
+            case "1":
+                {
+                    String otsikko = io.readLine("Kirjan otsikko: (Maksimipituus 50 merkkiä)");
+                    if (keskeytetaan(otsikko) || eiValidoidu(otsikko, "otsikko")) {
+                        return;
+                    }
 
-                break;
-            }
-            case "2": {
-                String otsikko = io.readLine("Podcastin otsikko: ");
-                if (keskeytetaan(otsikko)) {
-                    return;
-                }
-                String Url = io.readLine("\nPodcastin Url: ");
-                if (keskeytetaan(Url)) {
-                    return;
-                }
-                talletaVinkki(new Podcast(otsikko, Url));
+                    String kirjoittaja = io.readLine("\nKirjan kirjoittaja: (Maksimipituus 50 merkkiä)");
+                    if (keskeytetaan(kirjoittaja) || eiValidoidu(kirjoittaja, "kirjoittaja")) {
+                        return;
+                    }
 
-                break;
-            }
-            case "3": {
-                String otsikko = io.readLine("Blogin otsikko: ");
-                if (keskeytetaan(otsikko)) {
-                    return;
-                }
-                String kirjoittaja = io.readLine("\nBlogin kirjoittaja: ");
-                if (keskeytetaan(kirjoittaja)) {
-                    return;
-                }
-                String Url = io.readLine("\nBlogin Url: ");
-                if (keskeytetaan(Url)) {
-                    return;
-                }
-                talletaVinkki(new Blogi(otsikko, kirjoittaja, Url));
+                    String ISBN = io.readLine("\nKirjan ISBN: (Maksimipituus 20 merkkiä)");
+                    if (keskeytetaan(ISBN) || eiValidoidu(ISBN, "ISBN")) {
+                        return;
+                    }
 
-                break;
-            }
+                    talletaVinkki(new Kirja(otsikko, kirjoittaja, ISBN));
+                    
+                    break;
+                }
+            case "2":
+                {
+                    String otsikko = io.readLine("Podcastin otsikko: (Maksimipituus 50 merkkiä)");
+                    if (keskeytetaan(otsikko) || eiValidoidu(otsikko, "otsikko")) {
+                        return;
+                    }
+
+                    String Url = io.readLine("\nPodcastin Url: (Maksimipituus 50 merkkiä)");
+                    if (keskeytetaan(Url) || eiValidoidu(Url, "URL")) {
+                        return;
+                    }
+
+                    talletaVinkki(new Podcast(otsikko, Url));
+
+                    break;
+                }
+            case "3":
+                {
+                    String otsikko = io.readLine("Blogin otsikko: (Maksimipituus 50 merkkiä)");
+                    if (keskeytetaan(otsikko) || eiValidoidu(otsikko, "otsikko")) {
+                        return;
+                    }
+
+                    String kirjoittaja = io.readLine("\nBlogin kirjoittaja: ");
+                    if (keskeytetaan(kirjoittaja) || eiValidoidu(kirjoittaja, "kirjoittaja")) {
+                        return;
+                    }
+
+                    String Url = io.readLine("\nBlogin Url: ");
+                    if (keskeytetaan(Url) || eiValidoidu(Url, "URL")) {
+                        return;
+                    }
+
+                    talletaVinkki(new Blogi(otsikko, kirjoittaja, Url));
+                    
+                    break;
+                }
             default:
                 break;
         }
@@ -288,6 +299,7 @@ public class Tekstikayttoliittyma {
                     Vinkki muokattava = vinkit.get(indeksi);
                     boolean luettava = false;
                     boolean kirja = false;
+                    boolean validointivirhe = false;
 
                     if (muokattava instanceof Kirja) {
 
@@ -326,19 +338,31 @@ public class Tekstikayttoliittyma {
                             switch (kentta) {
                                 case "0":
                                     io.print("Nykyinen otsikko: " + ((Kirja) muokattava).getOtsikko());
-                                    String uusiOtsikko = io.readLine("Uusi otsikko: ");
+                                    String uusiOtsikko = io.readLine("Uusi otsikko: (Maksimipituus 50 merkkiä)");
+                                    if (eiValidoidu(uusiOtsikko, "otsikko")) {
+                                        validointivirhe = true;
+                                        break;
+                                    }
                                     ((Kirja) muokattava).setOtsikko(uusiOtsikko);
                                     break;
 
                                 case "1":
                                     io.print("Nykyinen kirjoittaja: " + ((Kirja) muokattava).getKirjoittaja());
-                                    String uusiKirjoittaja = io.readLine("Uusi kirjoittaja: ");
+                                    String uusiKirjoittaja = io.readLine("Uusi kirjoittaja: (Maksimipituus 50 merkkiä)");
+                                    if (eiValidoidu(uusiKirjoittaja, "kirjoittaja")) {
+                                        validointivirhe = true;
+                                        break;
+                                    }
                                     ((Kirja) muokattava).setKirjoittaja(uusiKirjoittaja);
                                     break;
 
                                 case "2":
                                     io.print("Nykyinen ISBN: " + ((Kirja) muokattava).getISBN());
-                                    String uusiISBN = io.readLine("Uusi ISBN: ");
+                                    String uusiISBN = io.readLine("Uusi ISBN: (Maksimipituus 20 merkkiä)");
+                                    if (eiValidoidu(uusiISBN, "ISBN")) {
+                                        validointivirhe = true;
+                                        break;
+                                    }
                                     ((Kirja) muokattava).setISBN(uusiISBN);
                                     break;
 
@@ -352,19 +376,31 @@ public class Tekstikayttoliittyma {
                             switch (kentta) {
                                 case "0":
                                     io.print("Nykyinen otsikko: " + ((Blogi) muokattava).getOtsikko());
-                                    String uusiOtsikko = io.readLine("Uusi otsikko: ");
+                                    String uusiOtsikko = io.readLine("Uusi otsikko: (Maksimipituus 50 merkkiä)");
+                                    if (eiValidoidu(uusiOtsikko, "otsikko")) {
+                                        validointivirhe = true;
+                                        break;
+                                    }
                                     ((Blogi) muokattava).setOtsikko(uusiOtsikko);
                                     break;
 
                                 case "1":
                                     io.print("Nykyinen kirjoittaja: " + ((Blogi) muokattava).getKirjoittaja());
-                                    String uusiKirjoittaja = io.readLine("Uusi kirjoittaja: ");
+                                    String uusiKirjoittaja = io.readLine("Uusi kirjoittaja: (Maksimipituus 50 merkkiä)");
+                                    if (eiValidoidu(uusiKirjoittaja, "kirjoittaja")) {
+                                        validointivirhe = true;
+                                        break;
+                                    }
                                     ((Blogi) muokattava).setKirjoittaja(uusiKirjoittaja);
                                     break;
 
                                 case "2":
                                     io.print("Nykyinen URL: " + ((Blogi) muokattava).getUrl());
-                                    String uusiURL = io.readLine("Uusi URL: ");
+                                    String uusiURL = io.readLine("Uusi URL: (Maksimipituus 50 merkkiä)");
+                                    if (eiValidoidu(uusiURL, "URL")) {
+                                        validointivirhe = true;
+                                        break;
+                                    }
                                     ((Blogi) muokattava).setUrl(uusiURL);
                                     break;
 
@@ -377,13 +413,21 @@ public class Tekstikayttoliittyma {
                             switch (kentta) {
                                 case "0":
                                     io.print("Nykyinen otsikko: " + ((Podcast) muokattava).getOtsikko());
-                                    String uusiOtsikko = io.readLine("Uusi otsikko: ");
+                                    String uusiOtsikko = io.readLine("Uusi otsikko: (Maksimipituus 50 merkkiä)");
+                                    if (eiValidoidu(uusiOtsikko, "otsikko")) {
+                                        validointivirhe = true;
+                                        break;
+                                    }
                                     ((Podcast) muokattava).setOtsikko(uusiOtsikko);
                                     break;
 
                                 case "1":
                                     io.print("Nykyinen URL: " + ((Podcast) muokattava).getUrl());
-                                    String uusiURL = io.readLine("Uusi URL: ");
+                                    String uusiURL = io.readLine("Uusi URL: (Maksimipituus 50 merkkiä)");
+                                    if (eiValidoidu(uusiURL, "URL")) {
+                                        validointivirhe = true;
+                                        break;
+                                    }
                                     ((Podcast) muokattava).setUrl(uusiURL);
                                     break;
 
@@ -396,10 +440,11 @@ public class Tekstikayttoliittyma {
                             return;
                         }
 
-                        if (sovelluslogiikka.muokkaaVinkki(indeksi, muokattava)) {
+                        if (sovelluslogiikka.muokkaaVinkki(indeksi, muokattava) && !validointivirhe) {
                             io.print("\nVinkkiä muokattu onnistuneesti!\n");
                         } else {
                             io.print("\nJotain meni pieleen muokkauksessa\n");
+                            validointivirhe = false;
                         }
                     } else {
                         io.print("Virheellinen syöte");
@@ -413,10 +458,57 @@ public class Tekstikayttoliittyma {
 
     private boolean keskeytetaan(String syote) {
         if (syote.equals("")) {
-            io.print("Toiminto keskeytetään!\n");
+            io.print("\nToiminto keskeytetään!\n");
             return true;
         }
 
+        return false;
+    }
+    
+//    private boolean kirjaValidoituu(String tyyppi, String otsikko, String kirjoittaja, String ISBN) {
+//        
+//        String virheilmoitukset = "";
+//        if (tyyppi.equals("Kirja")) {
+//            return true;
+//        }
+//        return false;
+//        
+//    }
+    
+    private boolean eiValidoidu(String teksti, String kenttatyyppi) {
+        
+        String pituusvirheilmoitus = "\nLiian pitkä syöte arvolle " + kenttatyyppi + ", toiminto keskeytetään!\n";
+
+                    
+        switch (kenttatyyppi) {
+            
+            
+            case "otsikko": {
+                if (teksti.length() > 50) {
+                    io.print(pituusvirheilmoitus);
+                    return true;
+                }
+            }
+            case "kirjoittaja": {
+                if (teksti.length() > 50) {
+                    io.print(pituusvirheilmoitus);
+                    return true;
+                }
+            }
+            case "URL": {
+                if (teksti.length() > 50) {
+                    io.print(pituusvirheilmoitus);
+                    return true;
+                }
+            }
+            case "ISBN": { // Tähän ehkä joku numerotarkastus mukaan
+                if (teksti.length() > 20) {
+                    io.print(pituusvirheilmoitus);
+                    return true;
+                }
+            }
+                
+        }
         return false;
     }
 
