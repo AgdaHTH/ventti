@@ -32,8 +32,10 @@ public class VinkkiJsonDao implements VinkkiDao {
         try {
             if (!vinkkikirjasto.exists()) {
                 vinkkikirjasto.createNewFile();
-                alustaTyhjaTiedosto();
 //                testiTiedosto();
+            }
+            if (vinkkikirjasto.length() == 0L) {
+                alustaTyhjaTiedosto();
             }
             puraTiedosto();
         } catch (Exception e) {
@@ -178,13 +180,15 @@ public class VinkkiJsonDao implements VinkkiDao {
      */
     private void puraTiedosto() throws IOException {
         Gson gson = new Gson();
-        InputStreamReader fileReader
-                = new InputStreamReader(new FileInputStream(
-                        (File) vinkkikirjasto), "UTF-8");
+        FileInputStream fileInputStream = new FileInputStream((File) vinkkikirjasto);
+        InputStreamReader fileReader = new InputStreamReader(fileInputStream, "UTF-8");
         JsonReader jsonReader = new JsonReader(fileReader);
 
         List<List<Vinkki>> listat = gson.fromJson(jsonReader, ArrayList.class);
 
+        fileReader.close();
+        fileInputStream.close();
+        
         kirjat = new ArrayList<>();
         List<Vinkki> raakalista = gson.fromJson(gson.toJson(listat.get(0)), ArrayList.class);
         for (Object vinkki : raakalista) {
