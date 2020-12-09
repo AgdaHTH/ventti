@@ -2,19 +2,23 @@ package Lukuvinkkiohjelma;
 
 import Lukuvinkkiohjelma.dao.VinkkiJsonDao;
 import java.io.File;
+import java.io.IOException;
 import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
 
 /**
  *
  * @author Eemeli
  */
 public class VinkkiJsonDaoTest {
-    
+
     private VinkkiJsonDao dao;
 
     public VinkkiJsonDaoTest() {
@@ -29,7 +33,7 @@ public class VinkkiJsonDaoTest {
     }
 
     @Before
-    public void setUp() {
+    public void setUp() throws IOException {
         this.dao = new VinkkiJsonDao("testi.json");
     }
 
@@ -37,7 +41,7 @@ public class VinkkiJsonDaoTest {
     public void tearDown() {
         new File("testi.json").delete();
     }
-    
+
     @Test
     public void daoLuoTiedoston() {
         assertTrue(new File("testi.json").exists());
