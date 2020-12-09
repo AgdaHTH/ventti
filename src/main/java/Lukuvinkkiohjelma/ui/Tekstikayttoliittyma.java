@@ -1,3 +1,6 @@
+
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -480,36 +483,42 @@ public class Tekstikayttoliittyma {
         String pituusvirheilmoitus = "\nLiian pitkä syöte arvolle " + kenttatyyppi + ", toiminto keskeytetään!\n";
 
                     
-        switch (kenttatyyppi) {
+        
             
             
-            case "otsikko": {
+            if (kenttatyyppi.equals("otsikko")) {
                 if (teksti.length() > 50) {
                     io.print(pituusvirheilmoitus);
                     return true;
                 }
             }
-            case "kirjoittaja": {
+            else if (kenttatyyppi.equals("kirjoittaja")) {
                 if (teksti.length() > 50) {
                     io.print(pituusvirheilmoitus);
                     return true;
                 }
             }
-            case "URL": {
+            else if (kenttatyyppi.equals("URL")) {
                 if (teksti.length() > 50) {
                     io.print(pituusvirheilmoitus);
                     return true;
                 }
             }
-            case "ISBN": { // Tähän ehkä joku numerotarkastus mukaan
+            else if (kenttatyyppi.equals("ISBN")) {// Tähän ehkä joku numerotarkastus mukaan
                 if (teksti.length() > 20) {
                     io.print(pituusvirheilmoitus);
                     return true;
                 }
             }
                 
-        }
-        return false;
+                
+            
+                return false;
+            
+                
+                
+        
+//        return false;
     }
 
     private void valitseListauksenParametrit() {
