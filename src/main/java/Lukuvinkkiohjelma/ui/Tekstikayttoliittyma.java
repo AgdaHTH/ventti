@@ -184,29 +184,36 @@ public class Tekstikayttoliittyma {
         
         if (keskeytetaan(numeroString)) {
             return;
-        }       
-        int indeksi = Integer.parseInt(numeroString);
+        } 
+        
+        boolean numero = isNumeric(numeroString);
+        
+        if (numero) {
+            int indeksi = Integer.parseInt(numeroString);
                         
-        if (indeksi >= vinkit.size() || indeksi < 0) {
-            io.print("Ei vinkkiä syötetyllä numerolla!\n");
-        } else {
-            //hae ensin vinkin tiedot
-            //ja luo niiden avulla uusi vinkki + toggleLuettu()
+            if (indeksi >= vinkit.size() || indeksi < 0) {
+                io.print("Ei vinkkiä syötetyllä numerolla!\n");
+            } else {
+                //hae ensin vinkin tiedot
+                //ja luo niiden avulla uusi vinkki + toggleLuettu()
             
-            //Vinkki luettu = sovelluslogiikka.haeVinkki(indeksi);
-            Vinkki luettu = vinkit.get(indeksi);
-            //io.print(luettu.toString());
-            luettu.toggleLuettu();
-            //io.print(luettu.toString());
-            //sitten poista vanha
-            sovelluslogiikka.poistaVinkki(indeksi);
-            //ja lopuksi uusi talletetaan
-            sovelluslogiikka.lisaaVinkki(luettu);
-            io.print("");
-            io.print(luettu.toString());
-            io.print("");
-            io.print("Vinkki merkittiin luetuksi/kuunnelluksi!");
-            io.print("");
+                //Vinkki luettu = sovelluslogiikka.haeVinkki(indeksi);
+                Vinkki luettu = vinkit.get(indeksi);
+                //io.print(luettu.toString());
+                luettu.toggleLuettu();
+                //io.print(luettu.toString());
+                //sitten poista vanha
+                sovelluslogiikka.poistaVinkki(indeksi);
+                //ja lopuksi uusi talletetaan
+                sovelluslogiikka.lisaaVinkki(luettu);
+                io.print("");
+                io.print(luettu.toString());
+                io.print("");
+                io.print("Vinkki merkittiin luetuksi/kuunnelluksi!");
+                io.print("");
+            }
+        } else {
+            io.print("Virheellinen syöte");
         }
     }
     
@@ -223,26 +230,32 @@ public class Tekstikayttoliittyma {
         if (keskeytetaan(numeroString)) {
             return;
         }       
-        int indeksi = Integer.parseInt(numeroString);
-                        
-        if (indeksi >= vinkit.size() || indeksi < 0) {
-            io.print("Ei vinkkiä syötetyllä numerolla!\n");
-        } else {
-            String vahvistus = io.readLine("Poistetaanko varmasti? y/n:");
-
-            switch (vahvistus) {
-                case "y":
-                    if (sovelluslogiikka.poistaVinkki(indeksi)) {
-                        io.print("\nVinkki poistettu onnistuneesti!\n");
-                    } else {
-                        io.print("\nJotain meni pieleen vinkin poistamisessa.\n");
-                    } break;                                
-                default:
-                    io.print("Ei poistettu mitään!\n");
-                    break;
-            } 
+                
+        boolean numero = isNumeric(numeroString);
+        
+        if (numero) {
+            int indeksi = Integer.parseInt(numeroString);
             
-        }                        
+            if (indeksi >= vinkit.size() || indeksi < 0) {
+                io.print("Ei vinkkiä syötetyllä numerolla!\n");
+            } else {
+                String vahvistus = io.readLine("Poistetaanko varmasti? y/n:");
+
+                switch (vahvistus) {
+                    case "y":
+                        if (sovelluslogiikka.poistaVinkki(indeksi)) {
+                            io.print("\nVinkki poistettu onnistuneesti!\n");
+                        } else {
+                            io.print("\nJotain meni pieleen vinkin poistamisessa.\n");
+                        } break;                                
+                    default:
+                        io.print("Ei poistettu mitään!\n");
+                        break;
+                } 
+            }     
+        } else {
+            io.print("Virheellinen syöte");
+        }                             
     }
     
     private void muokkaaVinkki() {
@@ -259,126 +272,137 @@ public class Tekstikayttoliittyma {
             return;
         }
         
-        int indeksi = Integer.parseInt(vinkki);
-        if (indeksi >= vinkit.size() || indeksi < 0) {
-            io.print("\nEi vinkkiä syötetyllä numerolla!\n");
-        } else {
-            
-            Vinkki muokattava = vinkit.get(indeksi);
-            boolean luettava = false;
-            boolean kirja = false;
+        boolean numero = isNumeric(vinkki);
         
-            if (muokattava instanceof Kirja) {
-                
-                luettava = true;
-                kirja = true;
-                
-                io.print("0 Otsikko: " + ((Kirja) muokattava).getOtsikko());
-                io.print("1 Kirjoittaja: " + ((Kirja) muokattava).getKirjoittaja());
-                io.print("2 ISBN: " + ((Kirja) muokattava).getISBN());
-            } else if (muokattava instanceof Podcast) {
-                
-                io.print("0 Otsikko: " + ((Podcast) muokattava).getOtsikko());
-                io.print("1 URL: " + ((Podcast) muokattava).getUrl());
-            } else if (muokattava instanceof Blogi) {
-                
-                luettava = true;
-                io.print("0 Otsikko: " + ((Blogi) muokattava).getOtsikko());
-                io.print("1 Kirjoittaja: " + ((Blogi) muokattava).getKirjoittaja());
-                io.print("2 URL: " + ((Blogi) muokattava).getUrl());
-            }
+        if (numero) {
+            int indeksi = Integer.parseInt(vinkki);
+            
+            if (indeksi >= vinkit.size() || indeksi < 0) {
+                io.print("\nEi vinkkiä syötetyllä numerolla!\n");
+            } else {
+            
+                Vinkki muokattava = vinkit.get(indeksi);
+                boolean luettava = false;
+                boolean kirja = false;
         
-            io.print("");
-            String kentta = io.readLine("Mitä kenttää muokataan, anna numero: ");
-            
-            if (keskeytetaan(kentta)) {
-                return;
-            }
-            
-            io.print("");
-            
-            int indeksikentta = Integer.parseInt(kentta);
-            
-            if ((luettava && kirja) && (indeksikentta >= 0 && indeksikentta <= 3)) {
+                if (muokattava instanceof Kirja) {
                 
-                switch (kentta) {
-                    case "0":
-                        io.print("Nykyinen otsikko: " + ((Kirja) muokattava).getOtsikko());
-                        String uusiOtsikko = io.readLine("Uusi otsikko: ");
-                        ((Kirja)muokattava).setOtsikko(uusiOtsikko);
-                        break;
-                        
-                    case "1": 
-                        io.print("Nykyinen kirjoittaja: " + ((Kirja) muokattava).getKirjoittaja());
-                        String uusiKirjoittaja = io.readLine("Uusi kirjoittaja: ");
-                        ((Kirja)muokattava).setKirjoittaja(uusiKirjoittaja);
-                        break;
-                        
-                    case "2":
-                        io.print("Nykyinen ISBN: " + ((Kirja) muokattava).getISBN());
-                        String uusiISBN = io.readLine("Uusi ISBN: ");
-                        ((Kirja)muokattava).setISBN(uusiISBN);
-                        break;
-                        
-                    default:
-                        io.print("Ei muokattu mitään!\n");
-                        return;
+                    luettava = true;
+                    kirja = true;
+                
+                    io.print("0 Otsikko: " + ((Kirja) muokattava).getOtsikko());
+                    io.print("1 Kirjoittaja: " + ((Kirja) muokattava).getKirjoittaja());
+                    io.print("2 ISBN: " + ((Kirja) muokattava).getISBN());
+                } else if (muokattava instanceof Podcast) {
+                
+                    io.print("0 Otsikko: " + ((Podcast) muokattava).getOtsikko());
+                    io.print("1 URL: " + ((Podcast) muokattava).getUrl());
+                } else if (muokattava instanceof Blogi) {
+                
+                    luettava = true;
+                    io.print("0 Otsikko: " + ((Blogi) muokattava).getOtsikko());
+                    io.print("1 Kirjoittaja: " + ((Blogi) muokattava).getKirjoittaja());
+                    io.print("2 URL: " + ((Blogi) muokattava).getUrl());
                 }
+        
+                io.print("");
+                String kentta = io.readLine("Mitä kenttää muokataan, anna numero: ");
+            
+                if (keskeytetaan(kentta)) {
+                    return;
+                }
+            
+                io.print("");
+            
+                if (isNumeric(kentta)) {
+                    int indeksikentta = Integer.parseInt(kentta);
+            
+                    if ((luettava && kirja) && (indeksikentta >= 0 && indeksikentta <= 3)) {
+                
+                        switch (kentta) {
+                            case "0":
+                                io.print("Nykyinen otsikko: " + ((Kirja) muokattava).getOtsikko());
+                                String uusiOtsikko = io.readLine("Uusi otsikko: ");
+                                ((Kirja)muokattava).setOtsikko(uusiOtsikko);
+                                break;
+                        
+                            case "1": 
+                                io.print("Nykyinen kirjoittaja: " + ((Kirja) muokattava).getKirjoittaja());
+                                String uusiKirjoittaja = io.readLine("Uusi kirjoittaja: ");
+                                ((Kirja)muokattava).setKirjoittaja(uusiKirjoittaja);
+                                break;
+                        
+                            case "2":
+                                io.print("Nykyinen ISBN: " + ((Kirja) muokattava).getISBN());
+                                String uusiISBN = io.readLine("Uusi ISBN: ");
+                                ((Kirja)muokattava).setISBN(uusiISBN);
+                                break;
+                        
+                            default:
+                                io.print("Ei muokattu mitään!\n");
+                                return;
+                        }
                                 
-            } else if ((luettava && !kirja) && (indeksikentta >= 0 && indeksikentta <= 3)) {
+                    } else if ((luettava && !kirja) && (indeksikentta >= 0 && indeksikentta <= 3)) {
                 
-                switch (kentta) {
-                    case "0":
-                        io.print("Nykyinen otsikko: " + ((Blogi) muokattava).getOtsikko());
-                        String uusiOtsikko = io.readLine("Uusi otsikko: ");
-                        ((Blogi)muokattava).setOtsikko(uusiOtsikko);
-                        break;
+                        switch (kentta) {
+                            case "0":
+                                io.print("Nykyinen otsikko: " + ((Blogi) muokattava).getOtsikko());
+                                String uusiOtsikko = io.readLine("Uusi otsikko: ");
+                                ((Blogi)muokattava).setOtsikko(uusiOtsikko);
+                                break;
                         
-                    case "1": 
-                        io.print("Nykyinen kirjoittaja: " + ((Blogi) muokattava).getKirjoittaja());
-                        String uusiKirjoittaja = io.readLine("Uusi kirjoittaja: ");
-                        ((Blogi)muokattava).setKirjoittaja(uusiKirjoittaja);
-                        break;
+                            case "1": 
+                                io.print("Nykyinen kirjoittaja: " + ((Blogi) muokattava).getKirjoittaja());
+                                String uusiKirjoittaja = io.readLine("Uusi kirjoittaja: ");
+                                ((Blogi)muokattava).setKirjoittaja(uusiKirjoittaja);
+                                break;
                         
-                    case "2":
-                        io.print("Nykyinen URL: " + ((Blogi) muokattava).getUrl());
-                        String uusiURL = io.readLine("Uusi URL: ");
-                        ((Blogi)muokattava).setISBN(uusiURL);
-                        break;
+                            case "2":
+                                io.print("Nykyinen URL: " + ((Blogi) muokattava).getUrl());
+                                String uusiURL = io.readLine("Uusi URL: ");
+                                ((Blogi)muokattava).setISBN(uusiURL);
+                                break;
                         
-                    default:
-                        io.print("Ei muokattu mitään!\n");
-                        return;
-                }
+                            default:
+                                io.print("Ei muokattu mitään!\n");
+                                return;
+                        }
                 
-            } else if (!luettava && (indeksikentta >= 0 && indeksikentta <= 2)) {
-                switch (kentta) {
-                    case "0":
-                        io.print("Nykyinen otsikko: " + ((Podcast) muokattava).getOtsikko());
-                        String uusiOtsikko = io.readLine("Uusi otsikko: ");
-                        ((Podcast)muokattava).setOtsikko(uusiOtsikko);
-                        break;
+                    } else if (!luettava && (indeksikentta >= 0 && indeksikentta <= 2)) {
+                        switch (kentta) {
+                            case "0":
+                                io.print("Nykyinen otsikko: " + ((Podcast) muokattava).getOtsikko());
+                                String uusiOtsikko = io.readLine("Uusi otsikko: ");
+                                ((Podcast)muokattava).setOtsikko(uusiOtsikko);
+                                break;
                         
-                    case "1":
-                        io.print("Nykyinen URL: " + ((Podcast) muokattava).getUrl());
-                        String uusiURL = io.readLine("Uusi URL: ");
-                        ((Podcast)muokattava).setUrl(uusiURL);
-                        break;
+                            case "1":
+                                io.print("Nykyinen URL: " + ((Podcast) muokattava).getUrl());
+                                String uusiURL = io.readLine("Uusi URL: ");
+                                ((Podcast)muokattava).setUrl(uusiURL);
+                                break;
                         
-                    default:
-                        io.print("Ei muokattu mitään!\n");
+                            default:
+                                io.print("Ei muokattu mitään!\n");
+                                return;
+                        }
+                    } else {
+                        io.print("Ei kenttää syötetyllä luvulla");
                         return;
-                }
-            } else {
-                io.print("Ei kenttää syötetyllä luvulla");
-                return;
-            }     
+                    }     
             
-            if (sovelluslogiikka.muokkaaVinkki(indeksi, muokattava)) {
-                io.print("\nVinkkiä muokattu onnistuneesti!\n");
-            } else {
-                io.print("\nJotain meni pieleen muokkauksessa\n");
+                    if (sovelluslogiikka.muokkaaVinkki(indeksi, muokattava)) {
+                        io.print("\nVinkkiä muokattu onnistuneesti!\n");
+                    } else {
+                        io.print("\nJotain meni pieleen muokkauksessa\n");
+                    }
+                } else {
+                    io.print("Virheellinen syöte");
+                }
             }
+        } else {
+            io.print("Virheellinen syöte");
         }
     }
 
@@ -443,5 +467,18 @@ public class Tekstikayttoliittyma {
         }
         
     }
-   
+    
+    private boolean isNumeric(String syote) {
+        if (syote == null) {
+            return false;
+        }
+        
+        try {
+            int indeksi = Integer.parseInt(syote);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        
+        return true;
+    }
 }
