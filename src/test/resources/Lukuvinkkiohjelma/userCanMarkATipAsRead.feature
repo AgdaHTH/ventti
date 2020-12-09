@@ -31,3 +31,11 @@ Feature: A user can mark a tip as read
         And tip number "-1" is selected
         And program is terminated
         Then output will contain text "Ei"
+
+    Scenario: tip marking can be cancelled
+        Given command lisaa kirja is selected
+        When a new booktip with title "Opus", author "Kirjankirjoittaja" and ISBN "5431" is added
+        And command merkitse luetuksi is selected
+        And cancel command "" is entered
+        And program is terminated
+        Then output will contain text "Toiminto"
