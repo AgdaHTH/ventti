@@ -21,10 +21,12 @@
             lukemattomaksi tai ei-kuunnelluksi.
             
             5 - Valitse millä perusteella haluat listata vinkit
-            Vaihtoehdot ovat vinkin tyyppin tai lukemisen / kuuntelemisen perusteella.
+            Vaihtoehdot ovat vinkin tyyppin tai lukemisen / kuuntelemisen perusteella. 
+            Valitsemalla valikosta numeron voi valita onko tietty rajauskriteeri voimassa vai ei. 
+            Valitsemalla numeron 6 saa kaikki hakukriteerit voimaan.
             
             6 - Muokkaa vinkkiä
-            Käyttäjä voi jälleen valita muokattavan vinkin tulostuvasta listauksesta,
+            Käyttäjä voi valita muokattavan vinkin tulostuvasta listauksesta,
             minkä jälkeen valitaan muokattava kenttä.
             
             0 - Sulje ohjelma
