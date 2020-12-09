@@ -37,7 +37,7 @@ public class Sovelluslogiikka {
         listauksenParametrit.put("podcast", true);
         listauksenParametrit.put("blogi", true);
     }
-    
+
     public boolean muutaListauksenParametria(String parametri, boolean arvo) {
         if (listauksenParametrit.containsKey(parametri)) {
             listauksenParametrit.put(parametri, arvo);
@@ -61,19 +61,14 @@ public class Sovelluslogiikka {
     }
 
     public boolean poistaVinkki(int indeksi) {
-        try {
-            return this.dao.poistaVinkki(indeksi);
-        } catch (Exception e) {
-            System.out.println("Vinkkien lataus epaonnistui!\n" + e.toString());
-            return false;
-        }
+        return this.dao.poistaVinkki(indeksi);
     }
-    
+
     public boolean muokkaaVinkki(int indeksi, Vinkki vinkki) {
         if (poistaVinkki(indeksi)) {
             return (lisaaVinkki(vinkki));
         }
-        
+
         return false;
     }
 
@@ -90,36 +85,27 @@ public class Sovelluslogiikka {
     }
 
     public List<Vinkki> listaaKaikkiVinkit() {
-        try {
-            return dao.haeKaikki();
-        } catch (Exception e) {
-            System.out.println("Vinkkien lataus epaonnistui!\n" + e.toString());
-            return new ArrayList<>();
-        }
+        return dao.haeKaikki();
     }
 
     public List<Vinkki> listaaParametrienMukaan() {
         List<Vinkki> rajattuLista = new ArrayList<>();
 
-        try {
-            for (Vinkki vinkki : this.dao.haeKaikki()) {
-                if (((listauksenParametrit.get("luettu") && (vinkki.getLuettu())) 
-                        || (listauksenParametrit.get("lukematta") && (!vinkki.getLuettu())))
-                        && listauksenParametrit.get(vinkki.getTyyppi())) {
-                    rajattuLista.add(vinkki);
-                }
+        for (Vinkki vinkki : this.dao.haeKaikki()) {
+            if (((listauksenParametrit.get("luettu") && (vinkki.getLuettu()))
+                    || (listauksenParametrit.get("lukematta") && (!vinkki.getLuettu())))
+                    && listauksenParametrit.get(vinkki.getTyyppi())) {
+                rajattuLista.add(vinkki);
             }
-        } catch (Exception e) {
-            System.out.println("Vinkkien lataus epaonnistui!\n" + e.toString());
-            return new ArrayList<>();
         }
         Collections.sort(rajattuLista, new timeComparator());
         //Collections.sort(rajattuLista, new otsikkoComparator());
-        
+
         return rajattuLista;
     }
 
     static class timeComparator implements Comparator<Vinkki> {
+
         @Override
         public int compare(Vinkki vinkki, Vinkki verrattava) {
             if (vinkki.getTimestamp() != null) {
@@ -129,7 +115,7 @@ public class Sovelluslogiikka {
             }
         }
     }
-    
+
     /*
     static class otsikkoComparator implements Comparator<Vinkki> {
         @Override
@@ -137,5 +123,5 @@ public class Sovelluslogiikka {
             return vinkki.getOtsikko().compareToIgnoreCase(verrattava.getOtsikko());
         }
     }
-*/
+     */
 }

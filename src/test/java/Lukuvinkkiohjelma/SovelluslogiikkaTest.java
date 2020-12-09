@@ -101,12 +101,12 @@ public class SovelluslogiikkaTest {
         String otsikko = "TestO";
         String url = "TestURL";
         
-        Podcast podccast = new Podcast(otsikko, url);
-        sovelluslogiikka.lisaaVinkki(podccast);
+        Podcast podcast = new Podcast(otsikko, url);
+        sovelluslogiikka.lisaaVinkki(podcast);
         
-        podccast = (Podcast) sovelluslogiikka.listaaPodcastit().get(0);
-        assertTrue(podccast.getOtsikko().equals(otsikko));
-        assertTrue(podccast.getUrl().equals(url));
+        podcast = (Podcast) sovelluslogiikka.listaaPodcastit().get(0);
+        assertTrue(podcast.getOtsikko().equals(otsikko));
+        assertTrue(podcast.getUrl().equals(url));
     }
 
     @Test
@@ -114,8 +114,8 @@ public class SovelluslogiikkaTest {
         String otsikko = "TestO";
         String url = "TestURL";
         
-        Podcast podccast = new Podcast(otsikko, url);
-        sovelluslogiikka.lisaaVinkki(podccast);
+        Podcast podcast = new Podcast(otsikko, url);
+        sovelluslogiikka.lisaaVinkki(podcast);
         assertTrue(sovelluslogiikka.listaaKaikkiVinkit().size() == 1);
         
         sovelluslogiikka.poistaVinkki(0);
