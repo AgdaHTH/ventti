@@ -95,8 +95,8 @@ public class Sovelluslogiikka {
 
         try {
             for (Vinkki vinkki : this.dao.haeKaikki()) {
-                if (((listauksenParametrit.get("luettu") && (vinkki.getLuettu() == true)) 
-                        || (listauksenParametrit.get("lukematta") && (vinkki.getLuettu() == false)))
+                if (((listauksenParametrit.get("luettu") && (vinkki.getLuettu())) 
+                        || (listauksenParametrit.get("lukematta") && (!vinkki.getLuettu())))
                         && listauksenParametrit.get(vinkki.getTyyppi())) {
                     rajattuLista.add(vinkki);
                 }
