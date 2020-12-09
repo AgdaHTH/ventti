@@ -2,7 +2,7 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: [ main, daoMuutokset ]
+    branches: [ main, daoMuutokset, villenTesti ]
 
 jobs:
   run_tests:
