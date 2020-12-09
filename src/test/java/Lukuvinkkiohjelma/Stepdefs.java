@@ -52,6 +52,10 @@ public class Stepdefs {
 
     }
     
+    @When("^command merkitse luetuksi is selected$")
+    public void commandMerkitseLuetuksiSelected() throws Throwable {
+        inputLines.add("4");
+    }
     
     @When("a new booktip with title {string}, author {string} and ISBN {string} is added")
     public void aNewBookTipIsAdded(String otsikko, String kirjoittaja, String isbn) {
@@ -114,8 +118,6 @@ public class Stepdefs {
         kayttoliittyma.kaynnista();
     }
     
-
-    
     @Then("system will respond with {string}")
     public void systemWillRespondWith(String expectedOutput) {
         
@@ -145,12 +147,9 @@ public class Stepdefs {
 //                System.out.println(stringi);
                 
                 return true;
-
             }
         }
         
         return false;
-    }
-    
-    
+    }    
 }
