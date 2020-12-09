@@ -18,5 +18,5 @@ public interface VinkkiDao {
 
     List<Vinkki> getPodcastit();
 
-    List<Vinkki> haeKaikki() throws IOException;
+    List<Vinkki> haeKaikki();
 }

@@ -1,7 +1,36 @@
-Lataa uusin release
+1. Lataa uusin release: Latest-tagilla merkitty linkki kohdassa Releases. Varmista, että koneellasi on asennettuna Java 11.
 
-Käynnistä ohjelma komennolla java -jar Lukuvinkkikirjasto-all.jar
+2. Navigoi siihen kansioon, johon latasit ohjelman ja käynnistä se komennolla java -jar Lukuvinkkikirjasto-all.jar.
 
-Sovelluksen käyttö on tehty helpoksi. Komennolla "1" voit lisätä uuden vinkin. Tämän jälkeen komennoilla "1", "2" tai "3" voit lisätä joko uuden Kirja-, Podcast- tai Blogivinkin.
+3. Tekstikäyttöliittymä ohjeistaa sovelluksen käytössä. Päämenussa on seuraavat vaihtoehdot. 
 
-Komennolla "listaa" voit listata lisätyt vinkit ja komento "sulje" sulkee ohjelman.
+            1 - Lisää vinkki.
+            Vaihtoehdot ovat kirja, podcast ja blogi.
+            
+            2 - Listaa kaikki vinkit
+            Listaa vinkit rajauskriteerien perusteella. Rajauskriteereitä voi muuttaa valitsemalla vaihtoehdon 5. 
+            Oletuksena listataan kaikki vinkit.
+            
+            3 - Poista vinkki
+            Tulostaa ensin listan olemassaolevista vinkeistä, minkä jälkeen
+            käyttäjä voi valita poistettavan vinkin numeron listauksesta.
+            
+            4 - Merkitse vinkki luetuksi
+            Tulostaa ensin listan olemassaolevista vinkeistä, minkä jälkeen 
+            käyttäjä voi valita sen vinkin numeron, minkä haluaa merkitä
+            luetuksi tai kuunnelluksi. Vastaavasti voi myös merkitä vinkin
+            lukemattomaksi tai ei-kuunnelluksi.
+            
+            5 - Valitse millä perusteella haluat listata vinkit
+            Vaihtoehdot ovat vinkin tyyppin tai lukemisen / kuuntelemisen perusteella. 
+            Valitsemalla valikosta numeron voi valita onko tietty rajauskriteeri voimassa vai ei. 
+            Valitsemalla numeron 6 saa kaikki hakukriteerit voimaan.
+            
+            6 - Muokkaa vinkkiä
+            Käyttäjä voi valita muokattavan vinkin tulostuvasta listauksesta,
+            minkä jälkeen valitaan muokattava kenttä.
+            
+            0 - Sulje ohjelma
+            
+            Kaikissa vaiheissa toiminnon voi keskeyttää tai siitä voi poistua antamalla tyhjän syötteen
+            eli painamalle enteriä.

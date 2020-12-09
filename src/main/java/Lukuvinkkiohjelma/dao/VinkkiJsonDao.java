@@ -32,8 +32,10 @@ public class VinkkiJsonDao implements VinkkiDao {
         try {
             if (!vinkkikirjasto.exists()) {
                 vinkkikirjasto.createNewFile();
-                alustaTyhjaTiedosto();
 //                testiTiedosto();
+            }
+            if (vinkkikirjasto.length() == 0L) {
+                alustaTyhjaTiedosto();
             }
             puraTiedosto();
         } catch (Exception e) {
@@ -60,8 +62,8 @@ public class VinkkiJsonDao implements VinkkiDao {
     }
 
     /**
-     * Jos vinkkej� on k�sitelty yksitt�isin� listoina, indeksi lasketaan
-     * suhteessa kaikkiin listoihin; kirjat, blogit, podcastit.
+     * Jos vinkkej� on k�sitelty yksitt�isin� listoina, indeksi
+     * lasketaan suhteessa kaikkiin listoihin; kirjat, blogit, podcastit.
      *
      * Esimerkki: Jos vinkki on listan blogit indeksiss� 3, annetaan
      * parametriksi (kirjat.size() + 3)
@@ -80,7 +82,7 @@ public class VinkkiJsonDao implements VinkkiDao {
         }
 
         return talletaVinkit();
-    }   
+    }
 
     @Override
     public List<Vinkki> getKirjat() {
@@ -104,7 +106,7 @@ public class VinkkiJsonDao implements VinkkiDao {
      * lukemisyrityksest�
      */
     @Override
-    public List<Vinkki> haeKaikki() throws IOException {
+    public List<Vinkki> haeKaikki() {
         puraTiedosto();
 
         List<Vinkki> vinkit = new ArrayList<>();
@@ -123,8 +125,9 @@ public class VinkkiJsonDao implements VinkkiDao {
     }
 
     /**
-     * Listat t�rke�� tallentaa j�rjestyksess�; kirjat, blogit, podcastit Muussa
-     * tapauksessa metodin puraTiedosto() parsimisj�rjestyst� my�s muutettava.
+     * Listat t�rke�� tallentaa j�rjestyksess�; kirjat, blogit,
+     * podcastit Muussa tapauksessa metodin puraTiedosto()
+     * parsimisj�rjestyst� my�s muutettava.
      */
     @Override
     public boolean talletaVinkit() {
@@ -149,7 +152,8 @@ public class VinkkiJsonDao implements VinkkiDao {
     }
 
     /**
-     * Alustaa tiedoston tyhjill� listoilla. Yksi jokaista vinkkityyppi� kohden.
+     * Alustaa tiedoston tyhjill� listoilla. Yksi jokaista vinkkityyppi�
+     * kohden.
      */
     private void alustaTyhjaTiedosto() {
         List<Vinkki> k = new ArrayList<>();
@@ -176,14 +180,23 @@ public class VinkkiJsonDao implements VinkkiDao {
     /**
      * Hakee datan tiedostosta ja parsii sen erillisille Vinkki-listoille.
      */
-    private void puraTiedosto() throws IOException {
+    private void puraTiedosto() {
         Gson gson = new Gson();
-        InputStreamReader fileReader
-                = new InputStreamReader(new FileInputStream(
-                        (File) vinkkikirjasto), "UTF-8");
-        JsonReader jsonReader = new JsonReader(fileReader);
 
-        List<List<Vinkki>> listat = gson.fromJson(jsonReader, ArrayList.class);
+        List<List<Vinkki>> listat = new ArrayList<>();
+        
+        try {
+            FileInputStream fileInputStream = new FileInputStream((File) vinkkikirjasto);
+            InputStreamReader fileReader = new InputStreamReader(fileInputStream, "UTF-8");
+            JsonReader jsonReader = new JsonReader(fileReader);
+
+            listat = gson.fromJson(jsonReader, ArrayList.class);
+
+            fileReader.close();
+            fileInputStream.close();
+        } catch (Exception e) {
+            System.out.println("Vinkkien lataus epaonnistui!\n" + e.toString());
+        }
 
         kirjat = new ArrayList<>();
         List<Vinkki> raakalista = gson.fromJson(gson.toJson(listat.get(0)), ArrayList.class);
