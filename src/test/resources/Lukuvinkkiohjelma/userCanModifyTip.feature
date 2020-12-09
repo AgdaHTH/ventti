@@ -7,6 +7,7 @@ Feature: A user can modify an existing a tip
         And tip number "0" is selected
         And input "0" is entered
         And input "Parempi kirjailija" is entered
+        And cancel command "" is entered
         And program is terminated
         Then output will contain text "muokattu"
 
@@ -17,6 +18,7 @@ Feature: A user can modify an existing a tip
         And tip number "0" is selected
         And input "1" is entered
         And input "www.podcast.com/testicasti" is entered
+        And cancel command "" is entered
         And program is terminated
         Then output will contain text "muokattu"
         
@@ -27,5 +29,6 @@ Feature: A user can modify an existing a tip
         And tip number "0" is selected
         And input "2" is entered
         And input "www.blogspot.com/howToMakeBlogs" is entered
+        And cancel command "" is entered
         And program is terminated
         Then output will contain text "muokattu"
