@@ -20,3 +20,5 @@
 [Burndown](https://docs.google.com/spreadsheets/d/1TqD8HNOnqZwzVPIPCUq5l3AHGi7V4ykqisKdluWRB1g/edit?usp=sharing)
 
 [Käyttöohje](https://github.com/AgdaHTH/ventti/blob/main/dokumentaatio/K%C3%A4ytt%C3%B6ohje.md)
+
+
