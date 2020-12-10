@@ -46,7 +46,7 @@ public class Tekstikayttoliittyma {
             io.print("2 - Listaa vinkit");
             io.print("3 - Poista vinkki");
             io.print("4 - Merkitse vinkki luetuksi/lukemattomaksi");
-            io.print("5 - Muokkaa listauksen parametreja");
+            io.print("5 - Valitse millä perusteella haluat listata vinkit");
             io.print("6 - Muokkaa vinkkiä");
             io.print("0 - Sulje ohjelma");
             io.print("");
