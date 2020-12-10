@@ -136,7 +136,11 @@ public class Stepdefs {
     }
     
     @Then("output will contain text {string}")
-    public void outputWillContainText(String expectedOutput) {        
+    public void outputWillContainText(String expectedOutput) {
+
+        for (String s : io.getPrints()) {
+            System.out.println(s);
+        }
      
         assertTrue(includesText(io.getPrints(), expectedOutput));
         
