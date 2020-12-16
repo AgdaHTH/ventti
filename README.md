@@ -21,4 +21,6 @@
 
 [Käyttöohje](https://github.com/AgdaHTH/ventti/blob/main/dokumentaatio/K%C3%A4ytt%C3%B6ohje.md)
 
+[Raportti](https://github.com/AgdaHTH/ventti/blob/main/Ventti_raportti.pdf)
+
 
